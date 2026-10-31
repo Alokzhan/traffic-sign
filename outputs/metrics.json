@@ -1,0 +1,67 @@
+{
+  "test_accuracy": 0.9973809523809524,
+  "report": {
+    "Speed limit 30": {
+      "precision": 0.9972222222222222,
+      "recall": 0.9972222222222222,
+      "f1-score": 0.9972222222222222,
+      "support": 720.0
+    },
+    "Speed limit 50": {
+      "precision": 0.9946808510638298,
+      "recall": 0.9973333333333333,
+      "f1-score": 0.996005326231691,
+      "support": 750.0
+    },
+    "Yield": {
+      "precision": 0.9986111111111111,
+      "recall": 0.9986111111111111,
+      "f1-score": 0.9986111111111111,
+      "support": 720.0
+    },
+    "Stop": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 270.0
+    },
+    "No entry": {
+      "precision": 1.0,
+      "recall": 0.9888888888888889,
+      "f1-score": 0.994413407821229,
+      "support": 360.0
+    },
+    "Road work": {
+      "precision": 1.0,
+      "recall": 0.9958333333333333,
+      "f1-score": 0.9979123173277662,
+      "support": 480.0
+    },
+    "Turn right ahead": {
+      "precision": 0.995260663507109,
+      "recall": 1.0,
+      "f1-score": 0.997624703087886,
+      "support": 210.0
+    },
+    "Keep right": {
+      "precision": 0.9956709956709957,
+      "recall": 1.0,
+      "f1-score": 0.9978308026030369,
+      "support": 690.0
+    },
+    "accuracy": 0.9973809523809524,
+    "macro avg": {
+      "precision": 0.9976807304469085,
+      "recall": 0.9972361111111111,
+      "f1-score": 0.9974524863006178,
+      "support": 4200.0
+    },
+    "weighted avg": {
+      "precision": 0.9973877058684173,
+      "recall": 0.9973809523809524,
+      "f1-score": 0.9973798036312594,
+      "support": 4200.0
+    }
+  },
+  "disclaimer": "Educational demo only. Model is NOT suitable for real driving or any safety-critical use."
+}
