@@ -7,6 +7,10 @@ import os, json, argparse
 import numpy as np, cv2, pandas as pd
 from tensorflow import keras
 from sklearn.metrics import roc_auc_score
+# Ensure the project root is in PYTHONPATH so we can import common utilities
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from common import *
 
 

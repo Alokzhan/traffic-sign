@@ -296,9 +296,14 @@ export default function App() {
   return (
     <div className="app">
       <header>
-        <h1>🚦 Traffic Sign AI Lab</h1>
+        <div>
+          <h1>🚦 Traffic Sign AI Lab</h1>
+          <p style={{color:"var(--text3)",fontSize:".82rem",marginTop:"2px",fontWeight:500}}>
+            CNN · FastAPI · React — GTSRB 8-class classifier
+          </p>
+        </div>
         <span className={"pill " + (online ? "on" : "off")}>
-          {online === null ? "connecting…" : online ? "API online" : "API offline — uvicorn api:app --port 8000"}
+          {online === null ? "⏳ connecting…" : online ? "API online" : "⚠️ API offline — start uvicorn first"}
         </span>
       </header>
       <div className="layout">
