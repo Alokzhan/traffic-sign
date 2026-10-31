@@ -135,7 +135,7 @@ export function Safety({ s }) {
   const safe = d.sweep.find((r) => r.ood_accept <= 0.05);
   return (
     <section>
-      <p className="muted">Model sirf 8 signs jaanta hai. Asli duniya mein baaki sign bhi aate hain. Yahan dekhein ki reject option unhe kitna rok pata hai
+      <p className="muted">Model 8 specific signs aur 1 open-set ('Other') class jaanta hai. Yahan dekhein ki unseen traffic signs aur non-sign images kitna reject hote hain
         ({d.n_ood} unseen-class test images vs {d.n_id} known-class images).</p>
       <div className="cards">
         <div className="card"><span>Known-class accuracy</span><b>{(d.id_accuracy * 100).toFixed(2)}%</b></div>
@@ -175,7 +175,11 @@ export function Safety({ s }) {
       <table>
         <thead><tr><th>Unseen class</th><th>Images</th><th>Wrongly accepted</th></tr></thead>
         <tbody>{d.worst_unseen.map((w) => (
-          <tr key={w.cls}><td>class {w.cls}</td><td>{w.n}</td><td className={w.accepted > 0.3 ? "bad" : ""}>{(w.accepted * 100).toFixed(0)}%</td></tr>
+          <tr key={w.cls}>
+            <td>{w.name ? w.name : ("class " + w.cls)}</td>
+            <td>{w.n}</td>
+            <td className={w.accepted > 0.3 ? "bad" : ""}>{(w.accepted * 100).toFixed(0)}%</td>
+          </tr>
         ))}</tbody>
       </table>
       <p className="muted small">Calibration aur unseen-sign numbers held-out Test.csv par nikle hain. Ye numbers is dataset ke liye hain, real road ke liye nahi.</p>

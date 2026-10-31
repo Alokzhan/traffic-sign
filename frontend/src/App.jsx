@@ -34,7 +34,13 @@ function Bars({ classes, probs, top }) {
         <div className="bar-row" key={c}>
           <span className="bar-label">{c}</span>
           <div className="bar-track">
-            <div className={"bar-fill" + (i === top ? " top" : "")} style={{ width: `${(probs[i] * 100).toFixed(1)}%` }} />
+            <div
+              className={"bar-fill" + (i === top ? (c.startsWith("Other") ? " other" : " top") : "")}
+              style={{
+                width: `${(probs[i] * 100).toFixed(1)}%`,
+                backgroundColor: i === top && c.startsWith("Other") ? "#f59e0b" : undefined
+              }}
+            />
           </div>
           <span className="bar-val">{(probs[i] * 100).toFixed(1)}%</span>
         </div>
@@ -45,12 +51,22 @@ function Bars({ classes, probs, top }) {
 
 const isUncertain = (conf, ent, s) => conf < s.thr || ent > s.ent;
 
-function Verdict({ name, conf, ent, s }) {
+function Verdict({ name, conf, ent, s, isOther }) {
+  const isOtherClass = isOther || name.startsWith("Other");
   const bad = isUncertain(conf, ent, s);
+
+  if (isOtherClass) {
+    return (
+      <div className="verdict" style={{ background: "rgba(245, 158, 11, 0.12)", border: "1px solid #f59e0b", color: "#d97706" }}>
+        🛑 <b>Not one of the supported traffic signs</b> — classified as <i>{name}</i> with {(conf * 100).toFixed(1)}% confidence (uncertainty: {ent.toFixed(2)})
+      </div>
+    );
+  }
+
   return bad ? (
     <div className="verdict warn">
       ⚠️ <b>UNCERTAIN</b> — best guess: {name} ({(conf * 100).toFixed(1)}%, uncertainty {ent.toFixed(2)}). Ho sakta hai
-      ye sign model ke 8 classes mein hai hi nahi.
+      ye sign model ke supported classes mein hai hi nahi.
     </div>
   ) : (
     <div className="verdict ok">
@@ -80,11 +96,11 @@ function Predict({ s }) {
 
   return (
     <section>
-      <DropZone onFiles={onFiles} label="Traffic sign image chunein" />
+      <DropZone onFiles={onFiles} label="Traffic sign ya image chunein" />
       <Busy on={busy} /><Err msg={err} />
       {res && (
         <>
-          <Verdict name={res.name} conf={res.conf} ent={res.entropy} s={s} />
+          <Verdict name={res.name} conf={res.conf} ent={res.entropy} s={s} isOther={res.is_other} />
           <div className="grid3">
             <figure><img src={preview} alt="original" /><figcaption>Original</figcaption></figure>
             <figure><img src={res.model_input} alt="input" /><figcaption>Model input (48×48 + CLAHE)</figcaption></figure>
@@ -194,7 +210,7 @@ function Batch({ s }) {
     const head = "file,prediction,confidence,uncertainty,status\n";
     const body = rows.map((r) =>
       [r.file, r.prediction, r.confidence.toFixed(4), r.entropy.toFixed(3),
-       isUncertain(r.confidence, r.entropy, s) ? "UNCERTAIN" : "OK"].join(",")).join("\n");
+       r.is_other ? "NOT_A_SIGN" : (isUncertain(r.confidence, r.entropy, s) ? "UNCERTAIN" : "OK")].join(",")).join("\n");
     const a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([head + body], { type: "text/csv" }));
     a.download = "predictions.csv"; a.click();
@@ -210,12 +226,15 @@ function Batch({ s }) {
             <thead><tr><th>File</th><th>Prediction</th><th>Confidence</th><th>Uncertainty</th><th>Status</th></tr></thead>
             <tbody>
               {rows.map((r, i) => {
+                const isOther = r.is_other || r.prediction.startsWith("Other");
                 const bad = isUncertain(r.confidence, r.entropy, s);
+                const statusText = isOther ? "NOT A SIGN" : (bad ? "UNCERTAIN" : "OK");
+                const statusClass = isOther ? "warn" : (bad ? "bad" : "good");
                 return (
                   <tr key={i}>
                     <td>{r.file}</td><td>{r.prediction}</td>
                     <td>{(r.confidence * 100).toFixed(1)}%</td><td>{r.entropy.toFixed(2)}</td>
-                    <td className={bad ? "bad" : "good"}>{bad ? "UNCERTAIN" : "OK"}</td>
+                    <td className={statusClass}><b>{statusText}</b></td>
                   </tr>
                 );
               })}
@@ -241,24 +260,29 @@ function Report() {
       <div className="cards">
         <div className="card"><span>Held-out test accuracy</span><b>{(m.test_accuracy * 100).toFixed(2)}%</b></div>
         <div className="card"><span>Macro F1</span><b>{m.report["macro avg"]["f1-score"].toFixed(3)}</b></div>
-        <div className="card"><span>Classes</span><b>{classes.length}</b></div>
+        <div className="card"><span>Total Classes</span><b>{classes.length}</b></div>
       </div>
       <table>
         <thead><tr><th>Class</th><th>Precision</th><th>Recall</th><th>F1</th><th>Support</th></tr></thead>
         <tbody>
           {classes.map((c) => (
-            <tr key={c}>
+            <tr key={c} style={c.startsWith("Other") ? { fontWeight: 600, background: "rgba(245, 158, 11, 0.08)" } : {}}>
               <td>{c}</td>
-              <td>{m.report[c].precision.toFixed(3)}</td><td>{m.report[c].recall.toFixed(3)}</td>
-              <td>{m.report[c]["f1-score"].toFixed(3)}</td><td>{m.report[c].support}</td>
+              <td>{m.report[c] ? m.report[c].precision.toFixed(3) : "—"}</td>
+              <td>{m.report[c] ? m.report[c].recall.toFixed(3) : "—"}</td>
+              <td>{m.report[c] ? m.report[c]["f1-score"].toFixed(3) : "—"}</td>
+              <td>{m.report[c] ? m.report[c].support : "—"}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <p className="muted">Sirf 8 GTSRB classes par evaluate hua hai; real-world performance isse alag hoga.</p>
+      <p className="muted">8 GTSRB sign classes + 1 'Other / not a sign' open-set negative class par evaluate hua hai.</p>
       <div className="gallery">
         {images.map((n) => (
-          <figure key={n}><img className="plot" src={asset("/outputs/" + n)} alt={n} /><figcaption>{n.replace(".png", "").replace("_", " ")}</figcaption></figure>
+          <figure key={n}>
+            <img className="plot" src={asset("/outputs/" + n)} alt={n} />
+            <figcaption>{n.replace(".png", "").replace("_", " ")}</figcaption>
+          </figure>
         ))}
       </div>
     </section>
@@ -267,15 +291,15 @@ function Report() {
 
 /* ---------- About ---------- */
 function About() {
-  const flow = ["User image", "Preprocess (resize + CLAHE)", "CNN (final.keras)", "Softmax probabilities",
-    "Reject option (confidence + entropy)", "Grad-CAM explanation", "React UI"];
+  const flow = ["User image", "Preprocess (resize + CLAHE)", "CNN 9-class (final.keras)", "Softmax probabilities",
+    "Open-set Reject / Other verdict", "Grad-CAM explanation", "React UI"];
   return (
     <section>
       <h3>System architecture (inference path)</h3>
       <div className="flow">
         {flow.map((f, i) => (<span key={f} className="node">{f}{i < flow.length - 1 && <i>→</i>}</span>))}
       </div>
-      <p>React (Vite) UI → FastAPI (<code>api.py</code>) → Keras model. Training pipeline: GTSRB → preprocess → group split → augmentation + CNN → evaluation reports.</p>
+      <p>React (Vite) UI → FastAPI (<code>api.py</code>) → Keras 9-class model (8 traffic signs + 1 "Other / not a sign").</p>
       <div className="verdict warn">{DISCLAIMER}</div>
     </section>
   );
@@ -291,7 +315,16 @@ export default function App() {
   const [tab, setTab] = useState("predict");
   const [s, setS] = useState({ thr: 0.7, ent: 0.5 });
   const [online, setOnline] = useState(null);
-  useEffect(() => { getJSON("/api/health").then(() => setOnline(true)).catch(() => setOnline(false)); }, []);
+  const [classes, setClasses] = useState([]);
+
+  useEffect(() => {
+    getJSON("/api/health")
+      .then((d) => {
+        setOnline(true);
+        if (d.classes) setClasses(d.classes);
+      })
+      .catch(() => setOnline(false));
+  }, []);
 
   return (
     <div className="app">
@@ -299,7 +332,7 @@ export default function App() {
         <div>
           <h1>🚦 Traffic Sign AI Lab</h1>
           <p style={{color:"var(--text3)",fontSize:".82rem",marginTop:"2px",fontWeight:500}}>
-            CNN · FastAPI · React — GTSRB 8-class classifier
+            CNN · FastAPI · React — GTSRB 9-class classifier (8 signs + Other / not a sign)
           </p>
         </div>
         <span className={"pill " + (online ? "on" : "off")}>

@@ -1,4 +1,4 @@
-const BASE = import.meta.env.VITE_API_URL || "https://traffic-sign-nvpc.onrender.com";
+const BASE = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? "http://127.0.0.1:8000" : "https://traffic-sign-nvpc.onrender.com");
 
 async function handle(r) {
   if (!r.ok) {

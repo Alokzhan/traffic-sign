@@ -5,6 +5,8 @@ __pycache__/
 frontend/node_modules/
 frontend/dist/
 dist/
+data_cifar/
+real_test_non_signs/
 # Keep outputs/ in git so Render can use the trained model
 # gtsrb/ is too large - not needed for inference
 gtsrb/

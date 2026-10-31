@@ -1,25 +1,40 @@
 """FastAPI backend for the React UI.
 Run:  uvicorn api:app --port 8000
-Needs outputs/final.keras (from train.py).
+Needs outputs/final.keras (train.py). Optional: outputs/advanced.json (evaluate_advanced.py).
 """
 import os, json, base64, threading
 from typing import List
 import numpy as np, cv2
+import tensorflow as tf
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from tensorflow import keras
-from common import *
+from common import (
+    CLASS_NAMES, OTHER_CLASS_NAME, OTHER_IDX, NUM_CLASSES,
+    DISCLAIMER, preprocess
+)
 from predict import gradcam
 
 OUT = os.environ.get("OUT_DIR", "outputs")
-model = keras.models.load_model(os.path.join(OUT, "final.keras"))
+model_path = os.path.join(OUT, "final.keras")
+model = keras.models.load_model(model_path) if os.path.exists(model_path) else None
 lock = threading.Lock()
 
 app = FastAPI(title="Traffic Sign API")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+
 if os.path.isdir(OUT):
     app.mount("/outputs", StaticFiles(directory=OUT), name="outputs")
+
+ADV = os.path.join(OUT, "advanced.json")
+if os.path.exists(ADV):
+    try:
+        _d = json.load(open(ADV)).get("data_dir")
+        if _d and os.path.isdir(os.path.join(_d, "Test")):
+            app.mount("/testimg", StaticFiles(directory=os.path.join(_d, "Test")), name="testimg")
+    except Exception:
+        pass
 
 
 # ---------- helpers ----------
@@ -39,6 +54,9 @@ def to_b64(rgb, size=None):
 
 
 def run(x):
+    global model
+    if model is None:
+        model = keras.models.load_model(os.path.join(OUT, "final.keras"))
     with lock:
         return model.predict(x, verbose=0)
 
@@ -72,6 +90,27 @@ PERTURB = {
     "rotation":   ("Rotation (degrees)",         p_rotate,     [-40, -25, -10, 0, 10, 25, 40]),
     "occlusion":  ("Occlusion (centre patch)",   p_occlude,    [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6]),
 }
+FGSM_LABEL = "⚔️ Adversarial attack (FGSM, pixel ε)"
+FGSM_EPS = [0, 1, 2, 4, 8, 16, 32]
+
+
+def fgsm_sweep(bgr):
+    """Fast Gradient Sign Method: model ke gradient ki disha mein chhota noise."""
+    rgb = preprocess(bgr)
+    x = tf.convert_to_tensor(rgb[None].astype("float32"))
+    with lock:
+        label = int(np.argmax(model(x, training=False).numpy()[0]))
+        with tf.GradientTape() as tape:
+            tape.watch(x)
+            pred = model(x, training=False)
+            loss = keras.losses.sparse_categorical_crossentropy(tf.constant([label]), pred)
+        sign = tf.sign(tape.gradient(loss, x)).numpy()
+    advs = [np.clip(rgb[None].astype("float32") + e * sign, 0, 255).astype("uint8") for e in FGSM_EPS]
+    P = run(np.concatenate(advs).astype("float32"))
+    items = [{"level": e, "image": to_b64(adv[0]), "pred": CLASS_NAMES[int(p.argmax())],
+              "conf": float(p.max()), "base_conf": float(p[label])}
+             for e, adv, p in zip(FGSM_EPS, advs, P)]
+    return {"base": CLASS_NAMES[label], "items": items}
 
 
 # ---------- routes ----------
@@ -81,25 +120,38 @@ def health():
 
 
 @app.post("/api/predict")
-def predict_ep(file: UploadFile = File(...)):
+def predict_ep(file: UploadFile = File(...), cam: int = 1):
     bgr = decode(file)
     rgb = preprocess(bgr)
     x = rgb[None].astype("float32")
     p = run(x)[0]
+    n_out = len(p)
+    classes = CLASS_NAMES[:n_out]
     top = int(p.argmax())
     cam_img = None
-    try:
-        with lock:
-            cam = gradcam(model, x)
-        base = cv2.resize(rgb, (192, 192), interpolation=cv2.INTER_NEAREST)
-        heat = cv2.applyColorMap(np.uint8(255 * cv2.resize(cam, (192, 192))), cv2.COLORMAP_JET)
-        heat = cv2.cvtColor(heat, cv2.COLOR_BGR2RGB)
-        cam_img = to_b64(cv2.addWeighted(base, 0.6, heat, 0.4, 0))
-    except Exception:
-        pass
-    return {"classes": CLASS_NAMES, "probs": [float(v) for v in p], "top": top,
-            "name": CLASS_NAMES[top], "conf": float(p.max()), "entropy": entropy(p),
-            "model_input": to_b64(rgb, 192), "gradcam": cam_img}
+    if cam:
+        try:
+            with lock:
+                heat_map = gradcam(model, x)
+            base = cv2.resize(rgb, (192, 192), interpolation=cv2.INTER_NEAREST)
+            heat = cv2.applyColorMap(np.uint8(255 * cv2.resize(heat_map, (192, 192))), cv2.COLORMAP_JET)
+            heat = cv2.cvtColor(heat, cv2.COLOR_BGR2RGB)
+            cam_img = to_b64(cv2.addWeighted(base, 0.6, heat, 0.4, 0))
+        except Exception:
+            pass
+
+    is_other = (n_out == 9 and top == 8)
+    return {
+        "classes": classes,
+        "probs": [float(v) for v in p],
+        "top": top,
+        "name": classes[top],
+        "is_other": is_other,
+        "conf": float(p.max()),
+        "entropy": entropy(p),
+        "model_input": to_b64(rgb, 192),
+        "gradcam": cam_img
+    }
 
 
 @app.post("/api/batch")
@@ -111,30 +163,42 @@ def batch_ep(files: List[UploadFile] = File(...)):
         except HTTPException:
             continue
         p = run(preprocess(bgr)[None].astype("float32"))[0]
-        rows.append({"file": f.filename, "prediction": CLASS_NAMES[int(p.argmax())],
-                     "confidence": float(p.max()), "entropy": entropy(p)})
+        n_out = len(p)
+        classes = CLASS_NAMES[:n_out]
+        top = int(p.argmax())
+        rows.append({
+            "file": f.filename,
+            "prediction": classes[top],
+            "is_other": bool(n_out == 9 and top == 8),
+            "confidence": float(p.max()),
+            "entropy": entropy(p)
+        })
     return {"rows": rows}
 
 
 @app.get("/api/perturbations")
 def perturbations():
-    return [{"key": k, "label": v[0]} for k, v in PERTURB.items()]
+    return [{"key": k, "label": v[0]} for k, v in PERTURB.items()] + [{"key": "fgsm", "label": FGSM_LABEL}]
 
 
 @app.post("/api/robustness")
 def robustness(file: UploadFile = File(...), kind: str = Form("brightness")):
-    if kind not in PERTURB:
+    if kind != "fgsm" and kind not in PERTURB:
         raise HTTPException(400, "unknown perturbation")
     bgr = decode(file)
+    if kind == "fgsm":
+        return fgsm_sweep(bgr)
     _, fn, levels = PERTURB[kind]
     imgs = [fn(bgr, l) for l in levels]
     X = np.stack([preprocess(i) for i in imgs]).astype("float32")
     P = run(X)
+    n_out = P.shape[-1]
+    classes = CLASS_NAMES[:n_out]
     base = int(run(preprocess(bgr)[None].astype("float32"))[0].argmax())
     items = [{"level": l, "image": to_b64(cv2.cvtColor(im, cv2.COLOR_BGR2RGB)),
-              "pred": CLASS_NAMES[int(p.argmax())], "conf": float(p.max()), "base_conf": float(p[base])}
+              "pred": classes[int(p.argmax())], "conf": float(p.max()), "base_conf": float(p[base])}
              for l, im, p in zip(levels, imgs, P)]
-    return {"base": CLASS_NAMES[base], "items": items}
+    return {"base": classes[base], "items": items}
 
 
 @app.get("/api/report")
@@ -143,5 +207,23 @@ def report():
     if not os.path.exists(mp):
         raise HTTPException(404, "metrics.json nahi mila")
     names = ["confusion_matrix.png", "class_f1.png", "history.png", "examples.png", "difficult_examples.png"]
-    return {"metrics": json.load(open(mp)), "classes": CLASS_NAMES,
-            "images": [n for n in names if os.path.exists(os.path.join(OUT, n))]}
+    return {
+        "metrics": json.load(open(mp)),
+        "classes": CLASS_NAMES,
+        "images": [n for n in names if os.path.exists(os.path.join(OUT, n))]
+    }
+
+
+@app.get("/api/advanced")
+def advanced():
+    if not os.path.exists(ADV):
+        raise HTTPException(404, "advanced.json nahi mila. Pehle evaluate_advanced.py chalayein.")
+    return json.load(open(ADV))
+
+
+@app.get("/api/before_after")
+def before_after():
+    ba_path = os.path.join(OUT, "before_after.json")
+    if not os.path.exists(ba_path):
+        raise HTTPException(404, "before_after.json nahi mila.")
+    return json.load(open(ba_path))
