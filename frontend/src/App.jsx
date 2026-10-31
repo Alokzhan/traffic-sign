@@ -28,23 +28,40 @@ function DropZone({ onFiles, multiple = false, label }) {
 }
 
 function Bars({ classes, probs, top }) {
+  const [showAll, setShowAll] = useState(false);
+  if (!classes || !probs) return null;
+  
+  const indexed = probs.map((p, i) => ({ c: classes[i], p, i })).sort((a, b) => b.p - a.p);
+  const visible = showAll || classes.length <= 10 ? indexed : indexed.slice(0, 8);
+
   return (
-    <div className="bars">
-      {classes.map((c, i) => (
-        <div className="bar-row" key={c}>
-          <span className="bar-label">{c}</span>
-          <div className="bar-track">
-            <div
-              className={"bar-fill" + (i === top ? (c.startsWith("Other") ? " other" : " top") : "")}
-              style={{
-                width: `${(probs[i] * 100).toFixed(1)}%`,
-                backgroundColor: i === top && c.startsWith("Other") ? "#f59e0b" : undefined
-              }}
-            />
+    <div className="bars-container">
+      <div className="bars">
+        {visible.map(({ c, p, i }) => (
+          <div className="bar-row" key={c}>
+            <span className="bar-label" title={c}>{c}</span>
+            <div className="bar-track">
+              <div
+                className={"bar-fill" + (i === top ? (c.startsWith("Other") ? " other" : " top") : "")}
+                style={{
+                  width: `${(p * 100).toFixed(1)}%`,
+                  backgroundColor: i === top && c.startsWith("Other") ? "#f59e0b" : undefined
+                }}
+              />
+            </div>
+            <span className="bar-val">{(p * 100).toFixed(1)}%</span>
           </div>
-          <span className="bar-val">{(probs[i] * 100).toFixed(1)}%</span>
-        </div>
-      ))}
+        ))}
+      </div>
+      {classes.length > 10 && (
+        <button
+          type="button"
+          onClick={() => setShowAll(!showAll)}
+          style={{ marginTop: "10px", fontSize: "0.8rem", padding: "4px 12px" }}
+        >
+          {showAll ? "Show Top 8 Only" : `Show All ${classes.length} Classes`}
+        </button>
+      )}
     </div>
   );
 }

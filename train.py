@@ -1,6 +1,6 @@
-"""Traffic-sign classifier (9-class with 'Other / not a sign'): data -> train -> evaluate -> reports.
-Run: python train.py --data /path/to/gtsrb --out outputs --epochs 40
-Dataset layout (Kaggle GTSRB): <data>/Train/<class_id>/*.png, <data>/Test.csv, <data>/Test/*.png
+"""Traffic-sign classifier (All 43 GTSRB Signs + 1 Other Class = 44 Classes Total).
+Deep Residual CNN with skip connections, batch normalization, and dual pooling.
+Run: python train.py --data /path/to/gtsrb --out outputs --epochs 30 --batch 64
 """
 import os, json, argparse, shutil, pickle
 import numpy as np, cv2, pandas as pd
@@ -14,7 +14,7 @@ from sklearn.model_selection import GroupShuffleSplit
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.utils.class_weight import compute_class_weight
 from common import (
-    CLASS_IDS, CLASS_NAMES, ID_TO_IDX, OTHER_IDX, HELD_OUT_CLASSES,
+    CLASS_IDS, CLASS_NAMES, ID_TO_IDX, OTHER_IDX, NUM_CLASSES,
     IMG_SIZE, DISCLAIMER, preprocess
 )
 
@@ -23,9 +23,9 @@ np.random.seed(SEED)
 tf.random.set_seed(SEED)
 
 
-# ---------- 1. Data Generation & Augmentation ----------
+# ---------- 1. Data Augmentation & Synthesis ----------
 def apply_resolution_diversity(img_rgb, rng):
-    """Randomly downscales or blurs images so the CNN cannot use resolution artifacts as a shortcut."""
+    """Randomly downscales or blurs images so the CNN does not cheat by resolution differences."""
     p = rng.random()
     if p < 0.35:
         low_res = int(rng.integers(20, 36))
@@ -41,13 +41,13 @@ def apply_resolution_diversity(img_rgb, rng):
 def generate_traffic_light(rng):
     """Synthetic traffic light in dark housing against outdoor/textured background."""
     bg_type = int(rng.integers(0, 5))
-    if bg_type == 0:  # sky
+    if bg_type == 0:
         img = np.full((48, 48, 3), [int(rng.integers(200, 255)), int(rng.integers(180, 220)), int(rng.integers(120, 160))], dtype=np.uint8)
-    elif bg_type == 1:  # dark tarmac / road
+    elif bg_type == 1:
         img = np.full((48, 48, 3), [int(x) for x in rng.integers(40, 90, size=3)], dtype=np.uint8)
-    elif bg_type == 2:  # light gray / building
+    elif bg_type == 2:
         img = np.full((48, 48, 3), [int(x) for x in rng.integers(200, 245, size=3)], dtype=np.uint8)
-    else:  # gradient
+    else:
         v = np.linspace(int(rng.integers(50, 100)), int(rng.integers(150, 220)), 48, dtype=np.uint8)
         img = np.tile(v[:, None, None], (1, 48, 3)).copy()
 
@@ -82,18 +82,18 @@ def generate_traffic_light(rng):
 
 
 def generate_circular_distractor(rng):
-    """Synthetic circular non-sign distractor: coins, colored discs, concentric patterns."""
+    """Synthetic circular non-sign distractor: coins, colored discs, patterns."""
     bg = np.full((48, 48, 3), [int(x) for x in rng.integers(50, 220, size=3)], dtype=np.uint8)
     cx, cy = int(rng.integers(18, 30)), int(rng.integers(18, 30))
     r = int(rng.integers(10, 20))
     c_type = int(rng.integers(0, 4))
-    if c_type == 0:  # purple/magenta
+    if c_type == 0:
         col = (int(rng.integers(150, 255)), 0, int(rng.integers(150, 255)))
-    elif c_type == 1:  # cyan / teal
+    elif c_type == 1:
         col = (int(rng.integers(150, 255)), int(rng.integers(150, 255)), 0)
-    elif c_type == 2:  # metallic bronze / coin
+    elif c_type == 2:
         col = (int(rng.integers(40, 80)), int(rng.integers(120, 180)), int(rng.integers(180, 230)))
-    else:  # dark disc
+    else:
         col = (int(rng.integers(30, 80)), int(rng.integers(30, 80)), int(rng.integers(30, 80)))
 
     cv2.circle(bg, (cx, cy), r, col, -1)
@@ -109,10 +109,11 @@ def load_train(root):
     X, y, groups = [], [], []
     rng = np.random.default_rng(SEED)
 
-    # 1. Load the 8 selected sign classes
-    print("Loading 8 selected GTSRB sign classes...")
+    print("Loading all 43 GTSRB sign classes...")
     for cid in CLASS_IDS:
         folder = os.path.join(root, "Train", str(cid))
+        if not os.path.isdir(folder):
+            continue
         for f in sorted(os.listdir(folder)):
             img = cv2.imread(os.path.join(folder, f))
             if img is None:
@@ -120,47 +121,15 @@ def load_train(root):
             proc = preprocess(img)
             proc = apply_resolution_diversity(proc, rng)
             X.append(proc)
-            y.append(ID_TO_IDX[cid])
+            y.append(cid)
             parts = os.path.splitext(f)[0].split("_")
             track = parts[-2] if len(parts) >= 3 else parts[0]
             groups.append(f"{cid}_{track}")
 
-    # 2. Load "Other / not a sign" (index 8) ~1,600 images:
-    print("Loading 9th class 'Other / not a sign'...")
-    # (a) Unused GTSRB classes (excluding the 8 held-out honest test classes): ~600 images
-    unused_cids = [c for c in range(43) if c not in CLASS_IDS and c not in HELD_OUT_CLASSES]
-    unused_tracks = []
-    for cid in unused_cids:
-        folder = os.path.join(root, "Train", str(cid))
-        if not os.path.isdir(folder):
-            continue
-        tracks_in_cls = {}
-        for f in os.listdir(folder):
-            parts = os.path.splitext(f)[0].split("_")
-            track = parts[-2] if len(parts) >= 3 else parts[0]
-            tracks_in_cls.setdefault(track, []).append((cid, f))
-        for trk, files in tracks_in_cls.items():
-            unused_tracks.append((cid, trk, files))
+    print(f"Loaded {len(X)} traffic sign images across 43 classes.")
 
-    rng.shuffle(unused_tracks)
-    gtsrb_other_count = 0
-    for cid, trk, files in unused_tracks:
-        if gtsrb_other_count >= 600:
-            break
-        folder = os.path.join(root, "Train", str(cid))
-        for _, f in files:
-            img = cv2.imread(os.path.join(folder, f))
-            if img is None:
-                continue
-            proc = preprocess(img)
-            proc = apply_resolution_diversity(proc, rng)
-            X.append(proc)
-            y.append(OTHER_IDX)
-            groups.append(f"{cid}_{trk}")
-            gtsrb_other_count += 1
-    print(f"  - Loaded {gtsrb_other_count} unused GTSRB images for 'Other'")
-
-    # (b) CIFAR-100 real non-sign training images: ~500 images
+    # 44th Class: "Other / not a sign" (index 43) ~1,000 images
+    print("Loading 44th class 'Other / not a sign'...")
     cifar_path = "data_cifar/train"
     if os.path.exists(cifar_path):
         with open(cifar_path, "rb") as f:
@@ -174,9 +143,8 @@ def load_train(root):
             X.append(proc)
             y.append(OTHER_IDX)
             groups.append(f"cifar_{i // 15}")
-        print("  - Loaded 500 CIFAR-100 images for 'Other'")
+        print("  - Added 500 CIFAR-100 real non-sign images.")
 
-    # (c) Synthetic hard negatives (traffic lights + circular distractors): ~500 images
     for i in range(500):
         img = generate_traffic_light(rng) if rng.random() > 0.35 else generate_circular_distractor(rng)
         proc = preprocess(img)
@@ -184,50 +152,36 @@ def load_train(root):
         X.append(proc)
         y.append(OTHER_IDX)
         groups.append(f"synth_{i // 15}")
-    print("  - Generated 500 synthetic hard negatives (traffic lights / distractors)")
+    print("  - Added 500 synthetic hard negatives (traffic lights / distractors).")
 
     return np.array(X), np.array(y), np.array(groups)
 
 
 def load_test(root):
-    print("Loading held-out test set...")
+    print("Loading test set...")
     df = pd.read_csv(os.path.join(root, "Test.csv"))
-    # Selected 8 sign classes
-    df_sel = df[df.ClassId.isin(CLASS_IDS)]
     X, y = [], []
-    for _, r in df_sel.iterrows():
+    for _, r in df.iterrows():
         img = cv2.imread(os.path.join(root, r.Path))
         if img is None:
             continue
         X.append(preprocess(img))
-        y.append(ID_TO_IDX[r.ClassId])
+        y.append(int(r.ClassId))
 
-    # Held-out test samples for Class 8 ("Other / not a sign"): ~480 images
+    # Add test samples for 44th class ("Other / not a sign"): ~300 images
     rng = np.random.default_rng(SEED + 99)
-    # (a) Unused GTSRB classes (excluding HELD_OUT_CLASSES)
-    unused_cids = [c for c in range(43) if c not in CLASS_IDS and c not in HELD_OUT_CLASSES]
-    df_unused = df[df.ClassId.isin(unused_cids)]
-    sample_gtsrb_test = df_unused.sample(min(160, len(df_unused)), random_state=SEED + 99)
-    for _, r in sample_gtsrb_test.iterrows():
-        img = cv2.imread(os.path.join(root, r.Path))
-        if img is not None:
-            X.append(preprocess(img))
-            y.append(OTHER_IDX)
-
-    # (b) CIFAR-100 test split: ~160 images
     cifar_test_path = "data_cifar/test"
     if os.path.exists(cifar_test_path):
         with open(cifar_test_path, "rb") as f:
             d_cifar = pickle.load(f, encoding="bytes")
         x_cifar_test = d_cifar[b"data"].reshape(-1, 3, 32, 32).transpose(0, 2, 3, 1)
-        cifar_test_idx = rng.choice(len(x_cifar_test), 160, replace=False)
+        cifar_test_idx = rng.choice(len(x_cifar_test), 150, replace=False)
         for idx in cifar_test_idx:
             bgr = cv2.cvtColor(x_cifar_test[idx], cv2.COLOR_RGB2BGR)
             X.append(preprocess(bgr))
             y.append(OTHER_IDX)
 
-    # (c) Synthetic hard negatives test: ~160 images
-    for _ in range(160):
+    for _ in range(150):
         img = generate_traffic_light(rng) if rng.random() > 0.4 else generate_circular_distractor(rng)
         X.append(preprocess(img))
         y.append(OTHER_IDX)
@@ -235,32 +189,63 @@ def load_test(root):
     return np.array(X), np.array(y)
 
 
-# ---------- 3. Model Architecture ----------
-def build_model(n_classes=9):
-    # Data augmentation layer: rotation, zoom, translation, contrast (no horizontal flip)
+# ---------- 3. Deep Residual Architecture ----------
+def res_block(x, filters, stride=1, name=None):
+    shortcut = x
+    if stride != 1 or x.shape[-1] != filters:
+        shortcut = layers.Conv2D(filters, 1, strides=stride, use_bias=False)(shortcut)
+        shortcut = layers.BatchNormalization()(shortcut)
+
+    y = layers.Conv2D(filters, 3, strides=stride, padding="same", use_bias=False)(x)
+    y = layers.BatchNormalization()(y)
+    y = layers.ReLU()(y)
+    y = layers.Conv2D(filters, 3, padding="same", use_bias=False, name=name)(y)
+    y = layers.BatchNormalization()(y)
+
+    out = layers.add([shortcut, y])
+    return layers.ReLU()(out)
+
+
+def build_strong_model(n_classes=44):
+    inp = keras.Input((IMG_SIZE, IMG_SIZE, 3))
     aug = keras.Sequential([
-        layers.RandomRotation(0.06),
-        layers.RandomZoom(0.1),
+        layers.RandomRotation(0.08),
+        layers.RandomZoom(0.12),
         layers.RandomTranslation(0.08, 0.08),
         layers.RandomContrast(0.2),
     ], name="augment")
-    inp = keras.Input((IMG_SIZE, IMG_SIZE, 3))
     x = aug(inp)
     x = layers.Rescaling(1 / 255)(x)
-    for i, f in enumerate((32, 64, 128)):
-        for j in range(2):
-            name = "last_conv" if (i == 2 and j == 1) else None
-            x = layers.Conv2D(f, 3, padding="same", use_bias=False, name=name)(x)
-            x = layers.BatchNormalization()(x)
-            x = layers.ReLU()(x)
-        if i < 2:
-            x = layers.MaxPooling2D()(x)
-            x = layers.Dropout(0.25)(x)
-    x = layers.GlobalAveragePooling2D()(x)
-    x = layers.Dense(128, activation="relu")(x)
-    x = layers.Dropout(0.4)(x)
-    out = layers.Dense(n_classes, activation="softmax")(x)
-    m = keras.Model(inp, out, name="sign_cnn_v2")
+
+    x = layers.Conv2D(32, 3, padding="same", use_bias=False)(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.ReLU()(x)
+
+    x = res_block(x, 32)
+    x = layers.MaxPooling2D()(x)
+    x = layers.Dropout(0.15)(x)
+
+    x = res_block(x, 64)
+    x = layers.MaxPooling2D()(x)
+    x = layers.Dropout(0.2)(x)
+
+    x = res_block(x, 128)
+    x = layers.MaxPooling2D()(x)
+    x = layers.Dropout(0.25)(x)
+
+    x = res_block(x, 192, name="last_conv")
+
+    # Dual Pooling: Global Average + Global Max
+    gap = layers.GlobalAveragePooling2D()(x)
+    gmp = layers.GlobalMaxPooling2D()(x)
+    feat = layers.concatenate([gap, gmp])
+
+    feat = layers.Dense(192, activation="relu")(feat)
+    feat = layers.BatchNormalization()(feat)
+    feat = layers.Dropout(0.4)(feat)
+
+    out = layers.Dense(n_classes, activation="softmax")(feat)
+    m = keras.Model(inp, out, name="strong_resnet_sign")
     m.compile(optimizer=keras.optimizers.Adam(1e-3),
               loss="sparse_categorical_crossentropy", metrics=["accuracy"])
     return m
@@ -281,42 +266,39 @@ def plot_history(h, path):
 
 
 def plot_confusion(cm, path):
-    fig, ax = plt.subplots(figsize=(8, 7))
+    fig, ax = plt.subplots(figsize=(14, 12))
     ax.imshow(cm, cmap="Blues")
     ax.set_xticks(range(len(CLASS_NAMES)))
     ax.set_yticks(range(len(CLASS_NAMES)))
-    ax.set_xticklabels(CLASS_NAMES, rotation=45, ha="right", fontsize=8)
-    ax.set_yticklabels(CLASS_NAMES, fontsize=8)
-    for i in range(len(cm)):
-        for j in range(len(cm)):
-            ax.text(j, i, cm[i, j], ha="center", va="center", fontsize=7,
-                    color="white" if cm[i, j] > cm.max() / 2 else "black")
+    ax.set_xticklabels(CLASS_NAMES, rotation=90, ha="center", fontsize=6)
+    ax.set_yticklabels(CLASS_NAMES, fontsize=6)
     ax.set_xlabel("Predicted")
     ax.set_ylabel("True")
-    ax.set_title("Confusion matrix (held-out test)")
+    ax.set_title("Confusion matrix (Held-out test)")
     fig.tight_layout()
-    fig.savefig(path, dpi=120)
+    fig.savefig(path, dpi=140)
     plt.close(fig)
 
 
 def plot_class_f1(report, path):
-    f1 = [report[n]["f1-score"] for n in CLASS_NAMES]
-    fig, ax = plt.subplots(figsize=(9, 3.8))
-    colors = ["#3b82f6"] * 8 + ["#f59e0b"]
-    ax.bar(CLASS_NAMES, f1, color=colors)
+    f1 = [report[n]["f1-score"] for n in CLASS_NAMES if n in report]
+    names = [n for n in CLASS_NAMES if n in report]
+    fig, ax = plt.subplots(figsize=(15, 4.5))
+    colors = ["#3b82f6" if not n.startswith("Other") else "#f59e0b" for n in names]
+    ax.bar(names, f1, color=colors)
     ax.set_ylim(0, 1.05)
     ax.set_ylabel("F1")
-    ax.set_title("Class-wise F1 (held-out test)")
-    plt.setp(ax.get_xticklabels(), rotation=40, ha="right", fontsize=8)
+    ax.set_title("Class-wise F1 across 44 Classes")
+    plt.setp(ax.get_xticklabels(), rotation=90, ha="center", fontsize=7)
     fig.tight_layout()
-    fig.savefig(path, dpi=120)
+    fig.savefig(path, dpi=140)
     plt.close(fig)
 
 
 def show_grid(X, y, probs, idx, title, path):
     cols = 6
     rows = max(1, int(np.ceil(len(idx) / cols)))
-    fig, axes = plt.subplots(rows, cols, figsize=(cols * 2.2, rows * 2.6))
+    fig, axes = plt.subplots(rows, cols, figsize=(cols * 2.4, rows * 2.8))
     axes = np.array(axes).reshape(-1)
     for a in axes:
         a.axis("off")
@@ -325,8 +307,8 @@ def show_grid(X, y, probs, idx, title, path):
         ok = p == y[i]
         a.imshow(X[i])
         a.set_title(f"T: {CLASS_NAMES[y[i]]}\nP: {CLASS_NAMES[p]} {probs[i][p]:.0%}",
-                    fontsize=7, color="green" if ok else "red")
-    fig.suptitle(title)
+                    fontsize=6, color="green" if ok else "red")
+    fig.suptitle(title, fontsize=10)
     fig.tight_layout()
     fig.savefig(path, dpi=120)
     plt.close(fig)
@@ -337,60 +319,55 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", required=True)
     ap.add_argument("--out", default="outputs")
-    ap.add_argument("--epochs", type=int, default=30)
+    ap.add_argument("--epochs", type=int, default=25)
     ap.add_argument("--batch", type=int, default=64)
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
 
-    # 1. Back up baseline final.keras to final_v1.keras if it does not exist yet
     v1_path = os.path.join(a.out, "final_v1.keras")
     final_path = os.path.join(a.out, "final.keras")
     if not os.path.exists(v1_path) and os.path.exists(final_path):
         shutil.copy(final_path, v1_path)
         print(f"Backed up baseline: {final_path} -> {v1_path}")
-    elif os.path.exists(v1_path):
-        print(f"Existing baseline preserved: {v1_path}")
 
-    # 2. Load dataset
+    # Load dataset
     X, y, g = load_train(a.data)
     Xte, yte = load_test(a.data)
 
-    # Group split: physical sign track ids remain disjoint between train and val
     tr, va = next(GroupShuffleSplit(1, test_size=0.15, random_state=SEED).split(X, y, g))
     Xtr, ytr, Xva, yva = X[tr], y[tr], X[va], y[va]
-    print(f"train={len(Xtr)} val={len(Xva)} test(held-out)={len(Xte)}")
+    print(f"train={len(Xtr)} val={len(Xva)} test={len(Xte)}")
 
     cw = compute_class_weight("balanced", classes=np.arange(len(CLASS_NAMES)), y=ytr)
-    model = build_model(len(CLASS_NAMES))
+    model = build_strong_model(len(CLASS_NAMES))
     model.summary()
 
     cbs = [
-        keras.callbacks.EarlyStopping(patience=8, restore_best_weights=True, monitor="val_accuracy"),
-        keras.callbacks.ReduceLROnPlateau(factor=0.5, patience=3, min_lr=1e-5),
+        keras.callbacks.EarlyStopping(patience=6, restore_best_weights=True, monitor="val_accuracy"),
+        keras.callbacks.ReduceLROnPlateau(factor=0.5, patience=2, min_lr=1e-5),
         keras.callbacks.ModelCheckpoint(os.path.join(a.out, "best.keras"), save_best_only=True,
                                         monitor="val_accuracy"),
     ]
 
-    print("Starting CNN training...")
+    print("Starting Deep Residual CNN Training (44 Classes)...")
     h = model.fit(Xtr, ytr, validation_data=(Xva, yva), epochs=a.epochs, batch_size=a.batch,
                   class_weight=dict(enumerate(cw)), callbacks=cbs)
 
-    # 3. Evaluation on held-out test set
     probs = model.predict(Xte, verbose=0)
     pred = probs.argmax(1)
     rep = classification_report(yte, pred, target_names=CLASS_NAMES, output_dict=True, zero_division=0)
     cm = confusion_matrix(yte, pred)
-    print("\n9-Class Classification Report (Held-out test set):")
+    print("\n44-Class Classification Report (Test Set):")
     print(classification_report(yte, pred, target_names=CLASS_NAMES, zero_division=0))
 
-    # Evaluate 8 sign classes accuracy separately for verification
-    sign_mask = yte < 8
-    sign_acc = float((pred[sign_mask] == yte[sign_mask]).mean())
     overall_acc = float((pred == yte).mean())
+    sign_mask = yte < 43
+    sign_acc = float((pred[sign_mask] == yte[sign_mask]).mean())
     other_acc = float((pred[~sign_mask] == yte[~sign_mask]).mean())
-    print(f"8 original sign classes accuracy: {sign_acc*100:.2f}%")
-    print(f"9th 'Other / not a sign' accuracy: {other_acc*100:.2f}%")
-    print(f"Overall 9-class test accuracy:     {overall_acc*100:.2f}%")
+
+    print(f"All 43 traffic sign classes test accuracy: {sign_acc*100:.2f}%")
+    print(f"44th 'Other / not a sign' accuracy:        {other_acc*100:.2f}%")
+    print(f"Overall 44-class test accuracy:            {overall_acc*100:.2f}%")
 
     out_metrics = {
         "test_accuracy": overall_acc,
@@ -410,7 +387,8 @@ def main():
               "Example predictions (green=correct, red=wrong)", os.path.join(a.out, "examples.png"))
     conf = probs.max(1)
     wrong = np.where(pred != yte)[0]
-    wrong = wrong[np.argsort(-conf[wrong])][:12]
+    if len(wrong) > 0:
+        wrong = wrong[np.argsort(-conf[wrong])][:12]
     if len(wrong) < 12:
         right = np.where(pred == yte)[0]
         wrong = np.concatenate([wrong, right[np.argsort(conf[right])][:12 - len(wrong)]])
@@ -418,7 +396,7 @@ def main():
               os.path.join(a.out, "difficult_examples.png"))
 
     model.save(os.path.join(a.out, "final.keras"))
-    print(f"Done! Saved new model to {os.path.join(a.out, 'final.keras')}")
+    print(f"Done! Saved strong 44-class model to {os.path.join(a.out, 'final.keras')}")
     print(DISCLAIMER)
 
 

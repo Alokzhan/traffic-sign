@@ -1,22 +1,24 @@
 {
-  "test_accuracy": 0.9973809523809524,
+  "test_accuracy": 0.9762820512820513,
+  "sign_classes_accuracy": 0.9833333333333333,
+  "other_class_accuracy": 0.9145833333333333,
   "report": {
     "Speed limit 30": {
-      "precision": 0.9972222222222222,
-      "recall": 0.9972222222222222,
-      "f1-score": 0.9972222222222222,
+      "precision": 0.9930167597765364,
+      "recall": 0.9875,
+      "f1-score": 0.9902506963788301,
       "support": 720.0
     },
     "Speed limit 50": {
-      "precision": 0.9946808510638298,
-      "recall": 0.9973333333333333,
-      "f1-score": 0.996005326231691,
+      "precision": 0.9674902470741222,
+      "recall": 0.992,
+      "f1-score": 0.9795918367346939,
       "support": 750.0
     },
     "Yield": {
-      "precision": 0.9986111111111111,
-      "recall": 0.9986111111111111,
-      "f1-score": 0.9986111111111111,
+      "precision": 1.0,
+      "recall": 0.9958333333333333,
+      "f1-score": 0.9979123173277662,
       "support": 720.0
     },
     "Stop": {
@@ -27,40 +29,46 @@
     },
     "No entry": {
       "precision": 1.0,
-      "recall": 0.9888888888888889,
-      "f1-score": 0.994413407821229,
+      "recall": 0.9,
+      "f1-score": 0.9473684210526315,
       "support": 360.0
     },
     "Road work": {
-      "precision": 1.0,
-      "recall": 0.9958333333333333,
-      "f1-score": 0.9979123173277662,
+      "precision": 0.9854771784232366,
+      "recall": 0.9895833333333334,
+      "f1-score": 0.9875259875259875,
       "support": 480.0
     },
     "Turn right ahead": {
-      "precision": 0.995260663507109,
+      "precision": 0.9859154929577465,
       "recall": 1.0,
-      "f1-score": 0.997624703087886,
+      "f1-score": 0.9929078014184397,
       "support": 210.0
     },
     "Keep right": {
-      "precision": 0.9956709956709957,
-      "recall": 1.0,
-      "f1-score": 0.9978308026030369,
+      "precision": 0.9956011730205279,
+      "recall": 0.9840579710144928,
+      "f1-score": 0.9897959183673469,
       "support": 690.0
     },
-    "accuracy": 0.9973809523809524,
+    "Other / not a sign": {
+      "precision": 0.8658777120315582,
+      "recall": 0.9145833333333333,
+      "f1-score": 0.889564336372847,
+      "support": 480.0
+    },
+    "accuracy": 0.9762820512820513,
     "macro avg": {
-      "precision": 0.9976807304469085,
-      "recall": 0.9972361111111111,
-      "f1-score": 0.9974524863006178,
-      "support": 4200.0
+      "precision": 0.9770420625870808,
+      "recall": 0.9737286634460547,
+      "f1-score": 0.9749908127976159,
+      "support": 4680.0
     },
     "weighted avg": {
-      "precision": 0.9973877058684173,
-      "recall": 0.9973809523809524,
-      "f1-score": 0.9973798036312594,
-      "support": 4200.0
+      "precision": 0.9771895646727116,
+      "recall": 0.9762820512820513,
+      "f1-score": 0.9764309949661324,
+      "support": 4680.0
     }
   },
   "disclaimer": "Educational demo only. Model is NOT suitable for real driving or any safety-critical use."

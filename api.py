@@ -53,12 +53,40 @@ def to_b64(rgb, size=None):
     return "data:image/png;base64," + base64.b64encode(buf).decode()
 
 
+_last_mtime = 0
+_current_loaded_file = None
+
+def get_model():
+    global model, _last_mtime, _current_loaded_file
+    candidates = []
+    for fname in ["final.keras", "best.keras"]:
+        p = os.path.join(OUT, fname)
+        if os.path.exists(p):
+            try:
+                candidates.append((os.path.getmtime(p), p))
+            except OSError:
+                pass
+    if not candidates:
+        return None
+    candidates.sort(reverse=True)
+    mtime, chosen = candidates[0]
+    if model is None or mtime > _last_mtime or _current_loaded_file != chosen:
+        try:
+            m = keras.models.load_model(chosen)
+            model = m
+            _last_mtime = mtime
+            _current_loaded_file = chosen
+            print(f"API loaded {chosen} (outputs={model.output_shape[-1]})")
+        except Exception as e:
+            print("Model load error (retrying with current):", e)
+    return model
+
 def run(x):
-    global model
-    if model is None:
-        model = keras.models.load_model(os.path.join(OUT, "final.keras"))
+    m = get_model()
+    if m is None:
+        raise HTTPException(503, "Model not loaded yet")
     with lock:
-        return model.predict(x, verbose=0)
+        return m.predict(x, verbose=0)
 
 
 def entropy(p):
@@ -98,25 +126,32 @@ def fgsm_sweep(bgr):
     """Fast Gradient Sign Method: model ke gradient ki disha mein chhota noise."""
     rgb = preprocess(bgr)
     x = tf.convert_to_tensor(rgb[None].astype("float32"))
+    m = get_model()
+    if m is None:
+        raise HTTPException(503, "Model not loaded")
     with lock:
-        label = int(np.argmax(model(x, training=False).numpy()[0]))
+        label = int(np.argmax(m(x, training=False).numpy()[0]))
         with tf.GradientTape() as tape:
             tape.watch(x)
-            pred = model(x, training=False)
+            pred = m(x, training=False)
             loss = keras.losses.sparse_categorical_crossentropy(tf.constant([label]), pred)
         sign = tf.sign(tape.gradient(loss, x)).numpy()
     advs = [np.clip(rgb[None].astype("float32") + e * sign, 0, 255).astype("uint8") for e in FGSM_EPS]
     P = run(np.concatenate(advs).astype("float32"))
-    items = [{"level": e, "image": to_b64(adv[0]), "pred": CLASS_NAMES[int(p.argmax())],
+    n_out = P.shape[-1]
+    classes = CLASS_NAMES[:n_out]
+    items = [{"level": e, "image": to_b64(adv[0]), "pred": classes[int(p.argmax())],
               "conf": float(p.max()), "base_conf": float(p[label])}
              for e, adv, p in zip(FGSM_EPS, advs, P)]
-    return {"base": CLASS_NAMES[label], "items": items}
+    return {"base": classes[label], "items": items}
 
 
 # ---------- routes ----------
 @app.get("/api/health")
 def health():
-    return {"ok": True, "classes": CLASS_NAMES, "disclaimer": DISCLAIMER}
+    m = get_model()
+    n_out = m.output_shape[-1] if m is not None else len(CLASS_NAMES)
+    return {"ok": True, "classes": CLASS_NAMES[:n_out], "disclaimer": DISCLAIMER}
 
 
 @app.post("/api/predict")
@@ -128,11 +163,12 @@ def predict_ep(file: UploadFile = File(...), cam: int = 1):
     n_out = len(p)
     classes = CLASS_NAMES[:n_out]
     top = int(p.argmax())
+    m = get_model()
     cam_img = None
-    if cam:
+    if cam and m is not None:
         try:
             with lock:
-                heat_map = gradcam(model, x)
+                heat_map = gradcam(m, x)
             base = cv2.resize(rgb, (192, 192), interpolation=cv2.INTER_NEAREST)
             heat = cv2.applyColorMap(np.uint8(255 * cv2.resize(heat_map, (192, 192))), cv2.COLORMAP_JET)
             heat = cv2.cvtColor(heat, cv2.COLOR_BGR2RGB)
@@ -140,7 +176,7 @@ def predict_ep(file: UploadFile = File(...), cam: int = 1):
         except Exception:
             pass
 
-    is_other = (n_out == 9 and top == 8)
+    is_other = bool("Other" in classes[top])
     return {
         "classes": classes,
         "probs": [float(v) for v in p],
@@ -169,7 +205,7 @@ def batch_ep(files: List[UploadFile] = File(...)):
         rows.append({
             "file": f.filename,
             "prediction": classes[top],
-            "is_other": bool(n_out == 9 and top == 8),
+            "is_other": bool("Other" in classes[top]),
             "confidence": float(p.max()),
             "entropy": entropy(p)
         })

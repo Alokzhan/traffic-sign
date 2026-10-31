@@ -1,0 +1,105 @@
+{
+  "metric": "False Accept Rate on 8 Held-out Unseen Classes (conf >= 0.70)",
+  "v1_closed_set_8class": {
+    "overall_false_accept_rate": 0.8754098360655738,
+    "classwise": {
+      "3": {
+        "name": "Speed limit 60",
+        "count": 450,
+        "false_accept_rate": 0.9288888888888889
+      },
+      "4": {
+        "name": "Speed limit 70",
+        "count": 660,
+        "false_accept_rate": 0.9787878787878788
+      },
+      "9": {
+        "name": "No passing",
+        "count": 480,
+        "false_accept_rate": 0.65625
+      },
+      "11": {
+        "name": "Right-of-way at intersection",
+        "count": 420,
+        "false_accept_rate": 1.0
+      },
+      "12": {
+        "name": "Priority road",
+        "count": 690,
+        "false_accept_rate": 0.6811594202898551
+      },
+      "18": {
+        "name": "General caution",
+        "count": 390,
+        "false_accept_rate": 0.9923076923076923
+      },
+      "26": {
+        "name": "Traffic signals",
+        "count": 180,
+        "false_accept_rate": 1.0
+      },
+      "35": {
+        "name": "Ahead only",
+        "count": 390,
+        "false_accept_rate": 0.9435897435897436
+      }
+    }
+  },
+  "v2_with_other_9class": {
+    "overall_false_accept_rate": 0.2617486338797814,
+    "overall_classified_as_other": 0.6904371584699454,
+    "id_accuracy": 0.9833333333333333,
+    "ece": 0.00917640701645898,
+    "auroc_conf": 0.9733237704918033,
+    "classwise": {
+      "3": {
+        "name": "Speed limit 60",
+        "count": 450,
+        "false_accept_rate": 0.5688888888888889,
+        "classified_as_other": 0.36666666666666664
+      },
+      "4": {
+        "name": "Speed limit 70",
+        "count": 660,
+        "false_accept_rate": 0.45151515151515154,
+        "classified_as_other": 0.48787878787878786
+      },
+      "9": {
+        "name": "No passing",
+        "count": 480,
+        "false_accept_rate": 0.14375,
+        "classified_as_other": 0.80625
+      },
+      "11": {
+        "name": "Right-of-way at intersection",
+        "count": 420,
+        "false_accept_rate": 0.09761904761904762,
+        "classified_as_other": 0.8738095238095238
+      },
+      "12": {
+        "name": "Priority road",
+        "count": 690,
+        "false_accept_rate": 0.050724637681159424,
+        "classified_as_other": 0.9289855072463769
+      },
+      "18": {
+        "name": "General caution",
+        "count": 390,
+        "false_accept_rate": 0.12307692307692308,
+        "classified_as_other": 0.841025641025641
+      },
+      "26": {
+        "name": "Traffic signals",
+        "count": 180,
+        "false_accept_rate": 0.05,
+        "classified_as_other": 0.9388888888888889
+      },
+      "35": {
+        "name": "Ahead only",
+        "count": 390,
+        "false_accept_rate": 0.517948717948718,
+        "classified_as_other": 0.37948717948717947
+      }
+    }
+  }
+}

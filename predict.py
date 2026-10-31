@@ -39,7 +39,7 @@ def main():
         print(f"  {classes[i]:25s} {p[i]:.1%}")
 
     best = top[0]
-    if n_out == 9 and best == 8:
+    if "Other" in classes[best]:
         print(f"\n-> {classes[best]} (Not one of the supported traffic signs)")
     elif p[best] < a.threshold:
         print(f"\n-> UNCERTAIN (confidence {p[best]:.1%} is below threshold {a.threshold:.0%})")

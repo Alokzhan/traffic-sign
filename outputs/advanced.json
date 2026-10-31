@@ -1,410 +1,947 @@
 {
  "data_dir": "C:\\Users\\OM\\.cache\\kagglehub\\datasets\\meowmeowmeowmeowmeow\\gtsrb-german-traffic-sign\\versions\\1",
  "n_id": 4200,
- "n_ood": 2500,
- "id_accuracy": 0.9973809523809524,
- "ece": 0.0041727377545266045,
+ "n_ood": 3660,
+ "id_accuracy": 0.9833333333333333,
+ "ece": 0.00917640701645898,
  "reliability": [
   {
-   "conf": 0.29725193977355957,
-   "acc": 1.0,
-   "n": 1
-  },
-  {
-   "conf": 0.36383968591690063,
-   "acc": 0.75,
+   "conf": 0.4685403108596802,
+   "acc": 0.5,
    "n": 4
   },
   {
-   "conf": 0.4500200152397156,
-   "acc": 0.75,
-   "n": 8
+   "conf": 0.5507334470748901,
+   "acc": 0.5882352941176471,
+   "n": 17
   },
   {
-   "conf": 0.5624098181724548,
-   "acc": 0.7692307692307693,
-   "n": 13
+   "conf": 0.646963357925415,
+   "acc": 0.5925925925925926,
+   "n": 27
   },
   {
-   "conf": 0.65411776304245,
-   "acc": 0.875,
-   "n": 8
+   "conf": 0.7503955960273743,
+   "acc": 0.7777777777777778,
+   "n": 27
   },
   {
-   "conf": 0.7540801167488098,
-   "acc": 1.0,
-   "n": 21
+   "conf": 0.8577361106872559,
+   "acc": 0.8148148148148148,
+   "n": 27
   },
   {
-   "conf": 0.8562561273574829,
-   "acc": 0.9230769230769231,
-   "n": 26
-  },
-  {
-   "conf": 0.9991452097892761,
-   "acc": 0.9995144452537024,
-   "n": 4119
+   "conf": 0.9988802671432495,
+   "acc": 0.9904831625183016,
+   "n": 4098
   }
  ],
- "auroc_conf": 0.9120634285714285,
- "auroc_entropy": 0.9116940952380952,
+ "auroc_conf": 0.9733237704918033,
+ "auroc_entropy": 0.8842581967213115,
  "sweep": [
   {
    "thr": 0.3,
-   "id_accept": 0.9997619047619047,
-   "ood_accept": 0.9988,
-   "selective_acc": 0.9973803286496785
+   "id_accept": 1.0,
+   "ood_accept": 0.30956284153005464,
+   "selective_acc": 0.9833333333333333
   },
   {
    "thr": 0.32,
-   "id_accept": 0.9997619047619047,
-   "ood_accept": 0.9976,
-   "selective_acc": 0.9973803286496785
+   "id_accept": 1.0,
+   "ood_accept": 0.30956284153005464,
+   "selective_acc": 0.9833333333333333
   },
   {
    "thr": 0.34,
-   "id_accept": 0.9997619047619047,
-   "ood_accept": 0.996,
-   "selective_acc": 0.9973803286496785
+   "id_accept": 1.0,
+   "ood_accept": 0.30956284153005464,
+   "selective_acc": 0.9833333333333333
   },
   {
    "thr": 0.36,
-   "id_accept": 0.9992857142857143,
-   "ood_accept": 0.9944,
-   "selective_acc": 0.9973790802954491
+   "id_accept": 1.0,
+   "ood_accept": 0.3092896174863388,
+   "selective_acc": 0.9833333333333333
   },
   {
    "thr": 0.38,
-   "id_accept": 0.9988095238095238,
-   "ood_accept": 0.9928,
-   "selective_acc": 0.9976162097735399
+   "id_accept": 1.0,
+   "ood_accept": 0.3092896174863388,
+   "selective_acc": 0.9833333333333333
   },
   {
    "thr": 0.4,
-   "id_accept": 0.9988095238095238,
-   "ood_accept": 0.99,
-   "selective_acc": 0.9976162097735399
+   "id_accept": 1.0,
+   "ood_accept": 0.3092896174863388,
+   "selective_acc": 0.9833333333333333
   },
   {
    "thr": 0.42,
-   "id_accept": 0.9985714285714286,
-   "ood_accept": 0.9884,
-   "selective_acc": 0.9976156413924654
+   "id_accept": 1.0,
+   "ood_accept": 0.3087431693989071,
+   "selective_acc": 0.9833333333333333
   },
   {
    "thr": 0.44,
-   "id_accept": 0.9978571428571429,
-   "ood_accept": 0.9844,
-   "selective_acc": 0.9978525411596277
+   "id_accept": 0.9997619047619047,
+   "ood_accept": 0.3081967213114754,
+   "selective_acc": 0.983567516075256
   },
   {
    "thr": 0.46,
-   "id_accept": 0.9978571428571429,
-   "ood_accept": 0.9788,
-   "selective_acc": 0.9978525411596277
+   "id_accept": 0.9997619047619047,
+   "ood_accept": 0.307103825136612,
+   "selective_acc": 0.983567516075256
   },
   {
    "thr": 0.48,
-   "id_accept": 0.996904761904762,
-   "ood_accept": 0.9744,
-   "selective_acc": 0.9980893240983998
+   "id_accept": 0.9995238095238095,
+   "ood_accept": 0.30546448087431693,
+   "selective_acc": 0.9835636017151024
   },
   {
    "thr": 0.5,
-   "id_accept": 0.996904761904762,
-   "ood_accept": 0.968,
-   "selective_acc": 0.9980893240983998
+   "id_accept": 0.9990476190476191,
+   "ood_accept": 0.30491803278688523,
+   "selective_acc": 0.9837940896091516
   },
   {
    "thr": 0.52,
-   "id_accept": 0.9961904761904762,
-   "ood_accept": 0.9588,
-   "selective_acc": 0.9980879541108987
+   "id_accept": 0.9985714285714286,
+   "ood_accept": 0.3010928961748634,
+   "selective_acc": 0.9837863614687649
   },
   {
    "thr": 0.54,
-   "id_accept": 0.9961904761904762,
-   "ood_accept": 0.9512,
-   "selective_acc": 0.9980879541108987
+   "id_accept": 0.9973809523809524,
+   "ood_accept": 0.296448087431694,
+   "selective_acc": 0.9842444497493436
   },
   {
    "thr": 0.56,
-   "id_accept": 0.9959523809523809,
-   "ood_accept": 0.94,
-   "selective_acc": 0.9980874970117141
+   "id_accept": 0.9971428571428571,
+   "ood_accept": 0.29262295081967216,
+   "selective_acc": 0.9842406876790831
   },
   {
    "thr": 0.58,
-   "id_accept": 0.995,
-   "ood_accept": 0.9296,
-   "selective_acc": 0.9985642498205313
+   "id_accept": 0.9957142857142857,
+   "ood_accept": 0.2898907103825137,
+   "selective_acc": 0.9851745576279293
   },
   {
    "thr": 0.6,
-   "id_accept": 0.9938095238095238,
-   "ood_accept": 0.9204,
-   "selective_acc": 0.9988021082894106
+   "id_accept": 0.995,
+   "ood_accept": 0.28442622950819674,
+   "selective_acc": 0.9854032065087341
   },
   {
    "thr": 0.62,
    "id_accept": 0.9935714285714285,
-   "ood_accept": 0.9116,
-   "selective_acc": 0.9988018212317278
+   "ood_accept": 0.28060109289617485,
+   "selective_acc": 0.9861011262880421
   },
   {
    "thr": 0.64,
-   "id_accept": 0.9933333333333333,
-   "ood_accept": 0.902,
-   "selective_acc": 0.9988015340364333
+   "id_accept": 0.9928571428571429,
+   "ood_accept": 0.27349726775956285,
+   "selective_acc": 0.9865707434052757
   },
   {
    "thr": 0.66,
-   "id_accept": 0.9928571428571429,
-   "ood_accept": 0.8912,
-   "selective_acc": 0.9990407673860912
+   "id_accept": 0.9909523809523809,
+   "ood_accept": 0.2685792349726776,
+   "selective_acc": 0.9872657376261412
   },
   {
    "thr": 0.68,
-   "id_accept": 0.9921428571428571,
-   "ood_accept": 0.8812,
-   "selective_acc": 0.9990400767938565
+   "id_accept": 0.9892857142857143,
+   "ood_accept": 0.2653005464480874,
+   "selective_acc": 0.9877256317689531
   },
   {
    "thr": 0.7,
-   "id_accept": 0.991904761904762,
-   "ood_accept": 0.8708,
-   "selective_acc": 0.9990398463754201
+   "id_accept": 0.9885714285714285,
+   "ood_accept": 0.2617486338797814,
+   "selective_acc": 0.9879576107899807
   },
   {
    "thr": 0.72,
-   "id_accept": 0.9914285714285714,
-   "ood_accept": 0.862,
-   "selective_acc": 0.9990393852065321
+   "id_accept": 0.9876190476190476,
+   "ood_accept": 0.25573770491803277,
+   "selective_acc": 0.9879459980713597
   },
   {
    "thr": 0.74,
-   "id_accept": 0.9902380952380953,
-   "ood_accept": 0.8516,
-   "selective_acc": 0.9990382303438327
+   "id_accept": 0.9854761904761905,
+   "ood_accept": 0.2494535519125683,
+   "selective_acc": 0.9886446001449626
   },
   {
    "thr": 0.76,
-   "id_accept": 0.9888095238095238,
-   "ood_accept": 0.8436,
-   "selective_acc": 0.9990368408379485
+   "id_accept": 0.9847619047619047,
+   "ood_accept": 0.24371584699453552,
+   "selective_acc": 0.9888781431334622
   },
   {
    "thr": 0.78,
-   "id_accept": 0.9880952380952381,
-   "ood_accept": 0.8352,
-   "selective_acc": 0.9990361445783132
+   "id_accept": 0.9838095238095238,
+   "ood_accept": 0.23852459016393443,
+   "selective_acc": 0.9888673765730881
   },
   {
    "thr": 0.8,
-   "id_accept": 0.986904761904762,
-   "ood_accept": 0.8228,
-   "selective_acc": 0.9990349819059108
+   "id_accept": 0.9821428571428571,
+   "ood_accept": 0.23224043715846995,
+   "selective_acc": 0.9893333333333333
   },
   {
    "thr": 0.82,
-   "id_accept": 0.9857142857142858,
-   "ood_accept": 0.8124,
-   "selective_acc": 0.9990338164251208
+   "id_accept": 0.9816666666666667,
+   "ood_accept": 0.22486338797814207,
+   "selective_acc": 0.989328159107446
   },
   {
    "thr": 0.84,
-   "id_accept": 0.985,
-   "ood_accept": 0.8012,
-   "selective_acc": 0.9990331157843848
+   "id_accept": 0.9797619047619047,
+   "ood_accept": 0.2174863387978142,
+   "selective_acc": 0.9900364520048602
   },
   {
    "thr": 0.86,
-   "id_accept": 0.9842857142857143,
-   "ood_accept": 0.784,
-   "selective_acc": 0.9990324141267537
+   "id_accept": 0.9785714285714285,
+   "ood_accept": 0.2122950819672131,
+   "selective_acc": 0.9902676399026764
   },
   {
    "thr": 0.88,
-   "id_accept": 0.9826190476190476,
-   "ood_accept": 0.7672,
-   "selective_acc": 0.9990307729585656
+   "id_accept": 0.9773809523809524,
+   "ood_accept": 0.20491803278688525,
+   "selective_acc": 0.9904993909866017
   },
   {
    "thr": 0.9,
-   "id_accept": 0.9807142857142858,
-   "ood_accept": 0.7472,
-   "selective_acc": 0.9995144452537024
+   "id_accept": 0.9757142857142858,
+   "ood_accept": 0.1918032786885246,
+   "selective_acc": 0.9904831625183016
   },
   {
    "thr": 0.92,
-   "id_accept": 0.9792857142857143,
-   "ood_accept": 0.7308,
-   "selective_acc": 0.99951373693168
+   "id_accept": 0.974047619047619,
+   "ood_accept": 0.18278688524590164,
+   "selective_acc": 0.9907113175262772
   },
   {
    "thr": 0.94,
-   "id_accept": 0.9776190476190476,
-   "ood_accept": 0.7028,
-   "selective_acc": 0.9997564539698003
+   "id_accept": 0.9716666666666667,
+   "ood_accept": 0.17049180327868851,
+   "selective_acc": 0.9914236706689536
   },
   {
    "thr": 0.96,
-   "id_accept": 0.9738095238095238,
-   "ood_accept": 0.6692,
-   "selective_acc": 0.9997555012224939
+   "id_accept": 0.9673809523809523,
+   "ood_accept": 0.15546448087431694,
+   "selective_acc": 0.9916317991631799
   },
   {
    "thr": 0.98,
-   "id_accept": 0.9680952380952381,
-   "ood_accept": 0.6096,
-   "selective_acc": 0.999754058042302
+   "id_accept": 0.9604761904761905,
+   "ood_accept": 0.1325136612021858,
+   "selective_acc": 0.9918195339613287
   },
   {
    "thr": 0.99,
-   "id_accept": 0.9614285714285714,
-   "ood_accept": 0.552,
-   "selective_acc": 0.9997523526498266
+   "id_accept": 0.950952380952381,
+   "ood_accept": 0.11530054644808743,
+   "selective_acc": 0.9919879819729595
   }
  ],
  "worst_unseen": [
   {
+   "cls": 3,
+   "name": "Speed limit 60",
+   "n": 450,
+   "accepted": 0.5688888888888889,
+   "other_classified": 0.36666666666666664
+  },
+  {
+   "cls": 35,
+   "name": "Ahead only",
+   "n": 390,
+   "accepted": 0.517948717948718,
+   "other_classified": 0.37948717948717947
+  },
+  {
+   "cls": 4,
+   "name": "Speed limit 70",
+   "n": 660,
+   "accepted": 0.45151515151515154,
+   "other_classified": 0.48787878787878786
+  },
+  {
+   "cls": 9,
+   "name": "No passing",
+   "n": 480,
+   "accepted": 0.14375,
+   "other_classified": 0.80625
+  },
+  {
+   "cls": 18,
+   "name": "General caution",
+   "n": 390,
+   "accepted": 0.12307692307692308,
+   "other_classified": 0.841025641025641
+  },
+  {
    "cls": 11,
-   "n": 124,
-   "accepted": 1.0
+   "name": "Right-of-way at intersection",
+   "n": 420,
+   "accepted": 0.09761904761904762,
+   "other_classified": 0.8738095238095238
   },
   {
-   "cls": 15,
-   "n": 61,
-   "accepted": 1.0
-  },
-  {
-   "cls": 20,
-   "n": 36,
-   "accepted": 1.0
-  },
-  {
-   "cls": 21,
-   "n": 28,
-   "accepted": 1.0
-  },
-  {
-   "cls": 24,
-   "n": 23,
-   "accepted": 1.0
+   "cls": 12,
+   "name": "Priority road",
+   "n": 690,
+   "accepted": 0.050724637681159424,
+   "other_classified": 0.9289855072463769
   },
   {
    "cls": 26,
-   "n": 55,
-   "accepted": 1.0
-  },
-  {
-   "cls": 27,
-   "n": 27,
-   "accepted": 1.0
-  },
-  {
-   "cls": 28,
-   "n": 41,
-   "accepted": 1.0
+   "name": "Traffic signals",
+   "n": 180,
+   "accepted": 0.05,
+   "other_classified": 0.9388888888888889
   }
  ],
  "samples": [
   {
+   "file": "00163.png",
+   "true": "Road work",
+   "pred": "Other / not a sign",
+   "conf": 0.6643330454826355,
+   "entropy": 0.29529615235131207,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "00309.png",
+   "true": "Keep right",
+   "pred": "Other / not a sign",
+   "conf": 0.6936789155006409,
+   "entropy": 0.287372962886593,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "00394.png",
+   "true": "Speed limit 30",
+   "pred": "Other / not a sign",
+   "conf": 0.8224755525588989,
+   "entropy": 0.2607777666193754,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "00745.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9991845488548279,
+   "entropy": 0.003525564570034813,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "01372.png",
+   "true": "Speed limit 50",
+   "pred": "Other / not a sign",
+   "conf": 0.9226024746894836,
+   "entropy": 0.13278977994094668,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "01662.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.999065101146698,
+   "entropy": 0.004129145724156186,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "01762.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9993552565574646,
+   "entropy": 0.002912006948480466,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "01781.png",
+   "true": "Keep right",
+   "pred": "Other / not a sign",
+   "conf": 0.8649643063545227,
+   "entropy": 0.24387185183745752,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "01935.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9995595812797546,
+   "entropy": 0.0020958234458779952,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "02483.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9993942975997925,
+   "entropy": 0.0027686687164085707,
+   "ood": false,
+   "correct": false
+  },
+  {
    "file": "02494.png",
    "true": "Speed limit 50",
    "pred": "Speed limit 30",
-   "conf": 0.9998916387557983,
-   "entropy": 0.0005539384834893209,
+   "conf": 0.9872649908065796,
+   "entropy": 0.033088874977412745,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "02547.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9996745586395264,
+   "entropy": 0.0015402657769893289,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "02601.png",
+   "true": "Keep right",
+   "pred": "Other / not a sign",
+   "conf": 0.8392955660820007,
+   "entropy": 0.27207585637102666,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "02833.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9989044666290283,
+   "entropy": 0.004675620217242714,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "03173.png",
+   "true": "Keep right",
+   "pred": "Other / not a sign",
+   "conf": 0.9310809373855591,
+   "entropy": 0.15129289252926267,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "03590.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9998676776885986,
+   "entropy": 0.0006771864771180134,
    "ood": false,
    "correct": false
   },
   {
    "file": "03824.png",
    "true": "No entry",
-   "pred": "Turn right ahead",
-   "conf": 0.4339354336261749,
-   "entropy": 0.7286208960596711,
+   "pred": "Other / not a sign",
+   "conf": 0.9982567429542542,
+   "entropy": 0.006722201995137339,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "03831.png",
+   "true": "Speed limit 30",
+   "pred": "Other / not a sign",
+   "conf": 0.5684144496917725,
+   "entropy": 0.3144455443740455,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "03893.png",
+   "true": "Speed limit 30",
+   "pred": "Other / not a sign",
+   "conf": 0.7382922768592834,
+   "entropy": 0.26830299943101765,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "03907.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.8323276042938232,
+   "entropy": 0.3006980816081054,
    "ood": false,
    "correct": false
   },
   {
    "file": "03986.png",
    "true": "No entry",
-   "pred": "Keep right",
-   "conf": 0.3761260211467743,
-   "entropy": 0.7524187087350608,
+   "pred": "Other / not a sign",
+   "conf": 0.9978688955307007,
+   "entropy": 0.0075188223050587045,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "04111.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9993010759353638,
+   "entropy": 0.0030959305029458132,
    "ood": false,
    "correct": false
   },
   {
    "file": "04219.png",
    "true": "Yield",
-   "pred": "Speed limit 50",
-   "conf": 0.6523744463920593,
-   "entropy": 0.5182156011676023,
+   "pred": "Other / not a sign",
+   "conf": 0.9569329023361206,
+   "entropy": 0.1042452539092923,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "04269.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.720274806022644,
+   "entropy": 0.33240011698404737,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "05073.png",
+   "true": "Yield",
+   "pred": "Other / not a sign",
+   "conf": 0.7940433025360107,
+   "entropy": 0.2527125660381698,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "05193.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.4841305911540985,
+   "entropy": 0.4723253926381526,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "05217.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.4322452247142792,
+   "entropy": 0.6184624000035605,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "05284.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9999042749404907,
+   "entropy": 0.000519356628177306,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "05357.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9995298385620117,
+   "entropy": 0.002059922659239704,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "05557.png",
+   "true": "Road work",
+   "pred": "Other / not a sign",
+   "conf": 0.9369087815284729,
+   "entropy": 0.1073506586018146,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "05635.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.99928218126297,
+   "entropy": 0.0032174113829288205,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "05853.png",
+   "true": "Speed limit 50",
+   "pred": "Other / not a sign",
+   "conf": 0.993767499923706,
+   "entropy": 0.019465855047287824,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "05892.png",
+   "true": "Yield",
+   "pred": "Other / not a sign",
+   "conf": 0.991127073764801,
+   "entropy": 0.02997975724352099,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "05972.png",
+   "true": "Keep right",
+   "pred": "Other / not a sign",
+   "conf": 0.7809574007987976,
+   "entropy": 0.33943600146134373,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "06129.png",
+   "true": "Keep right",
+   "pred": "Other / not a sign",
+   "conf": 0.5668611526489258,
+   "entropy": 0.440581011636072,
    "ood": false,
    "correct": false
   },
   {
    "file": "06286.png",
    "true": "Speed limit 30",
-   "pred": "Speed limit 50",
-   "conf": 0.8849760890007019,
-   "entropy": 0.17375689554854723,
+   "pred": "Other / not a sign",
+   "conf": 0.752543568611145,
+   "entropy": 0.28231346081669734,
    "ood": false,
    "correct": false
   },
   {
    "file": "06447.png",
    "true": "No entry",
-   "pred": "Keep right",
-   "conf": 0.5729104280471802,
-   "entropy": 0.6019001806305341,
+   "pred": "Other / not a sign",
+   "conf": 0.9994837045669556,
+   "entropy": 0.002456003929720789,
    "ood": false,
    "correct": false
   },
   {
-   "file": "07098.png",
-   "true": "Road work",
-   "pred": "Yield",
-   "conf": 0.47732365131378174,
-   "entropy": 0.42976157016716804,
+   "file": "06737.png",
+   "true": "Speed limit 30",
+   "pred": "Speed limit 50",
+   "conf": 0.562690019607544,
+   "entropy": 0.3481531510707291,
    "ood": false,
    "correct": false
   },
   {
-   "file": "08679.png",
+   "file": "06848.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9973878264427185,
+   "entropy": 0.010300186994999155,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "06870.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9990353584289551,
+   "entropy": 0.004172445890153674,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "06922.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9990829229354858,
+   "entropy": 0.0038456643405880746,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "06960.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.6129338145256042,
+   "entropy": 0.35816117765989064,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "07292.png",
+   "true": "Speed limit 30",
+   "pred": "Other / not a sign",
+   "conf": 0.6420449018478394,
+   "entropy": 0.4022804100653321,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "07396.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.6463866233825684,
+   "entropy": 0.33963443724302456,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "07603.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9997996687889099,
+   "entropy": 0.0010264992152470547,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "07658.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.996961772441864,
+   "entropy": 0.01171698439760121,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "07684.png",
+   "true": "Speed limit 30",
+   "pred": "Other / not a sign",
+   "conf": 0.7231143116950989,
+   "entropy": 0.2892576009585673,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "07790.png",
+   "true": "Keep right",
+   "pred": "Other / not a sign",
+   "conf": 0.6276591420173645,
+   "entropy": 0.3653476454624242,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "08238.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9995601773262024,
+   "entropy": 0.0020550353049576843,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "08256.png",
    "true": "Speed limit 50",
-   "pred": "Speed limit 30",
-   "conf": 0.8854989409446716,
-   "entropy": 0.18475216204294617,
+   "pred": "Other / not a sign",
+   "conf": 0.5862898230552673,
+   "entropy": 0.30870224589282685,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "08266.png",
+   "true": "Keep right",
+   "pred": "Other / not a sign",
+   "conf": 0.9175129532814026,
+   "entropy": 0.13058775312725462,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "08710.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9994481205940247,
+   "entropy": 0.0025592735286034977,
    "ood": false,
    "correct": false
   },
   {
    "file": "08724.png",
    "true": "Speed limit 30",
-   "pred": "Speed limit 50",
-   "conf": 0.9327005743980408,
-   "entropy": 0.11882873255068169,
+   "pred": "Other / not a sign",
+   "conf": 0.6756853461265564,
+   "entropy": 0.34184970215124294,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "09497.png",
+   "true": "Road work",
+   "pred": "Other / not a sign",
+   "conf": 0.5211651921272278,
+   "entropy": 0.31519699612911584,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "09504.png",
+   "true": "Keep right",
+   "pred": "Other / not a sign",
+   "conf": 0.5659382343292236,
+   "entropy": 0.3237775058161053,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "09734.png",
+   "true": "Speed limit 50",
+   "pred": "Other / not a sign",
+   "conf": 0.9616551399230957,
+   "entropy": 0.07404908569477592,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "09935.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9993224143981934,
+   "entropy": 0.0031252071559628902,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "10273.png",
+   "true": "Keep right",
+   "pred": "Other / not a sign",
+   "conf": 0.6031278967857361,
+   "entropy": 0.30717343586573387,
    "ood": false,
    "correct": false
   },
   {
    "file": "10362.png",
    "true": "No entry",
-   "pred": "Keep right",
-   "conf": 0.5932486057281494,
-   "entropy": 0.6117045102633708,
+   "pred": "Other / not a sign",
+   "conf": 0.9995235204696655,
+   "entropy": 0.00197619421215326,
    "ood": false,
    "correct": false
   },
   {
-   "file": "11853.png",
+   "file": "10410.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9978249073028564,
+   "entropy": 0.00845490377063571,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "10905.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9994187355041504,
+   "entropy": 0.0026424104746361663,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "10977.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9983281493186951,
+   "entropy": 0.006758896677493095,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "10989.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9989383816719055,
+   "entropy": 0.004336872586524025,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "11132.png",
    "true": "Road work",
-   "pred": "Speed limit 50",
-   "conf": 0.5685938596725464,
-   "entropy": 0.33234930684859176,
+   "pred": "Other / not a sign",
+   "conf": 0.603247344493866,
+   "entropy": 0.31766847784635344,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "11152.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.9997313618659973,
+   "entropy": 0.0013075442333138393,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "11245.png",
+   "true": "Speed limit 50",
+   "pred": "Other / not a sign",
+   "conf": 0.6566844582557678,
+   "entropy": 0.2931896948142928,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "11730.png",
+   "true": "No entry",
+   "pred": "Other / not a sign",
+   "conf": 0.999235987663269,
+   "entropy": 0.0032444650855506796,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "12092.png",
+   "true": "Keep right",
+   "pred": "Other / not a sign",
+   "conf": 0.852768063545227,
+   "entropy": 0.2523241581745873,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "12169.png",
+   "true": "Speed limit 30",
+   "pred": "Other / not a sign",
+   "conf": 0.5275135040283203,
+   "entropy": 0.4791211467614587,
+   "ood": false,
+   "correct": false
+  },
+  {
+   "file": "12605.png",
+   "true": "Road work",
+   "pred": "Other / not a sign",
+   "conf": 0.6223548054695129,
+   "entropy": 0.30170496348215137,
    "ood": false,
    "correct": false
   },
@@ -412,17 +949,17 @@
    "file": "10553.png",
    "true": "Road work",
    "pred": "Road work",
-   "conf": 0.9999996423721313,
-   "entropy": 2.9371449269496424e-06,
+   "conf": 1.0,
+   "entropy": 2.7365940142881803e-07,
    "ood": false,
    "correct": true
   },
   {
-   "file": "01915.png",
+   "file": "01913.png",
    "true": "Keep right",
    "pred": "Keep right",
-   "conf": 1.0,
-   "entropy": 1.4679153356264996e-07,
+   "conf": 0.9999998807907104,
+   "entropy": 6.473704830528072e-07,
    "ood": false,
    "correct": true
   },
@@ -430,170 +967,170 @@
    "file": "00100.png",
    "true": "Speed limit 30",
    "pred": "Speed limit 30",
-   "conf": 0.9999921321868896,
-   "entropy": 5.277718298151638e-05,
+   "conf": 0.9989043474197388,
+   "entropy": 0.004000761384722916,
    "ood": false,
    "correct": true
   },
   {
-   "file": "09359.png",
-   "true": "Road work",
-   "pred": "Road work",
-   "conf": 0.9999973773956299,
-   "entropy": 1.9678293960517807e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "03331.png",
-   "true": "Speed limit 30",
-   "pred": "Speed limit 30",
-   "conf": 0.9999861717224121,
-   "entropy": 8.33870157186258e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "06790.png",
-   "true": "Road work",
-   "pred": "Road work",
-   "conf": 0.9999996423721313,
-   "entropy": 3.0475286281709915e-06,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "08654.png",
+   "file": "09358.png",
    "true": "Yield",
    "pred": "Yield",
-   "conf": 0.9997887015342712,
-   "entropy": 0.001069972819290729,
+   "conf": 0.9999990463256836,
+   "entropy": 6.583704773870397e-06,
    "ood": false,
    "correct": true
   },
   {
-   "file": "01071.png",
+   "file": "03327.png",
+   "true": "Yield",
+   "pred": "Yield",
+   "conf": 0.9999997615814209,
+   "entropy": 1.7738096234932524e-06,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "06785.png",
+   "true": "Stop",
+   "pred": "Stop",
+   "conf": 0.9999823570251465,
+   "entropy": 0.000101093790019433,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "08661.png",
    "true": "Speed limit 50",
    "pred": "Speed limit 50",
-   "conf": 0.9999998807907104,
-   "entropy": 1.1631288113745477e-06,
+   "conf": 0.9978356957435608,
+   "entropy": 0.007099564408372016,
    "ood": false,
    "correct": true
   },
   {
-   "file": "02021.png",
+   "file": "01062.png",
+   "true": "Yield",
+   "pred": "Yield",
+   "conf": 1.0,
+   "entropy": 2.839236798706314e-08,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "02019.png",
+   "true": "No entry",
+   "pred": "No entry",
+   "conf": 0.9999253749847412,
+   "entropy": 0.00037189073708132343,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "02046.png",
+   "true": "Keep right",
+   "pred": "Keep right",
+   "conf": 0.9999988079071045,
+   "entropy": 8.261824182263013e-06,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "01603.png",
+   "true": "Road work",
+   "pred": "Road work",
+   "conf": 0.9999675750732422,
+   "entropy": 0.00016710575002796754,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "11235.png",
+   "true": "No entry",
+   "pred": "No entry",
+   "conf": 1.0,
+   "entropy": 1.5649666464059874e-07,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "11025.png",
+   "true": "No entry",
+   "pred": "No entry",
+   "conf": 1.0,
+   "entropy": 5.404275629241386e-09,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "04289.png",
+   "true": "Road work",
+   "pred": "Road work",
+   "conf": 0.9999972581863403,
+   "entropy": 1.745703811353321e-05,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "05199.png",
+   "true": "Yield",
+   "pred": "Yield",
+   "conf": 1.0,
+   "entropy": 1.294169330326503e-08,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "11977.png",
+   "true": "Road work",
+   "pred": "Road work",
+   "conf": 0.9999600648880005,
+   "entropy": 0.00020250239116268102,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "03811.png",
    "true": "Road work",
    "pred": "Road work",
    "conf": 0.9999997615814209,
-   "entropy": 2.1280703348611684e-06,
+   "entropy": 1.4652271979368342e-06,
    "ood": false,
    "correct": true
   },
   {
-   "file": "02048.png",
+   "file": "04888.png",
+   "true": "Speed limit 30",
+   "pred": "Speed limit 30",
+   "conf": 0.9999872446060181,
+   "entropy": 7.440088105247472e-05,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "01128.png",
+   "true": "Yield",
+   "pred": "Yield",
+   "conf": 0.9999964237213135,
+   "entropy": 2.2741648217369902e-05,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "08569.png",
+   "true": "Yield",
+   "pred": "Yield",
+   "conf": 1.0,
+   "entropy": 7.027291564340678e-09,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "08756.png",
    "true": "Speed limit 50",
    "pred": "Speed limit 50",
-   "conf": 0.9999988079071045,
-   "entropy": 8.410622384722479e-06,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "01619.png",
-   "true": "Speed limit 50",
-   "pred": "Speed limit 50",
-   "conf": 0.9999963045120239,
-   "entropy": 2.575039911529391e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "11234.png",
-   "true": "Speed limit 30",
-   "pred": "Speed limit 30",
-   "conf": 0.9999903440475464,
-   "entropy": 6.040636584447335e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "11024.png",
-   "true": "Stop",
-   "pred": "Stop",
-   "conf": 0.9999996423721313,
-   "entropy": 3.341877510707529e-06,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "04295.png",
-   "true": "Speed limit 50",
-   "pred": "Speed limit 50",
-   "conf": 0.9999995231628418,
-   "entropy": 3.989517175342739e-06,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "05206.png",
-   "true": "Speed limit 30",
-   "pred": "Speed limit 30",
-   "conf": 0.9999874830245972,
-   "entropy": 7.69341463213053e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "11979.png",
-   "true": "No entry",
-   "pred": "No entry",
-   "conf": 0.9999918937683105,
-   "entropy": 5.3974189509433186e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "03825.png",
-   "true": "Stop",
-   "pred": "Stop",
-   "conf": 0.999987006187439,
-   "entropy": 8.186024281470768e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "04900.png",
-   "true": "Road work",
-   "pred": "Road work",
-   "conf": 0.9998886585235596,
-   "entropy": 0.0005882591554288361,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "01129.png",
-   "true": "Speed limit 30",
-   "pred": "Speed limit 30",
-   "conf": 0.9999984502792358,
-   "entropy": 1.1136413739251208e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "08557.png",
-   "true": "Speed limit 30",
-   "pred": "Speed limit 30",
-   "conf": 0.9999943971633911,
-   "entropy": 3.598951107858812e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "08747.png",
-   "true": "Turn right ahead",
-   "pred": "Turn right ahead",
-   "conf": 0.9999603033065796,
-   "entropy": 0.00024313593795849368,
+   "conf": 0.9998047947883606,
+   "entropy": 0.0008484190384437281,
    "ood": false,
    "correct": true
   },
@@ -601,26 +1138,26 @@
    "file": "09650.png",
    "true": "Keep right",
    "pred": "Keep right",
-   "conf": 0.9999730587005615,
-   "entropy": 0.00016435734488740773,
+   "conf": 0.9991728663444519,
+   "entropy": 0.0030615496896352467,
    "ood": false,
    "correct": true
   },
   {
-   "file": "08003.png",
-   "true": "Keep right",
-   "pred": "Keep right",
-   "conf": 0.9999597072601318,
-   "entropy": 0.00024053176120756274,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "03417.png",
+   "file": "08011.png",
    "true": "Yield",
    "pred": "Yield",
-   "conf": 0.9999669790267944,
-   "entropy": 0.00019103479599205713,
+   "conf": 1.0,
+   "entropy": 9.217580371173453e-08,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "03412.png",
+   "true": "Stop",
+   "pred": "Stop",
+   "conf": 0.9999467134475708,
+   "entropy": 0.0002851429271946254,
    "ood": false,
    "correct": true
   },
@@ -628,98 +1165,98 @@
    "file": "00910.png",
    "true": "Speed limit 30",
    "pred": "Speed limit 30",
-   "conf": 0.9996974468231201,
-   "entropy": 0.0013254113950991755,
+   "conf": 0.999190628528595,
+   "entropy": 0.0029981336133829348,
    "ood": false,
    "correct": true
   },
   {
-   "file": "05427.png",
-   "true": "Keep right",
-   "pred": "Keep right",
-   "conf": 0.9999927282333374,
-   "entropy": 4.772188256221556e-05,
+   "file": "05424.png",
+   "true": "Stop",
+   "pred": "Stop",
+   "conf": 0.9999862909317017,
+   "entropy": 8.034709189326152e-05,
    "ood": false,
    "correct": true
   },
   {
-   "file": "02377.png",
-   "true": "No entry",
-   "pred": "No entry",
-   "conf": 1.0,
-   "entropy": 3.97638697420589e-07,
+   "file": "02372.png",
+   "true": "Speed limit 30",
+   "pred": "Speed limit 30",
+   "conf": 0.9978023171424866,
+   "entropy": 0.007460332578500055,
    "ood": false,
    "correct": true
   },
   {
-   "file": "02247.png",
+   "file": "02244.png",
+   "true": "Speed limit 30",
+   "pred": "Speed limit 30",
+   "conf": 0.999995231628418,
+   "entropy": 3.0179501437824775e-05,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "04527.png",
    "true": "Yield",
    "pred": "Yield",
-   "conf": 0.9999923706054688,
-   "entropy": 5.2769744116043274e-05,
+   "conf": 0.9999901056289673,
+   "entropy": 6.133628564277186e-05,
    "ood": false,
    "correct": true
   },
   {
-   "file": "04539.png",
-   "true": "Speed limit 30",
-   "pred": "Speed limit 30",
+   "file": "05732.png",
+   "true": "Keep right",
+   "pred": "Keep right",
    "conf": 0.9999973773956299,
-   "entropy": 1.8595006551749087e-05,
+   "entropy": 1.6874810722317558e-05,
    "ood": false,
    "correct": true
   },
   {
-   "file": "05733.png",
-   "true": "Speed limit 30",
-   "pred": "Speed limit 30",
-   "conf": 0.9999756813049316,
-   "entropy": 0.0001376143365939041,
+   "file": "06125.png",
+   "true": "Yield",
+   "pred": "Yield",
+   "conf": 0.9999921321868896,
+   "entropy": 4.708142615730013e-05,
    "ood": false,
    "correct": true
   },
   {
-   "file": "06123.png",
-   "true": "No entry",
-   "pred": "No entry",
-   "conf": 0.9789808392524719,
-   "entropy": 0.06241167274863409,
+   "file": "05683.png",
+   "true": "Keep right",
+   "pred": "Keep right",
+   "conf": 0.9998286962509155,
+   "entropy": 0.0007781213846773057,
    "ood": false,
    "correct": true
   },
   {
-   "file": "05684.png",
-   "true": "Road work",
-   "pred": "Road work",
-   "conf": 0.9999983310699463,
-   "entropy": 1.2439445094135774e-05,
+   "file": "10039.png",
+   "true": "Yield",
+   "pred": "Yield",
+   "conf": 0.9999771118164062,
+   "entropy": 0.0001311248532505412,
    "ood": false,
    "correct": true
   },
   {
-   "file": "10038.png",
-   "true": "Stop",
-   "pred": "Stop",
-   "conf": 0.9999998807907104,
-   "entropy": 1.003922197648302e-06,
+   "file": "10619.png",
+   "true": "Speed limit 50",
+   "pred": "Speed limit 50",
+   "conf": 0.999993085861206,
+   "entropy": 4.069072524268653e-05,
    "ood": false,
    "correct": true
   },
   {
-   "file": "10621.png",
-   "true": "Stop",
-   "pred": "Stop",
-   "conf": 0.9999697208404541,
-   "entropy": 0.00017909664155631088,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "08346.png",
-   "true": "No entry",
-   "pred": "No entry",
-   "conf": 0.9999916553497314,
-   "entropy": 5.167910356720318e-05,
+   "file": "08357.png",
+   "true": "Turn right ahead",
+   "pred": "Turn right ahead",
+   "conf": 1.0,
+   "entropy": 2.0096402200780603e-08,
    "ood": false,
    "correct": true
   },
@@ -727,17 +1264,17 @@
    "file": "06247.png",
    "true": "Speed limit 30",
    "pred": "Speed limit 30",
-   "conf": 0.9999840259552002,
-   "entropy": 9.391776199963065e-05,
+   "conf": 0.9999687671661377,
+   "entropy": 0.00017080631392535432,
    "ood": false,
    "correct": true
   },
   {
-   "file": "06903.png",
-   "true": "Speed limit 30",
-   "pred": "Speed limit 30",
-   "conf": 0.9999886751174927,
-   "entropy": 6.783483230150394e-05,
+   "file": "06905.png",
+   "true": "Speed limit 50",
+   "pred": "Speed limit 50",
+   "conf": 0.9999905824661255,
+   "entropy": 5.4492766405326585e-05,
    "ood": false,
    "correct": true
   },
@@ -745,98 +1282,98 @@
    "file": "10334.png",
    "true": "Speed limit 50",
    "pred": "Speed limit 50",
-   "conf": 0.9998668432235718,
-   "entropy": 0.0006870857498756582,
+   "conf": 0.9936532974243164,
+   "entropy": 0.017541445046343355,
    "ood": false,
    "correct": true
   },
   {
-   "file": "02466.png",
+   "file": "02461.png",
+   "true": "Keep right",
+   "pred": "Keep right",
+   "conf": 0.9999998807907104,
+   "entropy": 8.837152827850452e-07,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "11221.png",
    "true": "Speed limit 50",
    "pred": "Speed limit 50",
-   "conf": 0.9999998807907104,
-   "entropy": 1.1011481431393875e-06,
+   "conf": 0.9999736547470093,
+   "entropy": 0.0001400343246273113,
    "ood": false,
    "correct": true
   },
   {
-   "file": "11219.png",
-   "true": "No entry",
-   "pred": "No entry",
-   "conf": 1.0,
-   "entropy": 8.505028686164366e-08,
+   "file": "09802.png",
+   "true": "Stop",
+   "pred": "Stop",
+   "conf": 0.9999338388442993,
+   "entropy": 0.00037024249216176925,
    "ood": false,
    "correct": true
   },
   {
-   "file": "09800.png",
-   "true": "Yield",
-   "pred": "Yield",
-   "conf": 0.999998927116394,
-   "entropy": 7.83865375684843e-06,
+   "file": "08813.png",
+   "true": "Speed limit 30",
+   "pred": "Speed limit 30",
+   "conf": 0.9979721903800964,
+   "entropy": 0.007307626546507347,
    "ood": false,
    "correct": true
   },
   {
-   "file": "08801.png",
-   "true": "No entry",
-   "pred": "No entry",
-   "conf": 0.9999336004257202,
-   "entropy": 0.0003697092346963231,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "05323.png",
-   "true": "Yield",
-   "pred": "Yield",
-   "conf": 1.0,
-   "entropy": 4.783157040060955e-07,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "09422.png",
+   "file": "05315.png",
    "true": "Keep right",
    "pred": "Keep right",
    "conf": 1.0,
-   "entropy": 3.60203923424401e-07,
+   "entropy": 3.1705212181971694e-08,
    "ood": false,
    "correct": true
   },
   {
-   "file": "04784.png",
-   "true": "Speed limit 50",
-   "pred": "Speed limit 50",
-   "conf": 0.9999998807907104,
-   "entropy": 1.0273841685359845e-06,
+   "file": "09420.png",
+   "true": "Speed limit 30",
+   "pred": "Speed limit 30",
+   "conf": 0.9999624490737915,
+   "entropy": 0.00020047980883537082,
    "ood": false,
    "correct": true
   },
   {
-   "file": "10442.png",
-   "true": "Road work",
-   "pred": "Road work",
-   "conf": 0.9999997615814209,
-   "entropy": 3.0735465062851844e-06,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "01575.png",
+   "file": "04778.png",
    "true": "Keep right",
    "pred": "Keep right",
-   "conf": 0.9998207688331604,
-   "entropy": 0.0009388379514616556,
+   "conf": 0.9908276200294495,
+   "entropy": 0.023874859396497885,
    "ood": false,
    "correct": true
   },
   {
-   "file": "05340.png",
+   "file": "10445.png",
    "true": "Road work",
    "pred": "Road work",
-   "conf": 0.9999651908874512,
-   "entropy": 0.0002001510381544544,
+   "conf": 0.9999978542327881,
+   "entropy": 1.3969005170174823e-05,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "01570.png",
+   "true": "No entry",
+   "pred": "No entry",
+   "conf": 0.9999988079071045,
+   "entropy": 9.194413392822114e-06,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "05332.png",
+   "true": "Road work",
+   "pred": "Road work",
+   "conf": 0.9999326467514038,
+   "entropy": 0.0003252776300554402,
    "ood": false,
    "correct": true
   },
@@ -844,26 +1381,26 @@
    "file": "05857.png",
    "true": "Keep right",
    "pred": "Keep right",
-   "conf": 0.9999890327453613,
-   "entropy": 7.237366691680992e-05,
+   "conf": 0.9999871253967285,
+   "entropy": 7.28811726392318e-05,
    "ood": false,
    "correct": true
   },
   {
-   "file": "10939.png",
-   "true": "Speed limit 50",
-   "pred": "Speed limit 50",
-   "conf": 0.9999990463256836,
-   "entropy": 7.089627621803685e-06,
+   "file": "10938.png",
+   "true": "Speed limit 30",
+   "pred": "Speed limit 30",
+   "conf": 0.9999704360961914,
+   "entropy": 0.0001561419728147554,
    "ood": false,
    "correct": true
   },
   {
-   "file": "09669.png",
+   "file": "09665.png",
    "true": "Road work",
    "pred": "Road work",
-   "conf": 0.999998927116394,
-   "entropy": 8.76029629840453e-06,
+   "conf": 0.9999997615814209,
+   "entropy": 1.8619847528678512e-06,
    "ood": false,
    "correct": true
   },
@@ -871,8 +1408,8 @@
    "file": "05663.png",
    "true": "Yield",
    "pred": "Yield",
-   "conf": 0.9999997615814209,
-   "entropy": 1.6196425994026028e-06,
+   "conf": 0.9999998807907104,
+   "entropy": 1.6357203630767434e-06,
    "ood": false,
    "correct": true
   },
@@ -880,8 +1417,8 @@
    "file": "06093.png",
    "true": "Speed limit 50",
    "pred": "Speed limit 50",
-   "conf": 0.9999852180480957,
-   "entropy": 9.431827107654228e-05,
+   "conf": 0.9995716214179993,
+   "entropy": 0.0017201569091866047,
    "ood": false,
    "correct": true
   },
@@ -889,53 +1426,53 @@
    "file": "09238.png",
    "true": "Speed limit 50",
    "pred": "Speed limit 50",
-   "conf": 0.9999997615814209,
-   "entropy": 2.0193652769656543e-06,
+   "conf": 0.9999991655349731,
+   "entropy": 5.726318989539049e-06,
    "ood": false,
    "correct": true
   },
   {
-   "file": "02334.png",
-   "true": "No entry",
-   "pred": "No entry",
-   "conf": 0.9999436140060425,
-   "entropy": 0.0003250144315362812,
+   "file": "02329.png",
+   "true": "Stop",
+   "pred": "Stop",
+   "conf": 0.999994158744812,
+   "entropy": 3.6744588932595175e-05,
    "ood": false,
    "correct": true
   },
   {
-   "file": "12544.png",
-   "true": "Speed limit 50",
-   "pred": "Speed limit 50",
-   "conf": 1.0,
-   "entropy": 4.2644273309892764e-07,
+   "file": "08568.png",
+   "true": "Speed limit 30",
+   "pred": "Speed limit 30",
+   "conf": 0.9999955892562866,
+   "entropy": 2.7657490740419285e-05,
    "ood": false,
    "correct": true
   },
   {
-   "file": "02934.png",
+   "file": "02932.png",
    "true": "Yield",
    "pred": "Yield",
-   "conf": 0.999998927116394,
-   "entropy": 8.265735958800295e-06,
+   "conf": 0.9999984502792358,
+   "entropy": 1.0557428201825933e-05,
    "ood": false,
    "correct": true
   },
   {
-   "file": "06682.png",
-   "true": "Yield",
-   "pred": "Yield",
-   "conf": 1.0,
-   "entropy": 4.6140161206595275e-07,
+   "file": "06678.png",
+   "true": "Turn right ahead",
+   "pred": "Turn right ahead",
+   "conf": 0.999923586845398,
+   "entropy": 0.00037056772767042216,
    "ood": false,
    "correct": true
   },
   {
-   "file": "02436.png",
-   "true": "Yield",
-   "pred": "Yield",
-   "conf": 0.9974129796028137,
-   "entropy": 0.00927696543605429,
+   "file": "02427.png",
+   "true": "Turn right ahead",
+   "pred": "Turn right ahead",
+   "conf": 0.9999809265136719,
+   "entropy": 0.00010642670396749793,
    "ood": false,
    "correct": true
   },
@@ -943,107 +1480,107 @@
    "file": "09867.png",
    "true": "Stop",
    "pred": "Stop",
-   "conf": 0.9999935626983643,
-   "entropy": 4.2801807840910654e-05,
+   "conf": 0.9997010231018066,
+   "entropy": 0.001319422892688111,
    "ood": false,
    "correct": true
   },
   {
-   "file": "09813.png",
-   "true": "Speed limit 30",
-   "pred": "Speed limit 30",
-   "conf": 0.9999896287918091,
-   "entropy": 6.384562697417873e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "00444.png",
-   "true": "Road work",
-   "pred": "Road work",
-   "conf": 0.9999991655349731,
-   "entropy": 6.482661161296324e-06,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "10407.png",
-   "true": "Road work",
-   "pred": "Road work",
-   "conf": 0.9999986886978149,
-   "entropy": 1.0570139727349635e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "06305.png",
-   "true": "Turn right ahead",
-   "pred": "Turn right ahead",
-   "conf": 0.9999996423721313,
-   "entropy": 2.9529947227191226e-06,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "05452.png",
-   "true": "Keep right",
-   "pred": "Keep right",
-   "conf": 0.9999940395355225,
-   "entropy": 3.994919187775616e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "12025.png",
-   "true": "Yield",
-   "pred": "Yield",
-   "conf": 1.0,
-   "entropy": 2.587308528641341e-07,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "08378.png",
+   "file": "09814.png",
    "true": "Speed limit 50",
    "pred": "Speed limit 50",
-   "conf": 0.999998927116394,
-   "entropy": 7.83890043606567e-06,
+   "conf": 0.9999946355819702,
+   "entropy": 3.361488925089315e-05,
    "ood": false,
    "correct": true
   },
   {
-   "file": "06953.png",
-   "true": "Yield",
-   "pred": "Yield",
-   "conf": 1.0,
-   "entropy": 5.682633004650763e-07,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "01021.png",
+   "file": "00445.png",
    "true": "Speed limit 30",
    "pred": "Speed limit 30",
-   "conf": 0.9999995231628418,
-   "entropy": 3.860383229364084e-06,
+   "conf": 0.9999804496765137,
+   "entropy": 0.00010637631723316072,
    "ood": false,
    "correct": true
   },
   {
-   "file": "08555.png",
+   "file": "10403.png",
+   "true": "Speed limit 50",
+   "pred": "Speed limit 50",
+   "conf": 0.9995741248130798,
+   "entropy": 0.0016996675754789852,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "06306.png",
+   "true": "Speed limit 30",
+   "pred": "Speed limit 30",
+   "conf": 0.9991294741630554,
+   "entropy": 0.0034040037918442556,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "05439.png",
+   "true": "Speed limit 30",
+   "pred": "Speed limit 30",
+   "conf": 0.9999767541885376,
+   "entropy": 0.0001276705141177691,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "12017.png",
+   "true": "Stop",
+   "pred": "Stop",
+   "conf": 0.999919056892395,
+   "entropy": 0.0004120760650995086,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "08391.png",
+   "true": "Yield",
+   "pred": "Yield",
+   "conf": 0.9999773502349854,
+   "entropy": 0.00012123058878110486,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "06962.png",
    "true": "Keep right",
    "pred": "Keep right",
-   "conf": 0.9999998807907104,
-   "entropy": 1.0295106833484411e-06,
+   "conf": 0.9999945163726807,
+   "entropy": 3.384843454614814e-05,
    "ood": false,
    "correct": true
   },
   {
-   "file": "09478.png",
-   "true": "Road work",
-   "pred": "Road work",
-   "conf": 0.9999935626983643,
-   "entropy": 4.494496737728815e-05,
+   "file": "01020.png",
+   "true": "Stop",
+   "pred": "Stop",
+   "conf": 0.9998018145561218,
+   "entropy": 0.0009010841432856307,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "08562.png",
+   "true": "Speed limit 50",
+   "pred": "Speed limit 50",
+   "conf": 0.9999829530715942,
+   "entropy": 9.394254280911562e-05,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "09476.png",
+   "true": "No entry",
+   "pred": "No entry",
+   "conf": 0.9999966621398926,
+   "entropy": 2.2775428125162608e-05,
    "ood": false,
    "correct": true
   },
@@ -1051,8 +1588,8 @@
    "file": "09634.png",
    "true": "Speed limit 30",
    "pred": "Speed limit 30",
-   "conf": 0.9999996423721313,
-   "entropy": 2.7222956388482347e-06,
+   "conf": 0.9999982118606567,
+   "entropy": 1.2041657943165016e-05,
    "ood": false,
    "correct": true
   },
@@ -1061,16 +1598,16 @@
    "true": "Keep right",
    "pred": "Keep right",
    "conf": 1.0,
-   "entropy": 2.736576380939699e-08,
+   "entropy": 7.069243296445495e-10,
    "ood": false,
    "correct": true
   },
   {
-   "file": "11390.png",
-   "true": "Speed limit 30",
-   "pred": "Speed limit 30",
-   "conf": 0.9999998807907104,
-   "entropy": 9.11176989880492e-07,
+   "file": "11392.png",
+   "true": "Road work",
+   "pred": "Road work",
+   "conf": 0.9920827150344849,
+   "entropy": 0.02102470680041976,
    "ood": false,
    "correct": true
   },
@@ -1078,116 +1615,116 @@
    "file": "09273.png",
    "true": "Speed limit 50",
    "pred": "Speed limit 50",
-   "conf": 0.9999997615814209,
-   "entropy": 2.149312520824556e-06,
+   "conf": 0.9999744892120361,
+   "entropy": 0.00013465555398253884,
    "ood": false,
    "correct": true
   },
   {
-   "file": "04044.png",
-   "true": "Road work",
-   "pred": "Road work",
-   "conf": 0.8141730427742004,
-   "entropy": 0.2399037878318328,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "10420.png",
-   "true": "Yield",
-   "pred": "Yield",
-   "conf": 1.0,
-   "entropy": 1.1994826142973118e-07,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "09988.png",
-   "true": "Yield",
-   "pred": "Yield",
-   "conf": 0.9999995231628418,
-   "entropy": 3.5105811649539266e-06,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "01474.png",
-   "true": "Yield",
-   "pred": "Yield",
-   "conf": 0.9999997615814209,
-   "entropy": 1.981197353966097e-06,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "03035.png",
-   "true": "Road work",
-   "pred": "Road work",
-   "conf": 1.0,
-   "entropy": 1.0240851893721668e-07,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "12035.png",
+   "file": "04042.png",
    "true": "No entry",
    "pred": "No entry",
-   "conf": 0.9999994039535522,
-   "entropy": 4.958507255876152e-06,
+   "conf": 1.0,
+   "entropy": 8.449451260631147e-08,
    "ood": false,
    "correct": true
   },
   {
-   "file": "09375.png",
-   "true": "Stop",
-   "pred": "Stop",
-   "conf": 0.9999688863754272,
-   "entropy": 0.0001844530725684371,
+   "file": "10421.png",
+   "true": "Keep right",
+   "pred": "Keep right",
+   "conf": 0.9999998807907104,
+   "entropy": 5.704957155020227e-07,
    "ood": false,
    "correct": true
   },
   {
-   "file": "05392.png",
+   "file": "09991.png",
+   "true": "Keep right",
+   "pred": "Keep right",
+   "conf": 0.9999115467071533,
+   "entropy": 0.00042076854502467195,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "01471.png",
    "true": "Speed limit 50",
    "pred": "Speed limit 50",
-   "conf": 0.9999997615814209,
-   "entropy": 2.1742435233095934e-06,
+   "conf": 0.9999493360519409,
+   "entropy": 0.00025183263330286334,
    "ood": false,
    "correct": true
   },
   {
-   "file": "06398.png",
-   "true": "Speed limit 30",
-   "pred": "Speed limit 30",
-   "conf": 0.9999969005584717,
-   "entropy": 2.077429322171541e-05,
+   "file": "03032.png",
+   "true": "Keep right",
+   "pred": "Keep right",
+   "conf": 0.9999936819076538,
+   "entropy": 3.973719205880991e-05,
    "ood": false,
    "correct": true
   },
   {
-   "file": "06734.png",
+   "file": "12034.png",
+   "true": "Keep right",
+   "pred": "Keep right",
+   "conf": 0.9999984502792358,
+   "entropy": 1.0337643558157314e-05,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "09373.png",
+   "true": "Keep right",
+   "pred": "Keep right",
+   "conf": 0.9999986886978149,
+   "entropy": 8.881878877830496e-06,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "05391.png",
    "true": "Speed limit 50",
    "pred": "Speed limit 50",
-   "conf": 0.9999979734420776,
-   "entropy": 1.410530658762191e-05,
+   "conf": 0.9999620914459229,
+   "entropy": 0.00019338871045802538,
    "ood": false,
    "correct": true
   },
   {
-   "file": "10229.png",
-   "true": "Speed limit 50",
-   "pred": "Speed limit 50",
-   "conf": 0.9999996423721313,
-   "entropy": 2.7126946125410273e-06,
+   "file": "06392.png",
+   "true": "Turn right ahead",
+   "pred": "Turn right ahead",
+   "conf": 0.9999998807907104,
+   "entropy": 8.034227562381341e-07,
    "ood": false,
    "correct": true
   },
   {
-   "file": "09610.png",
+   "file": "06728.png",
    "true": "Yield",
    "pred": "Yield",
-   "conf": 0.9999998807907104,
-   "entropy": 9.335828653693616e-07,
+   "conf": 1.0,
+   "entropy": 6.669690161277015e-09,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "10226.png",
+   "true": "Speed limit 30",
+   "pred": "Speed limit 30",
+   "conf": 0.9999842643737793,
+   "entropy": 8.743873334529356e-05,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "09612.png",
+   "true": "Yield",
+   "pred": "Yield",
+   "conf": 1.0,
+   "entropy": 4.688000132897002e-07,
    "ood": false,
    "correct": true
   },
@@ -1195,26 +1732,26 @@
    "file": "11705.png",
    "true": "Turn right ahead",
    "pred": "Turn right ahead",
-   "conf": 0.9999980926513672,
-   "entropy": 1.3925375967369558e-05,
+   "conf": 0.9999996423721313,
+   "entropy": 3.2463785744388884e-06,
    "ood": false,
    "correct": true
   },
   {
-   "file": "07900.png",
-   "true": "No entry",
-   "pred": "No entry",
-   "conf": 1.0,
-   "entropy": 7.786763571154354e-09,
+   "file": "07915.png",
+   "true": "Speed limit 50",
+   "pred": "Speed limit 50",
+   "conf": 0.9999901056289673,
+   "entropy": 5.949785861711521e-05,
    "ood": false,
    "correct": true
   },
   {
-   "file": "01749.png",
-   "true": "Keep right",
-   "pred": "Keep right",
-   "conf": 1.0,
-   "entropy": 6.459991275625704e-08,
+   "file": "01742.png",
+   "true": "Road work",
+   "pred": "Road work",
+   "conf": 0.9999856948852539,
+   "entropy": 7.903556652512319e-05,
    "ood": false,
    "correct": true
   },
@@ -1222,8 +1759,8 @@
    "file": "10543.png",
    "true": "Yield",
    "pred": "Yield",
-   "conf": 0.9999896287918091,
-   "entropy": 6.707940606542038e-05,
+   "conf": 0.999991774559021,
+   "entropy": 4.80711102335768e-05,
    "ood": false,
    "correct": true
   },
@@ -1231,17 +1768,17 @@
    "file": "05863.png",
    "true": "Keep right",
    "pred": "Keep right",
-   "conf": 0.9999995231628418,
-   "entropy": 3.764210262978509e-06,
+   "conf": 1.0,
+   "entropy": 9.650761468281683e-08,
    "ood": false,
    "correct": true
   },
   {
-   "file": "07088.png",
-   "true": "Road work",
-   "pred": "Road work",
-   "conf": 0.999998927116394,
-   "entropy": 7.892636266970324e-06,
+   "file": "07104.png",
+   "true": "Keep right",
+   "pred": "Keep right",
+   "conf": 0.9999997615814209,
+   "entropy": 1.8606071975652566e-06,
    "ood": false,
    "correct": true
   },
@@ -1249,35 +1786,35 @@
    "file": "10090.png",
    "true": "Road work",
    "pred": "Road work",
-   "conf": 0.9999715089797974,
-   "entropy": 0.00017156681618346416,
+   "conf": 0.9999054670333862,
+   "entropy": 0.00044149738791480597,
    "ood": false,
    "correct": true
   },
   {
-   "file": "05331.png",
+   "file": "05329.png",
    "true": "Road work",
    "pred": "Road work",
-   "conf": 0.9999932050704956,
-   "entropy": 4.4116321151133894e-05,
+   "conf": 0.9997140765190125,
+   "entropy": 0.0011920599575288183,
    "ood": false,
    "correct": true
   },
   {
-   "file": "03548.png",
-   "true": "Keep right",
-   "pred": "Keep right",
-   "conf": 0.9999792575836182,
-   "entropy": 0.00012989434778703455,
+   "file": "03544.png",
+   "true": "Speed limit 50",
+   "pred": "Speed limit 50",
+   "conf": 0.9999707937240601,
+   "entropy": 0.00015266097003944365,
    "ood": false,
    "correct": true
   },
   {
-   "file": "07769.png",
-   "true": "Keep right",
-   "pred": "Keep right",
-   "conf": 0.9999991655349731,
-   "entropy": 6.238401499781912e-06,
+   "file": "07781.png",
+   "true": "No entry",
+   "pred": "No entry",
+   "conf": 1.0,
+   "entropy": 6.70205260843633e-09,
    "ood": false,
    "correct": true
   },
@@ -1285,26 +1822,26 @@
    "file": "10126.png",
    "true": "Speed limit 30",
    "pred": "Speed limit 30",
-   "conf": 0.9999998807907104,
-   "entropy": 8.111260425025993e-07,
+   "conf": 0.9999858140945435,
+   "entropy": 7.912811439915422e-05,
    "ood": false,
    "correct": true
   },
   {
-   "file": "04480.png",
-   "true": "Speed limit 50",
-   "pred": "Speed limit 50",
-   "conf": 0.9999994039535522,
-   "entropy": 5.11419814403859e-06,
+   "file": "04478.png",
+   "true": "Speed limit 30",
+   "pred": "Speed limit 30",
+   "conf": 0.9994267225265503,
+   "entropy": 0.00239110157726277,
    "ood": false,
    "correct": true
   },
   {
-   "file": "07961.png",
-   "true": "Stop",
-   "pred": "Stop",
-   "conf": 0.9999897480010986,
-   "entropy": 6.438595593082014e-05,
+   "file": "07966.png",
+   "true": "Road work",
+   "pred": "Road work",
+   "conf": 0.9999213218688965,
+   "entropy": 0.00037419273795775125,
    "ood": false,
    "correct": true
   },
@@ -1312,62 +1849,62 @@
    "file": "00814.png",
    "true": "No entry",
    "pred": "No entry",
-   "conf": 0.9999079704284668,
-   "entropy": 0.0005073195964307834,
+   "conf": 0.9999698400497437,
+   "entropy": 0.00016135306583860915,
    "ood": false,
    "correct": true
   },
   {
-   "file": "00756.png",
-   "true": "Speed limit 50",
-   "pred": "Speed limit 50",
-   "conf": 1.0,
-   "entropy": 4.770798681902654e-08,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "05263.png",
-   "true": "Speed limit 50",
-   "pred": "Speed limit 50",
-   "conf": 0.9999984502792358,
-   "entropy": 1.1023828294803633e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "08857.png",
+   "file": "00761.png",
    "true": "Yield",
    "pred": "Yield",
    "conf": 1.0,
-   "entropy": 2.2007462857273566e-07,
+   "entropy": 1.6779056529334873e-08,
    "ood": false,
    "correct": true
   },
   {
-   "file": "02736.png",
-   "true": "Speed limit 50",
-   "pred": "Speed limit 50",
+   "file": "05259.png",
+   "true": "Keep right",
+   "pred": "Keep right",
+   "conf": 1.0,
+   "entropy": 6.611256500815602e-08,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "08873.png",
+   "true": "Road work",
+   "pred": "Road work",
+   "conf": 0.9999996423721313,
+   "entropy": 2.2139714500178913e-06,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "02735.png",
+   "true": "Yield",
+   "pred": "Yield",
+   "conf": 0.9999996423721313,
+   "entropy": 2.34920573948764e-06,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "07856.png",
+   "true": "Yield",
+   "pred": "Yield",
    "conf": 0.9999998807907104,
-   "entropy": 9.487366889678582e-07,
+   "entropy": 9.974622138040261e-07,
    "ood": false,
    "correct": true
   },
   {
-   "file": "07852.png",
-   "true": "Speed limit 50",
-   "pred": "Speed limit 50",
-   "conf": 0.9999741315841675,
-   "entropy": 0.00014576526174680767,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "08484.png",
-   "true": "Turn right ahead",
-   "pred": "Turn right ahead",
-   "conf": 0.9999991655349731,
-   "entropy": 6.455277143935585e-06,
+   "file": "08500.png",
+   "true": "Keep right",
+   "pred": "Keep right",
+   "conf": 1.0,
+   "entropy": 7.161699121425597e-08,
    "ood": false,
    "correct": true
   },
@@ -1375,26 +1912,26 @@
    "file": "05671.png",
    "true": "Speed limit 50",
    "pred": "Speed limit 50",
-   "conf": 0.9999828338623047,
-   "entropy": 0.00010105007343613249,
+   "conf": 0.999840259552002,
+   "entropy": 0.0007357909116470517,
    "ood": false,
    "correct": true
   },
   {
-   "file": "11448.png",
-   "true": "Keep right",
-   "pred": "Keep right",
-   "conf": 0.999992847442627,
-   "entropy": 4.805549083581305e-05,
+   "file": "11456.png",
+   "true": "Stop",
+   "pred": "Stop",
+   "conf": 0.9998822212219238,
+   "entropy": 0.0005706248919423777,
    "ood": false,
    "correct": true
   },
   {
-   "file": "04477.png",
-   "true": "Yield",
-   "pred": "Yield",
-   "conf": 0.9999997615814209,
-   "entropy": 1.149845638506795e-06,
+   "file": "04476.png",
+   "true": "Speed limit 50",
+   "pred": "Speed limit 50",
+   "conf": 0.9997983574867249,
+   "entropy": 0.0008915176575038674,
    "ood": false,
    "correct": true
   },
@@ -1402,2249 +1939,2249 @@
    "file": "09896.png",
    "true": "Yield",
    "pred": "Yield",
-   "conf": 1.0,
-   "entropy": 1.9047369655784912e-07,
+   "conf": 0.9999996423721313,
+   "entropy": 2.721810440964567e-06,
    "ood": false,
    "correct": true
   },
   {
-   "file": "05046.png",
-   "true": "Speed limit 30",
-   "pred": "Speed limit 30",
-   "conf": 0.9999909400939941,
-   "entropy": 5.594549935679546e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "01226.png",
-   "true": "Speed limit 30",
-   "pred": "Speed limit 30",
-   "conf": 0.9999954700469971,
-   "entropy": 2.9164624928696323e-05,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "01155.png",
-   "true": "Turn right ahead",
-   "pred": "Turn right ahead",
-   "conf": 0.9999624490737915,
-   "entropy": 0.0002102482028484574,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "03976.png",
-   "true": "Keep right",
-   "pred": "Keep right",
-   "conf": 0.9999762773513794,
-   "entropy": 0.00014622281845432777,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "01740.png",
+   "file": "05037.png",
    "true": "Yield",
    "pred": "Yield",
-   "conf": 0.9999997615814209,
-   "entropy": 2.2820948261837344e-06,
+   "conf": 0.9999991655349731,
+   "entropy": 5.955946034044535e-06,
    "ood": false,
    "correct": true
   },
   {
-   "file": "00514.png",
-   "true": "Keep right",
-   "pred": "Keep right",
+   "file": "01223.png",
+   "true": "Stop",
+   "pred": "Stop",
+   "conf": 0.9999867677688599,
+   "entropy": 7.656715299442477e-05,
+   "ood": false,
+   "correct": true
+  },
+  {
+   "file": "01152.png",
+   "true": "Road work",
+   "pred": "Road work",
    "conf": 0.9999998807907104,
-   "entropy": 1.0830615048401652e-06,
+   "entropy": 6.656211763911273e-07,
    "ood": false,
    "correct": true
   },
   {
-   "file": "02764.png",
-   "true": "Speed limit 50",
-   "pred": "Speed limit 50",
-   "conf": 0.9999560117721558,
-   "entropy": 0.0002575219619963398,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "08353.png",
-   "true": "Keep right",
-   "pred": "Keep right",
-   "conf": 0.999998927116394,
-   "entropy": 8.477197781409626e-06,
-   "ood": false,
-   "correct": true
-  },
-  {
-   "file": "04448.png",
+   "file": "03972.png",
    "true": "No entry",
    "pred": "No entry",
-   "conf": 0.9999986886978149,
-   "entropy": 9.577891820475787e-06,
+   "conf": 1.0,
+   "entropy": 2.6361197644507207e-07,
    "ood": false,
    "correct": true
   },
   {
-   "file": "00503.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 30",
-   "conf": 0.9609691500663757,
-   "entropy": 0.08460994644778667,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "08093.png",
-   "true": "Unseen class 5",
+   "file": "01734.png",
+   "true": "Speed limit 50",
    "pred": "Speed limit 50",
-   "conf": 0.9808928966522217,
-   "entropy": 0.05009968199842623,
-   "ood": true,
-   "correct": false
+   "conf": 0.5640805959701538,
+   "entropy": 0.31417850379511647,
+   "ood": false,
+   "correct": true
   },
   {
-   "file": "06103.png",
-   "true": "Unseen class 9",
-   "pred": "Yield",
-   "conf": 0.9572562575340271,
-   "entropy": 0.10450928505719338,
-   "ood": true,
-   "correct": false
+   "file": "00515.png",
+   "true": "Turn right ahead",
+   "pred": "Turn right ahead",
+   "conf": 0.9999994039535522,
+   "entropy": 4.3308281487050145e-06,
+   "ood": false,
+   "correct": true
   },
   {
-   "file": "10835.png",
-   "true": "Unseen class 40",
+   "file": "02762.png",
+   "true": "Keep right",
    "pred": "Keep right",
-   "conf": 0.9827513098716736,
-   "entropy": 0.04932050026680471,
-   "ood": true,
-   "correct": false
+   "conf": 1.0,
+   "entropy": 2.0225767505887306e-09,
+   "ood": false,
+   "correct": true
   },
   {
-   "file": "07477.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 30",
-   "conf": 0.9904012084007263,
-   "entropy": 0.026176535174734304,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01790.png",
-   "true": "Unseen class 40",
-   "pred": "Keep right",
-   "conf": 0.9924489259719849,
-   "entropy": 0.02350712616571263,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "08621.png",
-   "true": "Unseen class 5",
-   "pred": "Speed limit 50",
-   "conf": 0.9997631907463074,
-   "entropy": 0.0010681433762357504,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "08997.png",
-   "true": "Unseen class 12",
-   "pred": "Road work",
-   "conf": 0.7539348602294922,
-   "entropy": 0.4084737869535707,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "04672.png",
-   "true": "Unseen class 18",
-   "pred": "Road work",
-   "conf": 0.9999927282333374,
-   "entropy": 4.8194418471565566e-05,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "08327.png",
-   "true": "Unseen class 35",
-   "pred": "Turn right ahead",
-   "conf": 0.9996060729026794,
-   "entropy": 0.0017791082341796923,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "09127.png",
-   "true": "Unseen class 28",
-   "pred": "Road work",
-   "conf": 0.9988284707069397,
-   "entropy": 0.004906630095139974,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "04715.png",
-   "true": "Unseen class 16",
-   "pred": "No entry",
-   "conf": 0.7161376476287842,
-   "entropy": 0.4752555388606288,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10826.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 50",
-   "conf": 0.9837301969528198,
-   "entropy": 0.05171356719412283,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "12621.png",
-   "true": "Unseen class 5",
-   "pred": "Speed limit 50",
-   "conf": 0.9999550580978394,
-   "entropy": 0.00024076451442076656,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10467.png",
-   "true": "Unseen class 4",
-   "pred": "Speed limit 30",
-   "conf": 0.999171257019043,
-   "entropy": 0.0033962287415277735,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "07269.png",
-   "true": "Unseen class 8",
-   "pred": "Speed limit 50",
-   "conf": 0.9352805614471436,
-   "entropy": 0.12876257945150565,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "07704.png",
-   "true": "Unseen class 10",
-   "pred": "Road work",
-   "conf": 0.8302269577980042,
-   "entropy": 0.3314735425266232,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10033.png",
-   "true": "Unseen class 8",
-   "pred": "Speed limit 30",
-   "conf": 0.904754638671875,
-   "entropy": 0.151395238331075,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00340.png",
-   "true": "Unseen class 10",
-   "pred": "Speed limit 50",
-   "conf": 0.999509334564209,
-   "entropy": 0.0023081328025308895,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "09534.png",
-   "true": "Unseen class 35",
-   "pred": "Turn right ahead",
-   "conf": 0.9980496168136597,
-   "entropy": 0.006939692547053576,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01975.png",
-   "true": "Unseen class 12",
+   "file": "08363.png",
+   "true": "Yield",
    "pred": "Yield",
-   "conf": 0.9923179149627686,
-   "entropy": 0.02288281660267901,
-   "ood": true,
-   "correct": false
+   "conf": 0.9999995231628418,
+   "entropy": 4.083900118928333e-06,
+   "ood": false,
+   "correct": true
   },
   {
-   "file": "06002.png",
-   "true": "Unseen class 0",
-   "pred": "Speed limit 30",
-   "conf": 0.999693751335144,
-   "entropy": 0.0013395992919881272,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "08136.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 30",
-   "conf": 0.9974186420440674,
-   "entropy": 0.008688949586810562,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "05163.png",
-   "true": "Unseen class 11",
-   "pred": "Road work",
-   "conf": 0.9999306201934814,
-   "entropy": 0.00039991419160952633,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "07034.png",
-   "true": "Unseen class 31",
-   "pred": "Road work",
-   "conf": 0.9993934631347656,
-   "entropy": 0.0028359450947356727,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06157.png",
-   "true": "Unseen class 6",
-   "pred": "Speed limit 30",
-   "conf": 0.9956727027893066,
-   "entropy": 0.01661754058483934,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01969.png",
-   "true": "Unseen class 40",
-   "pred": "Keep right",
-   "conf": 0.8602328300476074,
-   "entropy": 0.23045622187632342,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "07094.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 30",
-   "conf": 0.989045262336731,
-   "entropy": 0.029047455897474744,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06038.png",
-   "true": "Unseen class 27",
-   "pred": "Road work",
-   "conf": 0.9999620914459229,
-   "entropy": 0.00021031227646301222,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "11441.png",
-   "true": "Unseen class 9",
-   "pred": "Yield",
-   "conf": 0.8081836700439453,
-   "entropy": 0.32781263382903203,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06822.png",
-   "true": "Unseen class 35",
-   "pred": "Turn right ahead",
-   "conf": 0.999148964881897,
-   "entropy": 0.003404317972383395,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "05782.png",
-   "true": "Unseen class 12",
-   "pred": "Road work",
-   "conf": 0.8874171376228333,
-   "entropy": 0.20449127014929905,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06055.png",
-   "true": "Unseen class 35",
-   "pred": "Turn right ahead",
-   "conf": 0.9998723268508911,
-   "entropy": 0.0006187256133062906,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "05729.png",
-   "true": "Unseen class 5",
+   "file": "04444.png",
+   "true": "Speed limit 50",
    "pred": "Speed limit 50",
-   "conf": 0.9999033212661743,
-   "entropy": 0.000499336958988978,
-   "ood": true,
-   "correct": false
+   "conf": 0.999993085861206,
+   "entropy": 4.12739609646465e-05,
+   "ood": false,
+   "correct": true
   },
   {
-   "file": "00769.png",
-   "true": "Unseen class 9",
-   "pred": "Yield",
-   "conf": 0.7895779609680176,
-   "entropy": 0.3335140880153353,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "05904.png",
-   "true": "Unseen class 4",
-   "pred": "Speed limit 30",
-   "conf": 0.9997069239616394,
-   "entropy": 0.0013174631317939684,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00857.png",
-   "true": "Unseen class 28",
-   "pred": "Road work",
-   "conf": 0.999817430973053,
-   "entropy": 0.0009546026918871314,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "11217.png",
-   "true": "Unseen class 36",
-   "pred": "Turn right ahead",
-   "conf": 0.9679068922996521,
-   "entropy": 0.07245093784849319,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "04298.png",
-   "true": "Unseen class 28",
-   "pred": "Road work",
-   "conf": 0.9999809265136719,
-   "entropy": 0.00011298303536183072,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "03739.png",
-   "true": "Unseen class 18",
-   "pred": "Road work",
-   "conf": 0.9971532821655273,
-   "entropy": 0.010932793796473026,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "03641.png",
-   "true": "Unseen class 10",
+   "file": "03263.png",
+   "true": "Unseen: Speed limit 60",
    "pred": "Speed limit 50",
-   "conf": 0.9767327904701233,
-   "entropy": 0.058922786114596545,
+   "conf": 0.9987554550170898,
+   "entropy": 0.0046199309546484475,
    "ood": true,
    "correct": false
   },
   {
-   "file": "03369.png",
-   "true": "Unseen class 22",
-   "pred": "Road work",
-   "conf": 0.9996635913848877,
-   "entropy": 0.0015897373087524036,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00672.png",
-   "true": "Unseen class 36",
-   "pred": "Turn right ahead",
-   "conf": 0.9164705276489258,
-   "entropy": 0.14778783056978972,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "04562.png",
-   "true": "Unseen class 27",
-   "pred": "Road work",
-   "conf": 0.9997833371162415,
-   "entropy": 0.0010808345985842834,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "11889.png",
-   "true": "Unseen class 41",
-   "pred": "Yield",
-   "conf": 0.9450843334197998,
-   "entropy": 0.11231827197471979,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "03440.png",
-   "true": "Unseen class 18",
-   "pred": "Road work",
-   "conf": 0.9999954700469971,
-   "entropy": 3.215674936093755e-05,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "07303.png",
-   "true": "Unseen class 35",
-   "pred": "Turn right ahead",
-   "conf": 0.999997615814209,
-   "entropy": 1.6733892334573742e-05,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10558.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.987662672996521,
-   "entropy": 0.0387462043060552,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01101.png",
-   "true": "Unseen class 20",
-   "pred": "Road work",
-   "conf": 0.9920247793197632,
-   "entropy": 0.02282712109608866,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "07218.png",
-   "true": "Unseen class 11",
-   "pred": "Road work",
-   "conf": 0.9997428059577942,
-   "entropy": 0.0013149992787781896,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "11387.png",
-   "true": "Unseen class 35",
-   "pred": "Turn right ahead",
-   "conf": 0.9996080994606018,
-   "entropy": 0.001709392558572128,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "09310.png",
-   "true": "Unseen class 37",
-   "pred": "Turn right ahead",
-   "conf": 0.9998205304145813,
-   "entropy": 0.000837753468898965,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "12345.png",
-   "true": "Unseen class 19",
-   "pred": "Road work",
-   "conf": 0.9943661689758301,
-   "entropy": 0.020782225879498507,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "03407.png",
-   "true": "Unseen class 5",
+   "file": "11489.png",
+   "true": "Unseen: Speed limit 60",
    "pred": "Speed limit 50",
-   "conf": 0.9998505115509033,
-   "entropy": 0.0007610859880599911,
+   "conf": 0.9962693452835083,
+   "entropy": 0.011227853081198403,
    "ood": true,
    "correct": false
   },
   {
-   "file": "06927.png",
-   "true": "Unseen class 5",
+   "file": "01924.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9294289946556091,
+   "entropy": 0.13726851486798455,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06167.png",
+   "true": "Unseen: General caution",
+   "pred": "Road work",
+   "conf": 0.989075779914856,
+   "entropy": 0.027456272601678895,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08779.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9941256046295166,
+   "entropy": 0.016781649968634113,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01050.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9728167057037354,
+   "entropy": 0.06269750780197238,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01777.png",
+   "true": "Unseen: Speed limit 60",
    "pred": "Speed limit 50",
-   "conf": 0.9949394464492798,
-   "entropy": 0.015317398322951117,
+   "conf": 0.9972394704818726,
+   "entropy": 0.008718761984884155,
    "ood": true,
    "correct": false
   },
   {
-   "file": "11726.png",
-   "true": "Unseen class 29",
-   "pred": "Road work",
-   "conf": 0.9997736811637878,
-   "entropy": 0.0010532344062533373,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "12542.png",
-   "true": "Unseen class 4",
-   "pred": "Speed limit 30",
-   "conf": 0.9994269609451294,
-   "entropy": 0.002558713764195435,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06467.png",
-   "true": "Unseen class 5",
+   "file": "09656.png",
+   "true": "Unseen: Speed limit 60",
    "pred": "Speed limit 50",
-   "conf": 0.928613543510437,
-   "entropy": 0.1236956695874483,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01732.png",
-   "true": "Unseen class 18",
-   "pred": "Road work",
-   "conf": 0.9999840259552002,
-   "entropy": 0.00010501232949634861,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "12012.png",
-   "true": "Unseen class 22",
-   "pred": "Road work",
-   "conf": 0.9999295473098755,
-   "entropy": 0.00036892926650237105,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02359.png",
-   "true": "Unseen class 10",
-   "pred": "Yield",
-   "conf": 0.9731239676475525,
-   "entropy": 0.06670331348637705,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00276.png",
-   "true": "Unseen class 34",
-   "pred": "Keep right",
-   "conf": 0.9815170168876648,
-   "entropy": 0.048338970197527406,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "03761.png",
-   "true": "Unseen class 6",
-   "pred": "Speed limit 30",
-   "conf": 0.8510551452636719,
-   "entropy": 0.28693126849548695,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01267.png",
-   "true": "Unseen class 18",
-   "pred": "Road work",
-   "conf": 0.9995688796043396,
-   "entropy": 0.0020080044901085938,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02665.png",
-   "true": "Unseen class 8",
-   "pred": "Speed limit 30",
-   "conf": 0.9996047616004944,
-   "entropy": 0.0016856832497812095,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10791.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 30",
-   "conf": 0.984826922416687,
-   "entropy": 0.037904481800041794,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06333.png",
-   "true": "Unseen class 0",
-   "pred": "Speed limit 30",
-   "conf": 0.9991874098777771,
-   "entropy": 0.0031744246425574017,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02600.png",
-   "true": "Unseen class 30",
-   "pred": "Road work",
-   "conf": 0.9999744892120361,
-   "entropy": 0.00015510965244368695,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00355.png",
-   "true": "Unseen class 40",
-   "pred": "Keep right",
-   "conf": 0.9859681129455566,
-   "entropy": 0.03850731682103487,
+   "conf": 0.9998522996902466,
+   "entropy": 0.0006903980272133376,
    "ood": true,
    "correct": false
   },
   {
    "file": "12472.png",
-   "true": "Unseen class 3",
+   "true": "Unseen: Speed limit 60",
    "pred": "Speed limit 50",
-   "conf": 0.9890869855880737,
-   "entropy": 0.02897457645768568,
+   "conf": 0.9999364614486694,
+   "entropy": 0.00031077303237704595,
    "ood": true,
    "correct": false
   },
   {
-   "file": "06356.png",
-   "true": "Unseen class 26",
-   "pred": "Road work",
-   "conf": 0.9999953508377075,
-   "entropy": 3.0299191873185257e-05,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "05596.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 30",
-   "conf": 0.9999935626983643,
-   "entropy": 4.02177538159138e-05,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "05133.png",
-   "true": "Unseen class 5",
+   "file": "02613.png",
+   "true": "Unseen: No passing",
    "pred": "Speed limit 50",
-   "conf": 0.9999313354492188,
-   "entropy": 0.0003647021714357299,
+   "conf": 0.9389296770095825,
+   "entropy": 0.10853076148528269,
    "ood": true,
    "correct": false
   },
   {
-   "file": "12429.png",
-   "true": "Unseen class 26",
-   "pred": "Road work",
-   "conf": 0.9995241165161133,
-   "entropy": 0.002134544308452798,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "03998.png",
-   "true": "Unseen class 4",
-   "pred": "Speed limit 30",
-   "conf": 0.9988429546356201,
-   "entropy": 0.004655756673394665,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "04699.png",
-   "true": "Unseen class 26",
-   "pred": "Road work",
-   "conf": 0.999942421913147,
-   "entropy": 0.0003353913059696635,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "12178.png",
-   "true": "Unseen class 3",
-   "pred": "Speed limit 50",
-   "conf": 0.7861886620521545,
-   "entropy": 0.3405724279893958,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "12348.png",
-   "true": "Unseen class 5",
-   "pred": "Speed limit 50",
-   "conf": 0.9998419284820557,
-   "entropy": 0.0007479231010521094,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "12024.png",
-   "true": "Unseen class 26",
-   "pred": "Road work",
-   "conf": 0.9999885559082031,
-   "entropy": 6.956296542661046e-05,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02990.png",
-   "true": "Unseen class 9",
-   "pred": "Speed limit 50",
-   "conf": 0.8806685209274292,
-   "entropy": 0.2079619803669235,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "09870.png",
-   "true": "Unseen class 3",
-   "pred": "Speed limit 50",
-   "conf": 0.9983903169631958,
-   "entropy": 0.006482817052064632,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "04069.png",
-   "true": "Unseen class 30",
-   "pred": "Road work",
-   "conf": 0.9999731779098511,
-   "entropy": 0.00015830410981800157,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "12304.png",
-   "true": "Unseen class 3",
-   "pred": "Speed limit 50",
-   "conf": 0.9993849992752075,
-   "entropy": 0.002809878750278535,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "05673.png",
-   "true": "Unseen class 8",
-   "pred": "Speed limit 50",
-   "conf": 0.9925658702850342,
-   "entropy": 0.021464341319567443,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00748.png",
-   "true": "Unseen class 5",
-   "pred": "Speed limit 50",
-   "conf": 0.9848336577415466,
-   "entropy": 0.03918619683748445,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06072.png",
-   "true": "Unseen class 11",
-   "pred": "Road work",
-   "conf": 0.9999661445617676,
-   "entropy": 0.00021159800353323205,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "07501.png",
-   "true": "Unseen class 3",
-   "pred": "Speed limit 50",
-   "conf": 0.9997920393943787,
-   "entropy": 0.0010834851020421117,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06277.png",
-   "true": "Unseen class 35",
-   "pred": "Turn right ahead",
-   "conf": 0.8732621073722839,
-   "entropy": 0.18405385515289288,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02506.png",
-   "true": "Unseen class 40",
+   "file": "07918.png",
+   "true": "Unseen: Ahead only",
    "pred": "Keep right",
-   "conf": 0.9516757726669312,
-   "entropy": 0.10316033913515094,
+   "conf": 0.9717510342597961,
+   "entropy": 0.06763906740162838,
    "ood": true,
    "correct": false
   },
   {
-   "file": "03399.png",
-   "true": "Unseen class 5",
+   "file": "00858.png",
+   "true": "Unseen: Speed limit 60",
    "pred": "Speed limit 50",
-   "conf": 0.9999313354492188,
-   "entropy": 0.00035953700954035906,
+   "conf": 0.9956186413764954,
+   "entropy": 0.012820235801984995,
    "ood": true,
    "correct": false
   },
   {
-   "file": "11574.png",
-   "true": "Unseen class 9",
-   "pred": "Yield",
-   "conf": 0.9966049194335938,
-   "entropy": 0.012406609871957545,
+   "file": "04022.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.947372555732727,
+   "entropy": 0.09396771138028878,
    "ood": true,
    "correct": false
   },
   {
-   "file": "09042.png",
-   "true": "Unseen class 3",
-   "pred": "Speed limit 50",
-   "conf": 0.9999685287475586,
-   "entropy": 0.00017595486506561013,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00046.png",
-   "true": "Unseen class 3",
-   "pred": "Speed limit 50",
-   "conf": 0.8554655313491821,
-   "entropy": 0.19911823116670588,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06534.png",
-   "true": "Unseen class 11",
-   "pred": "Road work",
-   "conf": 0.9997333884239197,
-   "entropy": 0.0012563340483279187,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "12328.png",
-   "true": "Unseen class 3",
-   "pred": "Speed limit 50",
-   "conf": 0.9958513975143433,
-   "entropy": 0.01419180680702999,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10074.png",
-   "true": "Unseen class 11",
-   "pred": "Road work",
-   "conf": 0.9999780654907227,
-   "entropy": 0.00014008556549322812,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06777.png",
-   "true": "Unseen class 4",
+   "file": "10353.png",
+   "true": "Unseen: Speed limit 70",
    "pred": "Speed limit 30",
-   "conf": 0.9999890327453613,
-   "entropy": 6.758925176900359e-05,
+   "conf": 0.9645420908927917,
+   "entropy": 0.07947239800077087,
    "ood": true,
    "correct": false
   },
   {
-   "file": "06614.png",
-   "true": "Unseen class 5",
+   "file": "02309.png",
+   "true": "Unseen: Speed limit 60",
    "pred": "Speed limit 50",
-   "conf": 0.9840230941772461,
-   "entropy": 0.039791783580891325,
+   "conf": 0.9945390820503235,
+   "entropy": 0.015466004120654131,
    "ood": true,
    "correct": false
   },
   {
-   "file": "02194.png",
-   "true": "Unseen class 5",
-   "pred": "Speed limit 50",
-   "conf": 0.9967551827430725,
-   "entropy": 0.010524964707984046,
+   "file": "05256.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9922749400138855,
+   "entropy": 0.020900560668823606,
    "ood": true,
    "correct": false
   },
   {
-   "file": "01492.png",
-   "true": "Unseen class 5",
-   "pred": "Speed limit 50",
-   "conf": 0.9961517453193665,
-   "entropy": 0.0122986818011114,
+   "file": "00871.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9828203916549683,
+   "entropy": 0.040877706599043356,
    "ood": true,
    "correct": false
   },
   {
-   "file": "03754.png",
-   "true": "Unseen class 10",
-   "pred": "Speed limit 50",
-   "conf": 0.5901725888252258,
-   "entropy": 0.44927194134787335,
+   "file": "00631.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.7841157913208008,
+   "entropy": 0.298941592631505,
    "ood": true,
    "correct": false
   },
   {
-   "file": "01158.png",
-   "true": "Unseen class 9",
+   "file": "00256.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9531385898590088,
+   "entropy": 0.10165012621899921,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11960.png",
+   "true": "Unseen: General caution",
+   "pred": "Road work",
+   "conf": 0.9225818514823914,
+   "entropy": 0.12399038053114352,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04177.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9341601729393005,
+   "entropy": 0.12938055012814753,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08078.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9954224228858948,
+   "entropy": 0.013347664851252607,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07585.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9582542777061462,
+   "entropy": 0.08109550232412116,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08867.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9827793836593628,
+   "entropy": 0.04195495993203024,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05708.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.8975430727005005,
+   "entropy": 0.15107649851279406,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11268.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Road work",
+   "conf": 0.8945052623748779,
+   "entropy": 0.15345167851780103,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "03285.png",
+   "true": "Unseen: Priority road",
    "pred": "Yield",
-   "conf": 0.48755404353141785,
-   "entropy": 0.42976607037986564,
+   "conf": 0.9999626874923706,
+   "entropy": 0.00020643849052536333,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "02035.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.8980937600135803,
+   "entropy": 0.16752719103191147,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11609.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.7047722339630127,
+   "entropy": 0.28303181733545185,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05921.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9986943602561951,
+   "entropy": 0.004570623375942137,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07895.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9885756373405457,
+   "entropy": 0.03250378443022072,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "12373.png",
+   "true": "Unseen: No passing",
+   "pred": "Speed limit 50",
+   "conf": 0.9281116127967834,
+   "entropy": 0.1266307157716992,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "03456.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9770954847335815,
+   "entropy": 0.054349776986152176,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05229.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9999513626098633,
+   "entropy": 0.00024332509017707332,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "03427.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.709883451461792,
+   "entropy": 0.2805287866347427,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11986.png",
+   "true": "Unseen: General caution",
+   "pred": "Road work",
+   "conf": 0.9761757254600525,
+   "entropy": 0.05139952655929267,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05842.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9937626719474792,
+   "entropy": 0.017263265343305967,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11691.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9350534677505493,
+   "entropy": 0.10946701080067503,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10895.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.8074207305908203,
+   "entropy": 0.2251398395737044,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05183.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.8925786018371582,
+   "entropy": 0.15717662874688068,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08165.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9694932103157043,
+   "entropy": 0.06462312835613045,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07968.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9998903274536133,
+   "entropy": 0.0005194473878785884,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08891.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9729936122894287,
+   "entropy": 0.06420238481903282,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08252.png",
+   "true": "Unseen: No passing",
+   "pred": "Speed limit 50",
+   "conf": 0.9516603350639343,
+   "entropy": 0.0881631934936965,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06851.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9999570846557617,
+   "entropy": 0.00021771329058530836,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01770.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9982624650001526,
+   "entropy": 0.005836072804148259,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "03447.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9995887875556946,
+   "entropy": 0.0017086598326311517,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04325.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9865826964378357,
+   "entropy": 0.03708689481515191,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "03223.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9992008805274963,
+   "entropy": 0.003209672277238845,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "12560.png",
+   "true": "Unseen: No passing",
+   "pred": "Speed limit 50",
+   "conf": 0.8028092980384827,
+   "entropy": 0.22625514903754917,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01779.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.8538864850997925,
+   "entropy": 0.20281165010283184,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04771.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9992884397506714,
+   "entropy": 0.002708421229283811,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08209.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9991683959960938,
+   "entropy": 0.0032739710485427424,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08347.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9930453896522522,
+   "entropy": 0.019579945449038204,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07380.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9998216032981873,
+   "entropy": 0.0007992976416348536,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07277.png",
+   "true": "Unseen: General caution",
+   "pred": "Road work",
+   "conf": 0.9728537797927856,
+   "entropy": 0.0568281354594603,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06218.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.99759441614151,
+   "entropy": 0.00805577895066223,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "09984.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.991609513759613,
+   "entropy": 0.02267404147218413,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01729.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9922911524772644,
+   "entropy": 0.022955510353420947,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08999.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9972983002662659,
+   "entropy": 0.008517749962855916,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06012.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9936689734458923,
+   "entropy": 0.019825535160658398,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "12318.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9561605453491211,
+   "entropy": 0.09707685963232877,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08814.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.8897054195404053,
+   "entropy": 0.1667351569214898,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "00389.png",
+   "true": "Unseen: No passing",
+   "pred": "Speed limit 50",
+   "conf": 0.9054867625236511,
+   "entropy": 0.14305932671511076,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05145.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.8957286477088928,
+   "entropy": 0.15379600461170048,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "00493.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9578841328620911,
+   "entropy": 0.07948621933101917,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06909.png",
+   "true": "Unseen: Priority road",
+   "pred": "Keep right",
+   "conf": 0.8530794978141785,
+   "entropy": 0.23873142920204535,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04389.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9983773231506348,
+   "entropy": 0.00602792683852485,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08543.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.7450501918792725,
+   "entropy": 0.2786254307651799,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "12240.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9113728404045105,
+   "entropy": 0.16766193204730565,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11776.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9567775130271912,
+   "entropy": 0.09395225563365685,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11675.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9856372475624084,
+   "entropy": 0.03548861870084924,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "09068.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Road work",
+   "conf": 0.8979684710502625,
+   "entropy": 0.15021743298521134,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10399.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.8528311848640442,
+   "entropy": 0.24438773061534186,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04847.png",
+   "true": "Unseen: No passing",
+   "pred": "Speed limit 50",
+   "conf": 0.7759669423103333,
+   "entropy": 0.24233140422316826,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04993.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.7073100209236145,
+   "entropy": 0.28022425620615093,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08772.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9991145730018616,
+   "entropy": 0.003524889779868127,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01692.png",
+   "true": "Unseen: No passing",
+   "pred": "Speed limit 50",
+   "conf": 0.9313187003135681,
+   "entropy": 0.11591818112127436,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "00685.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9951326251029968,
+   "entropy": 0.014014867019469001,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10902.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9981316924095154,
+   "entropy": 0.0062389157518492324,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05739.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.974635660648346,
+   "entropy": 0.055844901759396576,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "03706.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.8622512817382812,
+   "entropy": 0.1837852665629462,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "00036.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9731407761573792,
+   "entropy": 0.06486200407513738,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "02390.png",
+   "true": "Unseen: General caution",
+   "pred": "Road work",
+   "conf": 0.9862005710601807,
+   "entropy": 0.03319833679334641,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05048.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9286493062973022,
+   "entropy": 0.12147923878481266,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01747.png",
+   "true": "Unseen: Priority road",
+   "pred": "Yield",
+   "conf": 0.9996150732040405,
+   "entropy": 0.0017169698820111562,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04282.png",
+   "true": "Unseen: Priority road",
+   "pred": "Keep right",
+   "conf": 0.8888759016990662,
+   "entropy": 0.2050020122020847,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11887.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9992334842681885,
+   "entropy": 0.002860101088541878,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01732.png",
+   "true": "Unseen: General caution",
+   "pred": "Road work",
+   "conf": 0.9899876713752747,
+   "entropy": 0.025521208376092574,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08453.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 50",
+   "conf": 0.7323775291442871,
+   "entropy": 0.2819682666510257,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10807.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9988910555839539,
+   "entropy": 0.004099357468292884,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06822.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Turn right ahead",
+   "conf": 0.9989709854125977,
+   "entropy": 0.003712562404072381,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06475.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9995684027671814,
+   "entropy": 0.0018431136807276528,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07473.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9992662072181702,
+   "entropy": 0.002749046818678416,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01967.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9856348633766174,
+   "entropy": 0.034563912027303134,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10192.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9112533330917358,
+   "entropy": 0.1365503753671731,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01771.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Speed limit 50",
+   "conf": 0.9919833540916443,
+   "entropy": 0.021251417646446856,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "09221.png",
+   "true": "Unseen: No passing",
+   "pred": "Speed limit 50",
+   "conf": 0.862494707107544,
+   "entropy": 0.18251721715805513,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "12058.png",
+   "true": "Unseen: No passing",
+   "pred": "Speed limit 50",
+   "conf": 0.964080810546875,
+   "entropy": 0.07233827899518858,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10722.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.9985260367393494,
+   "entropy": 0.005112031008694139,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "02067.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9867876768112183,
+   "entropy": 0.040259795478869646,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04451.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9992874264717102,
+   "entropy": 0.0028250321333747695,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07484.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9926639795303345,
+   "entropy": 0.01987721255834834,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "02197.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9941630959510803,
+   "entropy": 0.01631564293133541,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06056.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9999070167541504,
+   "entropy": 0.0004812716216409592,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05836.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9999650716781616,
+   "entropy": 0.00020464252929105396,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "02857.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9999408721923828,
+   "entropy": 0.0002950175879924479,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07455.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9999959468841553,
+   "entropy": 2.5375028962700524e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07374.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9999979734420776,
+   "entropy": 1.2912774576203595e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08148.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9992883801460266,
+   "entropy": 0.0031378762141834734,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01658.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9999926090240479,
+   "entropy": 4.855047961029356e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08050.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9816786646842957,
+   "entropy": 0.04287767275322453,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11533.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.5682612061500549,
+   "entropy": 0.3891950961708953,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06838.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.993882417678833,
+   "entropy": 0.01745399190165028,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07193.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9999468326568604,
+   "entropy": 0.00029643138359607975,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06809.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9997968077659607,
+   "entropy": 0.0008815217453479685,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10861.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9991664886474609,
+   "entropy": 0.003071168416552716,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "12029.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.49940383434295654,
+   "entropy": 0.3232203122473119,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "09463.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.987595796585083,
+   "entropy": 0.030600272579011364,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07020.png",
+   "true": "Unseen: Traffic signals",
+   "pred": "Other / not a sign",
+   "conf": 0.9991325736045837,
+   "entropy": 0.0032198530467197725,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "03167.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9985256791114807,
+   "entropy": 0.005940899252454484,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "12181.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.8996292948722839,
+   "entropy": 0.14847654217326803,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05755.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.9944676160812378,
+   "entropy": 0.01776295763445322,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08033.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9999905824661255,
+   "entropy": 5.760034903927374e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07230.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9927270412445068,
+   "entropy": 0.01959725093454415,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06449.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.9998249411582947,
+   "entropy": 0.0008426354254886817,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "03020.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9999879598617554,
+   "entropy": 7.057715841274637e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "00564.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9999512434005737,
+   "entropy": 0.00025844998511335694,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10241.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9255742430686951,
+   "entropy": 0.12097364123198057,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11263.png",
+   "true": "Unseen: Traffic signals",
+   "pred": "Other / not a sign",
+   "conf": 0.9999973773956299,
+   "entropy": 1.7001108701262152e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "03349.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9998378753662109,
+   "entropy": 0.000718266182916408,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08855.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Speed limit 30",
+   "conf": 0.5301369428634644,
+   "entropy": 0.3914882705206704,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11022.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9999197721481323,
+   "entropy": 0.00039482872832220073,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "12616.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9999328851699829,
+   "entropy": 0.00036132809337564755,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05207.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9999905824661255,
+   "entropy": 5.411341549101261e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04727.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9956169128417969,
+   "entropy": 0.013072131749848882,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "00549.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9999477863311768,
+   "entropy": 0.00028512125719005766,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "03050.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9999966621398926,
+   "entropy": 2.12621356095129e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04866.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9999818801879883,
+   "entropy": 0.00010495252773072297,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05504.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9993436932563782,
+   "entropy": 0.0024932261097916453,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07555.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.7464495897293091,
+   "entropy": 0.35293446326487127,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11667.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9816053509712219,
+   "entropy": 0.04613312500793711,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "02530.png",
+   "true": "Unseen: Traffic signals",
+   "pred": "Other / not a sign",
+   "conf": 0.9999953508377075,
+   "entropy": 2.9533000826306945e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "12440.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9999982118606567,
+   "entropy": 1.1895339880156334e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01735.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9999451637268066,
+   "entropy": 0.0003102233878113108,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "00043.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.872708261013031,
+   "entropy": 0.2048907362517833,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01850.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Other / not a sign",
+   "conf": 0.9976861476898193,
+   "entropy": 0.008528974707324626,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "12625.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.854175329208374,
+   "entropy": 0.20412295389649804,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08325.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9978739023208618,
+   "entropy": 0.008569273074351968,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01873.png",
+   "true": "Unseen: Priority road",
+   "pred": "Keep right",
+   "conf": 0.4786812961101532,
+   "entropy": 0.5375366260563403,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04199.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9900394082069397,
+   "entropy": 0.03168391437769692,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11325.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9999926090240479,
+   "entropy": 4.3706054719963056e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10689.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9998350143432617,
+   "entropy": 0.0008365650161162143,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "00862.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.6383841633796692,
+   "entropy": 0.29847606201640936,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11856.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.999993085861206,
+   "entropy": 4.213422107109961e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "00939.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9532954096794128,
+   "entropy": 0.10490139409649728,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08002.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.9885464906692505,
+   "entropy": 0.028939396960853438,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10662.png",
+   "true": "Unseen: Traffic signals",
+   "pred": "Other / not a sign",
+   "conf": 0.9936985969543457,
+   "entropy": 0.01745037211017823,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10645.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9998416900634766,
+   "entropy": 0.0007493117758907048,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06750.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.9985260367393494,
+   "entropy": 0.005046141055049952,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10218.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.7705005407333374,
+   "entropy": 0.3119327478658988,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08360.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.9996730089187622,
+   "entropy": 0.0014824506286657808,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06107.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9995142221450806,
+   "entropy": 0.0019179626182651585,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "00925.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Other / not a sign",
+   "conf": 0.9964123368263245,
+   "entropy": 0.010887838523464496,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10174.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Keep right",
+   "conf": 0.6528290510177612,
+   "entropy": 0.3570694688973531,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "00136.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9999746084213257,
+   "entropy": 0.00013431301955825912,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04743.png",
+   "true": "Unseen: General caution",
+   "pred": "Road work",
+   "conf": 0.5970927476882935,
+   "entropy": 0.30746087613131007,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01503.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9982512593269348,
+   "entropy": 0.0063902925489407285,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07297.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9999911785125732,
+   "entropy": 5.500922049798988e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10995.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9999427795410156,
+   "entropy": 0.0003142284709049153,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04155.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9984569549560547,
+   "entropy": 0.006381675410694038,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10867.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.963906466960907,
+   "entropy": 0.07509344385486319,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "09190.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9999969005584717,
+   "entropy": 1.933335453287323e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07745.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9918698072433472,
+   "entropy": 0.02149873332889541,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05399.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.7638101577758789,
+   "entropy": 0.26684754146867723,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "03816.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9999521970748901,
+   "entropy": 0.00024126665167472345,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08296.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9999710321426392,
+   "entropy": 0.0001517176228173718,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04263.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9999828338623047,
+   "entropy": 0.00010231459542346106,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06579.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9894886612892151,
+   "entropy": 0.026615836708145286,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "12161.png",
+   "true": "Unseen: Traffic signals",
+   "pred": "Other / not a sign",
+   "conf": 0.8345139622688293,
+   "entropy": 0.20457554481673898,
    "ood": true,
    "correct": false
   },
   {
    "file": "03747.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.45181864500045776,
-   "entropy": 0.6812106680065217,
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9947836995124817,
+   "entropy": 0.0190114805108274,
    "ood": true,
    "correct": false
   },
   {
-   "file": "10057.png",
-   "true": "Unseen class 5",
-   "pred": "Speed limit 30",
-   "conf": 0.5488219857215881,
-   "entropy": 0.3311773597380623,
+   "file": "04711.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Other / not a sign",
+   "conf": 0.8170209527015686,
+   "entropy": 0.21791353541499883,
    "ood": true,
    "correct": false
   },
   {
-   "file": "02273.png",
-   "true": "Unseen class 16",
+   "file": "06992.png",
+   "true": "Unseen: Traffic signals",
+   "pred": "Other / not a sign",
+   "conf": 0.9999903440475464,
+   "entropy": 5.6694149450337715e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "09377.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9993898868560791,
+   "entropy": 0.002621252284846241,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05577.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9999942779541016,
+   "entropy": 3.4119306291813815e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "02190.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.9993764758110046,
+   "entropy": 0.0025817247129935965,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "03122.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9999736547470093,
+   "entropy": 0.0001413787523740231,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10615.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9999910593032837,
+   "entropy": 5.2260474463213494e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "12302.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9999966621398926,
+   "entropy": 2.210835193702778e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "09626.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9999556541442871,
+   "entropy": 0.0002501212592624229,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06917.png",
+   "true": "Unseen: Traffic signals",
+   "pred": "Other / not a sign",
+   "conf": 0.9999260902404785,
+   "entropy": 0.0003546224455685473,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10338.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.9996883869171143,
+   "entropy": 0.0013218505689944525,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "02551.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.991985559463501,
+   "entropy": 0.0215718175121245,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08474.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9999945163726807,
+   "entropy": 3.644894768293092e-05,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06610.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9999997615814209,
+   "entropy": 1.8776064286851328e-06,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06323.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Other / not a sign",
+   "conf": 0.7401583194732666,
+   "entropy": 0.2607961046355635,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07779.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9998722076416016,
+   "entropy": 0.0006029792154370355,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "01808.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9999421834945679,
+   "entropy": 0.0003112775884980693,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "02145.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.9028787016868591,
+   "entropy": 0.1482202032916559,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "11943.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.9968138337135315,
+   "entropy": 0.011301256857257694,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "02380.png",
+   "true": "Unseen: Traffic signals",
+   "pred": "Other / not a sign",
+   "conf": 0.9989381432533264,
+   "entropy": 0.00379351475932672,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08976.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.8960598707199097,
+   "entropy": 0.1678575601593482,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "12350.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9892451763153076,
+   "entropy": 0.035817600947993626,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "09938.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9874337315559387,
+   "entropy": 0.03144064065443777,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "10190.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9538612961769104,
+   "entropy": 0.09217249826447453,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "08558.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9973995685577393,
+   "entropy": 0.009753275498984327,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "02516.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9910249710083008,
+   "entropy": 0.029546433447536886,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "02037.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Other / not a sign",
+   "conf": 0.9952585101127625,
+   "entropy": 0.015328964071425697,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "04582.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9909631609916687,
+   "entropy": 0.024467360767354698,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "09017.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9988032579421997,
+   "entropy": 0.004209189316773982,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07639.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9998677968978882,
+   "entropy": 0.0006783850032141668,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "05219.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9983537197113037,
+   "entropy": 0.005646151161963831,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "06287.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9999265670776367,
+   "entropy": 0.0003899284197220467,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "09092.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Other / not a sign",
+   "conf": 0.9933571219444275,
+   "entropy": 0.0185788298095573,
+   "ood": true,
+   "correct": false
+  },
+  {
+   "file": "07022.png",
+   "true": "Unseen: No passing",
    "pred": "Speed limit 50",
-   "conf": 0.48516765236854553,
-   "entropy": 0.39915679882572896,
+   "conf": 0.6311292052268982,
+   "entropy": 0.2997858195572313,
    "ood": true,
    "correct": false
   },
   {
-   "file": "06937.png",
-   "true": "Unseen class 10",
-   "pred": "Yield",
-   "conf": 0.5834885835647583,
-   "entropy": 0.6038764332715987,
+   "file": "11874.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.883899986743927,
+   "entropy": 0.16611841905457073,
    "ood": true,
    "correct": false
   },
   {
-   "file": "00038.png",
-   "true": "Unseen class 16",
-   "pred": "Speed limit 30",
-   "conf": 0.554243266582489,
-   "entropy": 0.6100501518171711,
+   "file": "03949.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9466797709465027,
+   "entropy": 0.13152137788189813,
    "ood": true,
    "correct": false
   },
   {
-   "file": "06463.png",
-   "true": "Unseen class 9",
-   "pred": "Speed limit 50",
-   "conf": 0.38831785321235657,
-   "entropy": 0.5568428472238389,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "09295.png",
-   "true": "Unseen class 6",
-   "pred": "Turn right ahead",
-   "conf": 0.4707731008529663,
-   "entropy": 0.6636528445248371,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "11438.png",
-   "true": "Unseen class 6",
-   "pred": "Keep right",
-   "conf": 0.6042784452438354,
-   "entropy": 0.5619324444659226,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01036.png",
-   "true": "Unseen class 8",
-   "pred": "Speed limit 50",
-   "conf": 0.5010657906532288,
-   "entropy": 0.33357955607776374,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01014.png",
-   "true": "Unseen class 12",
+   "file": "00839.png",
+   "true": "Unseen: Right-of-way at intersection",
    "pred": "Road work",
-   "conf": 0.5560919046401978,
-   "entropy": 0.430821986528613,
+   "conf": 0.5337774157524109,
+   "entropy": 0.31442975631868825,
    "ood": true,
    "correct": false
   },
   {
-   "file": "07996.png",
-   "true": "Unseen class 10",
-   "pred": "Road work",
-   "conf": 0.6971320509910583,
-   "entropy": 0.47941293280748576,
+   "file": "09483.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.996408998966217,
+   "entropy": 0.012591613333061063,
    "ood": true,
    "correct": false
   },
   {
-   "file": "07696.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.49307626485824585,
-   "entropy": 0.6550585274959208,
+   "file": "12427.png",
+   "true": "Unseen: Traffic signals",
+   "pred": "Other / not a sign",
+   "conf": 0.999996542930603,
+   "entropy": 2.233763707628088e-05,
    "ood": true,
    "correct": false
   },
   {
-   "file": "04649.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.6407719850540161,
-   "entropy": 0.37240527011309593,
+   "file": "05655.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.9987868666648865,
+   "entropy": 0.004872596214165937,
    "ood": true,
    "correct": false
   },
   {
-   "file": "07980.png",
-   "true": "Unseen class 10",
-   "pred": "Road work",
-   "conf": 0.44311970472335815,
-   "entropy": 0.6471809195007001,
+   "file": "12235.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9998677968978882,
+   "entropy": 0.0005990500568337624,
    "ood": true,
    "correct": false
   },
   {
-   "file": "11818.png",
-   "true": "Unseen class 10",
-   "pred": "Yield",
-   "conf": 0.5286479592323303,
-   "entropy": 0.519770095021201,
+   "file": "09153.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9928185939788818,
+   "entropy": 0.023329839177947724,
    "ood": true,
    "correct": false
   },
   {
-   "file": "08520.png",
-   "true": "Unseen class 36",
-   "pred": "Turn right ahead",
-   "conf": 0.6289555430412292,
-   "entropy": 0.3561151594146961,
+   "file": "02205.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9998700618743896,
+   "entropy": 0.0006559720194922666,
    "ood": true,
    "correct": false
   },
   {
-   "file": "03404.png",
-   "true": "Unseen class 9",
-   "pred": "Yield",
-   "conf": 0.5308949947357178,
-   "entropy": 0.45161927522194956,
+   "file": "08154.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9999443292617798,
+   "entropy": 0.0003133224633789782,
    "ood": true,
    "correct": false
   },
   {
-   "file": "10228.png",
-   "true": "Unseen class 9",
-   "pred": "Road work",
-   "conf": 0.4983469247817993,
-   "entropy": 0.41136203492838563,
+   "file": "11807.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.8758822679519653,
+   "entropy": 0.187902829378255,
    "ood": true,
    "correct": false
   },
   {
-   "file": "11492.png",
-   "true": "Unseen class 12",
-   "pred": "Road work",
-   "conf": 0.5994823575019836,
-   "entropy": 0.345682663149583,
+   "file": "01217.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9999397993087769,
+   "entropy": 0.000304400011192626,
    "ood": true,
    "correct": false
   },
   {
-   "file": "08271.png",
-   "true": "Unseen class 8",
-   "pred": "Speed limit 50",
-   "conf": 0.6842403411865234,
-   "entropy": 0.3008120169103994,
+   "file": "08725.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9994097948074341,
+   "entropy": 0.0026984034351917596,
    "ood": true,
    "correct": false
   },
   {
-   "file": "03726.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 50",
-   "conf": 0.5852116942405701,
-   "entropy": 0.3993530310303634,
+   "file": "03328.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.823148787021637,
+   "entropy": 0.22016615453666558,
    "ood": true,
    "correct": false
   },
   {
-   "file": "08918.png",
-   "true": "Unseen class 6",
-   "pred": "Turn right ahead",
-   "conf": 0.47787901759147644,
-   "entropy": 0.6203693401791408,
+   "file": "04470.png",
+   "true": "Unseen: Traffic signals",
+   "pred": "Other / not a sign",
+   "conf": 0.999733030796051,
+   "entropy": 0.0012029890574364324,
    "ood": true,
    "correct": false
   },
   {
-   "file": "01138.png",
-   "true": "Unseen class 12",
-   "pred": "Road work",
-   "conf": 0.42908868193626404,
-   "entropy": 0.6042860959459538,
+   "file": "09719.png",
+   "true": "Unseen: Speed limit 60",
+   "pred": "Other / not a sign",
+   "conf": 0.5865452885627747,
+   "entropy": 0.3087140462434804,
    "ood": true,
    "correct": false
   },
   {
-   "file": "02851.png",
-   "true": "Unseen class 10",
-   "pred": "Yield",
-   "conf": 0.39095380902290344,
-   "entropy": 0.5524695003950485,
+   "file": "00325.png",
+   "true": "Unseen: Ahead only",
+   "pred": "Other / not a sign",
+   "conf": 0.9997202754020691,
+   "entropy": 0.0011822815401620406,
    "ood": true,
    "correct": false
   },
   {
-   "file": "12514.png",
-   "true": "Unseen class 10",
-   "pred": "Road work",
-   "conf": 0.4078062176704407,
-   "entropy": 0.657243395092482,
+   "file": "00643.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.999961256980896,
+   "entropy": 0.00019920853722266117,
    "ood": true,
    "correct": false
   },
   {
-   "file": "00459.png",
-   "true": "Unseen class 6",
-   "pred": "Speed limit 30",
-   "conf": 0.6957637667655945,
-   "entropy": 0.48359102199999654,
+   "file": "01026.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9998282194137573,
+   "entropy": 0.0007560235962052185,
    "ood": true,
    "correct": false
   },
   {
-   "file": "06206.png",
-   "true": "Unseen class 16",
-   "pred": "No entry",
-   "conf": 0.36431241035461426,
-   "entropy": 0.7370810666209143,
+   "file": "01262.png",
+   "true": "Unseen: No passing",
+   "pred": "Other / not a sign",
+   "conf": 0.9985126852989197,
+   "entropy": 0.005846498990404634,
    "ood": true,
    "correct": false
   },
   {
-   "file": "08208.png",
-   "true": "Unseen class 6",
-   "pred": "Turn right ahead",
-   "conf": 0.33830031752586365,
-   "entropy": 0.777741892868503,
+   "file": "05862.png",
+   "true": "Unseen: Priority road",
+   "pred": "Other / not a sign",
+   "conf": 0.9947178959846497,
+   "entropy": 0.016748137650958936,
    "ood": true,
    "correct": false
   },
   {
-   "file": "04791.png",
-   "true": "Unseen class 31",
-   "pred": "Road work",
-   "conf": 0.526435136795044,
-   "entropy": 0.38467932793987286,
+   "file": "04647.png",
+   "true": "Unseen: Speed limit 70",
+   "pred": "Other / not a sign",
+   "conf": 0.9838465452194214,
+   "entropy": 0.0404736429254127,
    "ood": true,
    "correct": false
   },
   {
-   "file": "06819.png",
-   "true": "Unseen class 23",
-   "pred": "Speed limit 50",
-   "conf": 0.6574037671089172,
-   "entropy": 0.3126626821145272,
+   "file": "05476.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9985080361366272,
+   "entropy": 0.0051000818820678495,
    "ood": true,
    "correct": false
   },
   {
-   "file": "11952.png",
-   "true": "Unseen class 3",
-   "pred": "Speed limit 50",
-   "conf": 0.5983952879905701,
-   "entropy": 0.32443220017122293,
+   "file": "01047.png",
+   "true": "Unseen: Right-of-way at intersection",
+   "pred": "Other / not a sign",
+   "conf": 0.9999982118606567,
+   "entropy": 1.1556072182573743e-05,
    "ood": true,
    "correct": false
   },
   {
-   "file": "06950.png",
-   "true": "Unseen class 9",
-   "pred": "Yield",
-   "conf": 0.49661481380462646,
-   "entropy": 0.48735520627943085,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "12245.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.6756750345230103,
-   "entropy": 0.36998418434557473,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01648.png",
-   "true": "Unseen class 10",
-   "pred": "Yield",
-   "conf": 0.532886803150177,
-   "entropy": 0.4222424600076709,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01460.png",
-   "true": "Unseen class 10",
-   "pred": "Yield",
-   "conf": 0.6772587895393372,
-   "entropy": 0.35618518501737245,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "11355.png",
-   "true": "Unseen class 10",
-   "pred": "Speed limit 30",
-   "conf": 0.49188265204429626,
-   "entropy": 0.5097402961330831,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "09628.png",
-   "true": "Unseen class 18",
-   "pred": "Road work",
-   "conf": 0.6966944932937622,
-   "entropy": 0.37912147926704004,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "12251.png",
-   "true": "Unseen class 9",
-   "pred": "Road work",
-   "conf": 0.5383917689323425,
-   "entropy": 0.4112721739933098,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "07787.png",
-   "true": "Unseen class 9",
-   "pred": "Road work",
-   "conf": 0.5929737687110901,
-   "entropy": 0.5276361228512636,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "05941.png",
-   "true": "Unseen class 35",
-   "pred": "Turn right ahead",
-   "conf": 0.5521926283836365,
-   "entropy": 0.5155316972457876,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00787.png",
-   "true": "Unseen class 10",
-   "pred": "Road work",
-   "conf": 0.5977473258972168,
-   "entropy": 0.49323718492158974,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "08613.png",
-   "true": "Unseen class 31",
-   "pred": "Road work",
-   "conf": 0.6403061151504517,
-   "entropy": 0.3266627291615881,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06752.png",
-   "true": "Unseen class 10",
-   "pred": "Road work",
-   "conf": 0.3977033793926239,
-   "entropy": 0.7045636188916797,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00335.png",
-   "true": "Unseen class 6",
-   "pred": "Speed limit 30",
-   "conf": 0.34987685084342957,
-   "entropy": 0.7499916895660849,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "05160.png",
-   "true": "Unseen class 34",
-   "pred": "Keep right",
-   "conf": 0.5963104367256165,
-   "entropy": 0.3465157471103625,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01617.png",
-   "true": "Unseen class 32",
-   "pred": "Yield",
-   "conf": 0.6503399610519409,
-   "entropy": 0.4137361980959964,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01613.png",
-   "true": "Unseen class 16",
-   "pred": "Speed limit 50",
-   "conf": 0.6061630249023438,
-   "entropy": 0.34057833272707544,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00537.png",
-   "true": "Unseen class 6",
-   "pred": "Speed limit 30",
-   "conf": 0.5483034253120422,
-   "entropy": 0.5806761456528566,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "03389.png",
-   "true": "Unseen class 5",
-   "pred": "Speed limit 50",
-   "conf": 0.630232572555542,
-   "entropy": 0.3211142822070025,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "04679.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 50",
-   "conf": 0.5628223419189453,
-   "entropy": 0.3300497841514554,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02347.png",
-   "true": "Unseen class 29",
-   "pred": "Road work",
-   "conf": 0.5298687219619751,
-   "entropy": 0.43102223166176756,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10349.png",
-   "true": "Unseen class 10",
-   "pred": "Road work",
-   "conf": 0.43133577704429626,
-   "entropy": 0.7503716565693911,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00323.png",
-   "true": "Unseen class 6",
-   "pred": "Road work",
-   "conf": 0.44557425379753113,
-   "entropy": 0.6575919465982305,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10927.png",
-   "true": "Unseen class 35",
-   "pred": "Keep right",
-   "conf": 0.6721903681755066,
-   "entropy": 0.3644869595571711,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02870.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.6659712791442871,
-   "entropy": 0.40468363329385615,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10957.png",
-   "true": "Unseen class 36",
-   "pred": "Turn right ahead",
-   "conf": 0.5561578273773193,
-   "entropy": 0.3500181737951836,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02106.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 30",
-   "conf": 0.6176119446754456,
-   "entropy": 0.32320754037820404,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02564.png",
-   "true": "Unseen class 9",
-   "pred": "Yield",
-   "conf": 0.48680567741394043,
-   "entropy": 0.5130169669248716,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "09087.png",
-   "true": "Unseen class 18",
-   "pred": "Yield",
-   "conf": 0.3291301429271698,
-   "entropy": 0.7193958613224906,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10298.png",
-   "true": "Unseen class 10",
-   "pred": "Speed limit 50",
-   "conf": 0.478948175907135,
-   "entropy": 0.48369547279662056,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "12026.png",
-   "true": "Unseen class 10",
-   "pred": "Speed limit 50",
-   "conf": 0.5602970123291016,
-   "entropy": 0.5397346437190599,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02406.png",
-   "true": "Unseen class 34",
-   "pred": "Keep right",
-   "conf": 0.637466311454773,
-   "entropy": 0.32589720571882264,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "04912.png",
-   "true": "Unseen class 10",
-   "pred": "Yield",
-   "conf": 0.5193875432014465,
-   "entropy": 0.600182933861669,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "09561.png",
-   "true": "Unseen class 5",
-   "pred": "Speed limit 30",
-   "conf": 0.5749632716178894,
-   "entropy": 0.32794743956353334,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "07488.png",
-   "true": "Unseen class 8",
-   "pred": "Speed limit 50",
-   "conf": 0.5649048686027527,
-   "entropy": 0.33293912134972575,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02243.png",
-   "true": "Unseen class 16",
-   "pred": "Speed limit 50",
-   "conf": 0.5507791042327881,
-   "entropy": 0.3816159729627045,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "05616.png",
-   "true": "Unseen class 9",
-   "pred": "Yield",
-   "conf": 0.6345553994178772,
-   "entropy": 0.5104760379134743,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "09131.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.6663706302642822,
-   "entropy": 0.5346582891410926,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00637.png",
-   "true": "Unseen class 29",
-   "pred": "Yield",
-   "conf": 0.6019235849380493,
-   "entropy": 0.5305459546487618,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00940.png",
-   "true": "Unseen class 35",
-   "pred": "Keep right",
-   "conf": 0.6487404108047485,
-   "entropy": 0.33200703270959964,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "07199.png",
-   "true": "Unseen class 10",
-   "pred": "No entry",
-   "conf": 0.5781942009925842,
-   "entropy": 0.5087309299551693,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "05371.png",
-   "true": "Unseen class 3",
-   "pred": "Speed limit 50",
-   "conf": 0.5511345863342285,
-   "entropy": 0.3327923628209895,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "11276.png",
-   "true": "Unseen class 9",
-   "pred": "Road work",
-   "conf": 0.5337740182876587,
-   "entropy": 0.4423219217800813,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10189.png",
-   "true": "Unseen class 9",
-   "pred": "Road work",
-   "conf": 0.6083570122718811,
-   "entropy": 0.3875651394938005,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01398.png",
-   "true": "Unseen class 10",
-   "pred": "Speed limit 50",
-   "conf": 0.6207083463668823,
-   "entropy": 0.5708175268298976,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "04996.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.5232165455818176,
-   "entropy": 0.6275668714452997,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "11692.png",
-   "true": "Unseen class 3",
-   "pred": "Speed limit 50",
-   "conf": 0.5772079229354858,
-   "entropy": 0.3277922538849048,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "04677.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 30",
-   "conf": 0.6672632694244385,
-   "entropy": 0.3062699436630809,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10460.png",
-   "true": "Unseen class 10",
-   "pred": "Road work",
-   "conf": 0.5720571279525757,
-   "entropy": 0.39356395168344555,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "11642.png",
-   "true": "Unseen class 16",
-   "pred": "No entry",
-   "conf": 0.4769751727581024,
-   "entropy": 0.6341777698893655,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00492.png",
-   "true": "Unseen class 4",
-   "pred": "Speed limit 30",
-   "conf": 0.44694456458091736,
-   "entropy": 0.48312626754981497,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00837.png",
-   "true": "Unseen class 9",
-   "pred": "Yield",
-   "conf": 0.6568173170089722,
-   "entropy": 0.38914927169089786,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "09558.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.5683802962303162,
-   "entropy": 0.6127732677833826,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00822.png",
-   "true": "Unseen class 3",
-   "pred": "Speed limit 50",
-   "conf": 0.6230168342590332,
-   "entropy": 0.3211471882208676,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10708.png",
-   "true": "Unseen class 4",
-   "pred": "Speed limit 30",
-   "conf": 0.5081767439842224,
-   "entropy": 0.3563780062327648,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06443.png",
-   "true": "Unseen class 9",
-   "pred": "Speed limit 50",
-   "conf": 0.5897147059440613,
-   "entropy": 0.4214769938924557,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "11179.png",
-   "true": "Unseen class 12",
-   "pred": "Road work",
-   "conf": 0.6644622683525085,
-   "entropy": 0.409158535877981,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "11937.png",
-   "true": "Unseen class 6",
-   "pred": "Turn right ahead",
-   "conf": 0.545926570892334,
-   "entropy": 0.5507568971577567,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01424.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.5204931497573853,
-   "entropy": 0.4445775315736973,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "03200.png",
-   "true": "Unseen class 5",
-   "pred": "Speed limit 30",
-   "conf": 0.6451094150543213,
-   "entropy": 0.3128541847962629,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "04632.png",
-   "true": "Unseen class 9",
-   "pred": "Yield",
-   "conf": 0.5686128735542297,
-   "entropy": 0.37320888771302757,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01069.png",
-   "true": "Unseen class 41",
-   "pred": "Road work",
-   "conf": 0.5798507332801819,
-   "entropy": 0.4440423502279874,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "11457.png",
-   "true": "Unseen class 12",
-   "pred": "Road work",
-   "conf": 0.6774809956550598,
-   "entropy": 0.45347883763440366,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "09411.png",
-   "true": "Unseen class 30",
-   "pred": "Keep right",
-   "conf": 0.44533392786979675,
-   "entropy": 0.6654652550271797,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "12023.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.49455294013023376,
-   "entropy": 0.5903577943280779,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "05141.png",
-   "true": "Unseen class 12",
-   "pred": "Road work",
-   "conf": 0.6818544268608093,
-   "entropy": 0.4206008282776351,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "03957.png",
-   "true": "Unseen class 6",
-   "pred": "Road work",
-   "conf": 0.6991639137268066,
-   "entropy": 0.4898829499542621,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10522.png",
-   "true": "Unseen class 16",
-   "pred": "Speed limit 50",
-   "conf": 0.6846908330917358,
-   "entropy": 0.35190591269860405,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02743.png",
-   "true": "Unseen class 9",
-   "pred": "Speed limit 50",
-   "conf": 0.5689096450805664,
-   "entropy": 0.44173921589518295,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "11128.png",
-   "true": "Unseen class 6",
-   "pred": "Turn right ahead",
-   "conf": 0.37977907061576843,
-   "entropy": 0.7153192992215391,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "03476.png",
-   "true": "Unseen class 16",
-   "pred": "Yield",
-   "conf": 0.47952383756637573,
-   "entropy": 0.5465059446488304,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06981.png",
-   "true": "Unseen class 16",
-   "pred": "Speed limit 30",
-   "conf": 0.5291803479194641,
-   "entropy": 0.5932157446925658,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "01110.png",
-   "true": "Unseen class 35",
-   "pred": "Turn right ahead",
-   "conf": 0.6901733875274658,
-   "entropy": 0.29954886166736233,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06195.png",
-   "true": "Unseen class 3",
-   "pred": "Speed limit 50",
-   "conf": 0.649031937122345,
-   "entropy": 0.31839618240144124,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00150.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 50",
-   "conf": 0.6640666723251343,
-   "entropy": 0.3496215818022939,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06124.png",
-   "true": "Unseen class 3",
-   "pred": "Speed limit 50",
-   "conf": 0.5526265501976013,
-   "entropy": 0.3383299748685708,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02500.png",
-   "true": "Unseen class 32",
-   "pred": "Road work",
-   "conf": 0.6580255627632141,
-   "entropy": 0.4126805112574502,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10887.png",
-   "true": "Unseen class 10",
-   "pred": "Road work",
-   "conf": 0.6055153012275696,
-   "entropy": 0.6029097187910988,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02142.png",
-   "true": "Unseen class 12",
-   "pred": "Road work",
-   "conf": 0.5156139731407166,
-   "entropy": 0.41987271106143226,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02218.png",
-   "true": "Unseen class 42",
-   "pred": "Keep right",
-   "conf": 0.29440635442733765,
-   "entropy": 0.7780350086331236,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "03261.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.5489164590835571,
-   "entropy": 0.6477206010591077,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "06034.png",
-   "true": "Unseen class 9",
-   "pred": "Yield",
-   "conf": 0.42464298009872437,
-   "entropy": 0.5884251679527822,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "05113.png",
-   "true": "Unseen class 5",
-   "pred": "Speed limit 50",
-   "conf": 0.5177364945411682,
-   "entropy": 0.34126483014176945,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "03371.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.6178571581840515,
-   "entropy": 0.5741056058041933,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10833.png",
-   "true": "Unseen class 16",
-   "pred": "Speed limit 50",
-   "conf": 0.633462131023407,
-   "entropy": 0.37388572543549814,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "08254.png",
-   "true": "Unseen class 41",
-   "pred": "Yield",
-   "conf": 0.47382086515426636,
-   "entropy": 0.6411074668405806,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "03210.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 50",
-   "conf": 0.521685004234314,
-   "entropy": 0.43669000591227686,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02126.png",
-   "true": "Unseen class 10",
-   "pred": "Road work",
-   "conf": 0.6997789740562439,
-   "entropy": 0.39604755314455536,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02105.png",
-   "true": "Unseen class 6",
-   "pred": "Road work",
-   "conf": 0.5753835439682007,
-   "entropy": 0.557186296577612,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "07053.png",
-   "true": "Unseen class 42",
-   "pred": "Yield",
-   "conf": 0.6759005188941956,
-   "entropy": 0.5259901342274059,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "00013.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 30",
-   "conf": 0.5207622051239014,
-   "entropy": 0.37643247319324974,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02402.png",
-   "true": "Unseen class 8",
-   "pred": "Speed limit 30",
-   "conf": 0.5521539449691772,
-   "entropy": 0.3379995102049379,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "07028.png",
-   "true": "Unseen class 35",
-   "pred": "Turn right ahead",
-   "conf": 0.6260715126991272,
-   "entropy": 0.3424111231735452,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10717.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.4753040075302124,
-   "entropy": 0.48376569904572286,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "03531.png",
-   "true": "Unseen class 4",
-   "pred": "Speed limit 50",
-   "conf": 0.6446774005889893,
-   "entropy": 0.342127036498095,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "04998.png",
-   "true": "Unseen class 3",
-   "pred": "Speed limit 30",
-   "conf": 0.6148741245269775,
-   "entropy": 0.32871637399554093,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "02838.png",
-   "true": "Unseen class 6",
-   "pred": "Road work",
-   "conf": 0.4752236008644104,
-   "entropy": 0.6242876209137482,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10804.png",
-   "true": "Unseen class 9",
-   "pred": "Speed limit 50",
-   "conf": 0.6593489646911621,
-   "entropy": 0.43139715384064853,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "10413.png",
-   "true": "Unseen class 6",
-   "pred": "Road work",
-   "conf": 0.3713306188583374,
-   "entropy": 0.7080383563697119,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "07411.png",
-   "true": "Unseen class 37",
-   "pred": "Turn right ahead",
-   "conf": 0.510914146900177,
-   "entropy": 0.34169335358016933,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "08860.png",
-   "true": "Unseen class 9",
-   "pred": "Road work",
-   "conf": 0.44689038395881653,
-   "entropy": 0.5856736748491784,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "09842.png",
-   "true": "Unseen class 16",
-   "pred": "No entry",
-   "conf": 0.6924514770507812,
-   "entropy": 0.533005134573449,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "04662.png",
-   "true": "Unseen class 6",
-   "pred": "Road work",
-   "conf": 0.3031339645385742,
-   "entropy": 0.7659210093267497,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "05900.png",
-   "true": "Unseen class 16",
-   "pred": "Speed limit 30",
-   "conf": 0.5421942472457886,
-   "entropy": 0.39116639887531746,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "08715.png",
-   "true": "Unseen class 12",
-   "pred": "Road work",
-   "conf": 0.6495631337165833,
-   "entropy": 0.35248910586767984,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "08975.png",
-   "true": "Unseen class 12",
-   "pred": "Yield",
-   "conf": 0.5892839431762695,
-   "entropy": 0.6172936024511104,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "08214.png",
-   "true": "Unseen class 9",
-   "pred": "Yield",
-   "conf": 0.628296971321106,
-   "entropy": 0.40087029064005025,
-   "ood": true,
-   "correct": false
-  },
-  {
-   "file": "08128.png",
-   "true": "Unseen class 7",
-   "pred": "Speed limit 50",
-   "conf": 0.658376932144165,
-   "entropy": 0.31145395938048825,
+   "file": "01177.png",
+   "true": "Unseen: General caution",
+   "pred": "Other / not a sign",
+   "conf": 0.9822784662246704,
+   "entropy": 0.040552488256848825,
    "ood": true,
    "correct": false
   }

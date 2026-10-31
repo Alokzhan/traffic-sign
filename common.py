@@ -1,24 +1,66 @@
-"""Shared config + preprocessing (training aur inference dono yahi use karte hain)."""
+"""Shared config + preprocessing for 43 GTSRB signs + 1 Other class (44 classes total)."""
 import cv2
 
 IMG_SIZE = 48
 
-# GTSRB ke 8 selected classes (class_id -> naam)
-SELECTED = {
-    1: "Speed limit 30", 2: "Speed limit 50", 13: "Yield", 14: "Stop",
-    17: "No entry", 25: "Road work", 33: "Turn right ahead", 38: "Keep right",
+ALL_GTSRB_CLASSES = {
+    0: "Speed limit 20",
+    1: "Speed limit 30",
+    2: "Speed limit 50",
+    3: "Speed limit 60",
+    4: "Speed limit 70",
+    5: "Speed limit 80",
+    6: "End of speed limit 80",
+    7: "Speed limit 100",
+    8: "Speed limit 120",
+    9: "No passing",
+    10: "No passing for vehicles > 3.5t",
+    11: "Right-of-way at intersection",
+    12: "Priority road",
+    13: "Yield",
+    14: "Stop",
+    15: "No vehicles",
+    16: "Vehicles > 3.5t prohibited",
+    17: "No entry",
+    18: "General caution",
+    19: "Dangerous curve left",
+    20: "Dangerous curve right",
+    21: "Double curve",
+    22: "Bumpy road",
+    23: "Slippery road",
+    24: "Road narrows on right",
+    25: "Road work",
+    26: "Traffic signals",
+    27: "Pedestrians",
+    28: "Children crossing",
+    29: "Bicycles crossing",
+    30: "Beware of ice/snow",
+    31: "Wild animals crossing",
+    32: "End of all speed and passing limits",
+    33: "Turn right ahead",
+    34: "Turn left ahead",
+    35: "Ahead only",
+    36: "Go straight or right",
+    37: "Go straight or left",
+    38: "Keep right",
+    39: "Keep left",
+    40: "Roundabout mandatory",
+    41: "End of no passing",
+    42: "End of no passing for vehicles > 3.5t",
 }
-CLASS_IDS = sorted(SELECTED)
+
+CLASS_IDS = sorted(ALL_GTSRB_CLASSES.keys())
+SELECTED = ALL_GTSRB_CLASSES
+ID_TO_IDX = {cid: cid for cid in CLASS_IDS}
 
 OTHER_CLASS_NAME = "Other / not a sign"
-# 9 classes total: index 0..7 are GTSRB signs, index 8 is "Other / not a sign"
-CLASS_NAMES = [SELECTED[i] for i in CLASS_IDS] + [OTHER_CLASS_NAME]
-ID_TO_IDX = {cid: i for i, cid in enumerate(CLASS_IDS)}
-OTHER_IDX = 8
-NUM_SIGN_CLASSES = 8
-NUM_CLASSES = 9
+OTHER_IDX = 43
+NUM_SIGN_CLASSES = 43
+NUM_CLASSES = 44
 
-# 8 Held-out unseen GTSRB classes (never used in train/val of any class, honest OOD test)
+CLASS_NAMES = [ALL_GTSRB_CLASSES[i] for i in range(43)] + [OTHER_CLASS_NAME]
+
+# 8 Held-out unseen GTSRB classes from initial benchmark (for v1 baseline comparisons)
 HELD_OUT_CLASSES = [3, 4, 9, 11, 12, 18, 26, 35]
 HELD_OUT_NAMES = {
     3: "Speed limit 60",
