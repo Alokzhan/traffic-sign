@@ -12,4 +12,15 @@ real_test_non_signs/
 gtsrb/
 *.npz
 outputs/*.npz
+outputs/debug*
+outputs/check_*
+outputs/user_*
+outputs/*crop*
+outputs/*panel*
+outputs/*exact*
+outputs/*view*
+outputs/extracted*
+outputs/p1*
+outputs/p2*
+outputs/p3*
 

@@ -20,26 +20,42 @@ class MLHybridClassifier:
         self.model_path = model_path
         self.clf = None
         self.is_loaded = False
+        self._last_mtime = 0
         self.load()
 
     def load(self):
         if os.path.exists(self.model_path):
             try:
+                mtime = os.path.getmtime(self.model_path)
                 with open(self.model_path, "rb") as f:
                     data = pickle.load(f)
                 self.clf = data.get("clf")
                 self.is_loaded = True
+                self._last_mtime = mtime
                 print(f"[ML Classifier] Loaded calibrated ML model from {self.model_path}")
             except Exception as e:
                 print(f"[ML Classifier] Load failed: {e}")
                 self.clf = None
                 self.is_loaded = False
 
+    def check_reload(self):
+        if os.path.exists(self.model_path):
+            try:
+                mtime = os.path.getmtime(self.model_path)
+                if mtime > self._last_mtime:
+                    self.load()
+            except OSError:
+                pass
+
     def save(self):
         os.makedirs(os.path.dirname(self.model_path), exist_ok=True)
         with open(self.model_path, "wb") as f:
             pickle.dump({"clf": self.clf}, f)
         self.is_loaded = True
+        try:
+            self._last_mtime = os.path.getmtime(self.model_path)
+        except OSError:
+            pass
         print(f"[ML Classifier] Saved trained ML model to {self.model_path}")
 
     def train_on_embeddings(self, embeddings: np.ndarray, labels: np.ndarray):
@@ -57,6 +73,7 @@ class MLHybridClassifier:
 
     def predict_proba(self, embedding: np.ndarray) -> np.ndarray:
         """Predict class probabilities from a 1D or 2D feature embedding."""
+        self.check_reload()
         if not self.is_loaded or self.clf is None:
             return None
         if embedding.ndim == 1:

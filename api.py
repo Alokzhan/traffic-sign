@@ -18,8 +18,6 @@ from predict import gradcam
 import nlp_advisory
 from ml_classifier import ml_hybrid
 
-_clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(4, 4))
-
 OUT = os.environ.get("OUT_DIR", "outputs")
 model_path = os.path.join(OUT, "final.keras")
 model = keras.models.load_model(model_path) if os.path.exists(model_path) else None
@@ -44,9 +42,20 @@ if os.path.exists(ADV):
 # ---------- helpers ----------
 def decode(upload: UploadFile):
     data = np.frombuffer(upload.file.read(), np.uint8)
-    img = cv2.imdecode(data, cv2.IMREAD_COLOR)
+    img = cv2.imdecode(data, cv2.IMREAD_UNCHANGED)
     if img is None:
         raise HTTPException(400, "Image read nahi ho payi")
+    if img.ndim == 3 and img.shape[2] == 4:
+        # RGBA: Alpha blend cleanly on white background so transparent corners don't create black noise
+        b, g, r, a = cv2.split(img)
+        alpha = a.astype(float) / 255.0
+        bg = np.full_like(b, 255)
+        b = (b * alpha + bg * (1.0 - alpha)).astype(np.uint8)
+        g = (g * alpha + bg * (1.0 - alpha)).astype(np.uint8)
+        r = (r * alpha + bg * (1.0 - alpha)).astype(np.uint8)
+        img = cv2.merge([b, g, r])
+    elif img.ndim == 2:
+        img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
     return img
 
 
@@ -63,39 +72,103 @@ _model_img_size = None  # model ka expected input size track karo
 
 def get_model():
     global model, _last_mtime, _current_loaded_file, _model_img_size
-    candidates = []
-    for fname in ["final.keras", "best.keras"]:
-        p = os.path.join(OUT, fname)
-        if os.path.exists(p):
-            try:
-                candidates.append((os.path.getmtime(p), p))
-            except OSError:
-                pass
-    if not candidates:
+    final_p = os.path.join(OUT, "final.keras")
+    best_p = os.path.join(OUT, "best.keras")
+    chosen = final_p if os.path.exists(final_p) else (best_p if os.path.exists(best_p) else None)
+    if chosen is None:
         return None
-    candidates.sort(reverse=True)
-    mtime, chosen = candidates[0]
+    try:
+        mtime = os.path.getmtime(chosen)
+    except OSError:
+        mtime = 0
     if model is None or mtime > _last_mtime or _current_loaded_file != chosen:
         try:
             m = keras.models.load_model(chosen)
             model = m
             _last_mtime = mtime
             _current_loaded_file = chosen
-            # Model ka actual expected input size detect karo
-            _model_img_size = model.input_shape[1]  # (None, H, W, 3) -> H
+            _model_img_size = model.input_shape[1]
             print(f"API loaded {chosen} (outputs={model.output_shape[-1]}, input_size={_model_img_size})")
         except Exception as e:
             print("Model load error (retrying with current):", e)
     return model
 
 
+def smart_square_crop(img_bgr):
+    """Detects traffic sign ROI (red/blue/yellow) or letterboxes to 1:1 aspect ratio.
+    Prevents circular traffic signs from being stretched/squished into ellipses.
+    """
+    if img_bgr.ndim == 3 and img_bgr.shape[2] == 4:
+        b, g, r, a = cv2.split(img_bgr)
+        alpha = a.astype(float) / 255.0
+        bg = np.full_like(b, 255)
+        b = (b * alpha + bg * (1.0 - alpha)).astype(np.uint8)
+        g = (g * alpha + bg * (1.0 - alpha)).astype(np.uint8)
+        r = (r * alpha + bg * (1.0 - alpha)).astype(np.uint8)
+        img_bgr = cv2.merge([b, g, r])
+    elif img_bgr.ndim == 2:
+        img_bgr = cv2.cvtColor(img_bgr, cv2.COLOR_GRAY2BGR)
+
+    h, w = img_bgr.shape[:2]
+    b, g, r = cv2.split(img_bgr.astype(float))
+    
+    # Red: speed limits, prohibition, danger triangles, stop, yield
+    red_mask = ((r - np.maximum(b, g) > 28) & (r > 60)).astype(np.uint8)
+    # Blue: mandatory arrows, roundabout, keep right/left
+    blue_mask = ((b - np.maximum(r, g) > 20) & (b > 60)).astype(np.uint8)
+    # Yellow: priority road diamond
+    yellow_mask = ((r > 100) & (g > 100) & (b < 80) & (abs(r - g) < 40)).astype(np.uint8)
+    
+    sign_mask = red_mask | blue_mask | yellow_mask
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+    closed = cv2.morphologyEx(sign_mask, cv2.MORPH_CLOSE, kernel)
+    
+    contours, _ = cv2.findContours(closed, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    
+    if contours:
+        valid = [c for c in contours if cv2.contourArea(c) > (h * w * 0.05)]
+        if valid:
+            c = max(valid, key=cv2.contourArea)
+            (cx, cy), radius = cv2.minEnclosingCircle(c)
+            if radius > min(h, w) * 0.15:
+                # 8% safety padding matching GTSRB format
+                size = int(radius * 2 * 1.08)
+                x0 = int(round(cx - size / 2))
+                y0 = int(round(cy - size / 2))
+                x1 = x0 + size
+                y1 = y0 + size
+                
+                pad_l = max(0, -x0)
+                pad_t = max(0, -y0)
+                pad_r = max(0, x1 - w)
+                pad_b = max(0, y1 - h)
+                if pad_l or pad_t or pad_r or pad_b:
+                    padded = cv2.copyMakeBorder(img_bgr, pad_t, pad_b, pad_l, pad_r, cv2.BORDER_REPLICATE)
+                    return padded[y0 + pad_t : y1 + pad_t, x0 + pad_l : x1 + pad_l]
+                return img_bgr[y0:y1, x0:x1]
+
+    # Letterbox to perfect square if no sign contour was found or already square
+    if h == w:
+        return img_bgr
+    diff = abs(h - w)
+    if h > w:
+        pad1 = diff // 2
+        pad2 = diff - pad1
+        return cv2.copyMakeBorder(img_bgr, 0, 0, pad1, pad2, cv2.BORDER_REPLICATE)
+    else:
+        pad1 = diff // 2
+        pad2 = diff - pad1
+        return cv2.copyMakeBorder(img_bgr, pad1, pad2, 0, 0, cv2.BORDER_REPLICATE)
+
+
 def smart_preprocess(img_bgr):
-    """Dynamically resize to whatever input size the loaded model expects (e.g. 48 or 64)."""
+    """Smart aspect-ratio preserving crop + CLAHE normalization."""
+    sq = smart_square_crop(img_bgr)
     m = get_model()
     sz = 48
     if m is not None and hasattr(m, "input_shape") and len(m.input_shape) >= 2 and m.input_shape[1]:
         sz = int(m.input_shape[1])
-    img = cv2.resize(img_bgr, (sz, sz), interpolation=cv2.INTER_AREA)
+    img = cv2.resize(sq, (sz, sz), interpolation=cv2.INTER_AREA)
     lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
     lab[..., 0] = _clahe.apply(lab[..., 0])
     rgb = cv2.cvtColor(lab, cv2.COLOR_LAB2RGB)
@@ -182,12 +255,13 @@ def health():
 
 def extract_features(m, x):
     try:
-        dense_layers = [l for l in m.layers if "dense" in l.name.lower()]
-        target_layer = dense_layers[0] if len(dense_layers) > 1 else m.layers[-2]
+        latent = [l for l in m.layers if "latent_features" in l.name]
+        target_layer = latent[0] if latent else [l for l in m.layers if "dense" in l.name.lower()][0]
         feat_model = keras.Model(m.inputs, target_layer.output)
         with lock:
             return feat_model(x, training=False).numpy()[0]
-    except Exception:
+    except Exception as e:
+        print("[Feature extraction error]:", e)
         return None
 
 
@@ -200,12 +274,15 @@ def nlp_search_ep(q: str = ""):
 def predict_ep(file: UploadFile = File(...), cam: int = 1):
     try:
         bgr = decode(file)
+        cv2.imwrite(os.path.join(OUT, "debug_uploaded_raw.png"), bgr)
         rgb = preprocess(bgr)
+        cv2.imwrite(os.path.join(OUT, "debug_uploaded_rgb.png"), cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR))
         x = rgb[None].astype("float32")
         p = run(x)[0]
         n_out = len(p)
         classes = CLASS_NAMES[:n_out]
         m = get_model()
+        print("RAW DEEP TOP 3:", [(classes[i], f"{float(p[i]):.1%}") for i in np.argsort(p)[::-1][:3]])
 
         # Hybrid ML Layer: Extract embeddings and blend predictions
         emb = extract_features(m, x) if m is not None else None
