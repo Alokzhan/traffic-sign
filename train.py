@@ -339,11 +339,27 @@ def main():
     print(f"train={len(Xtr)} val={len(Xva)} test={len(Xte)}")
 
     cw = compute_class_weight("balanced", classes=np.arange(len(CLASS_NAMES)), y=ytr)
-    model = build_strong_model(len(CLASS_NAMES))
+
+    # Check for existing checkpoint to resume training
+    best_path = os.path.join(a.out, "best.keras")
+    model = None
+    if os.path.exists(best_path):
+        try:
+            prev_m = keras.models.load_model(best_path)
+            if prev_m.output_shape[-1] == len(CLASS_NAMES) and prev_m.input_shape[1] == IMG_SIZE:
+                print(f"Resuming from existing checkpoint: {best_path}")
+                model = prev_m
+                model.compile(optimizer=keras.optimizers.Adam(3e-4),
+                              loss="sparse_categorical_crossentropy", metrics=["accuracy"])
+        except Exception as e:
+            print(f"Could not resume checkpoint ({e}), building fresh model...")
+
+    if model is None:
+        model = build_strong_model(len(CLASS_NAMES))
     model.summary()
 
     cbs = [
-        keras.callbacks.EarlyStopping(patience=8, restore_best_weights=True, monitor="val_accuracy"),  # 6→8
+        keras.callbacks.EarlyStopping(patience=8, restore_best_weights=True, monitor="val_accuracy"),
         keras.callbacks.ReduceLROnPlateau(factor=0.5, patience=2, min_lr=1e-5),
         keras.callbacks.ModelCheckpoint(os.path.join(a.out, "best.keras"), save_best_only=True,
                                         monitor="val_accuracy"),
@@ -352,6 +368,22 @@ def main():
     print("Starting Deep Residual CNN Training (44 Classes)...")
     h = model.fit(Xtr, ytr, validation_data=(Xva, yva), epochs=a.epochs, batch_size=a.batch,
                   class_weight=dict(enumerate(cw)), callbacks=cbs)
+
+    # Train Calibrated ML Classifier on latent deep representations
+    print("\nFitting Calibrated ML Classifier on latent deep representations...")
+    try:
+        dense_layers = [l for l in model.layers if "dense" in l.name.lower()]
+        target_layer = dense_layers[0] if len(dense_layers) > 1 else model.layers[-2]
+        feat_extractor = keras.Model(inputs=model.inputs, outputs=target_layer.output)
+
+        rng = np.random.default_rng(SEED)
+        ml_sub_idx = rng.choice(len(Xtr), min(6000, len(Xtr)), replace=False)
+        Xtr_emb = feat_extractor.predict(Xtr[ml_sub_idx], batch_size=128, verbose=0)
+        from ml_classifier import ml_hybrid
+        ml_hybrid.train_on_embeddings(Xtr_emb, ytr[ml_sub_idx])
+        print("ML Hybrid Ensemble trained and saved to outputs/ml_classifier.pkl successfully!")
+    except Exception as e:
+        print("ML Hybrid training skipped due to:", e)
 
     probs = model.predict(Xte, verbose=0)
     pred = probs.argmax(1)

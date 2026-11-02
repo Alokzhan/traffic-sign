@@ -95,6 +95,65 @@ function Verdict({ name, conf, ent, s, isOther }) {
 function Busy({ on }) { return on ? <div className="busy">Processing…</div> : null; }
 function Err({ msg }) { return msg ? <div className="verdict warn">❌ {msg}</div> : null; }
 
+function NlpAdvisoryCard({ advisory, narrative, hasMl, deepConf, mlConf }) {
+  if (!advisory) return null;
+  const sevColors = {
+    CRITICAL: { bg: "rgba(239, 68, 68, 0.15)", border: "#ef4444", text: "#f87171" },
+    HIGH: { bg: "rgba(245, 158, 11, 0.15)", border: "#f59e0b", text: "#fbbf24" },
+    MODERATE: { bg: "rgba(59, 130, 246, 0.15)", border: "#3b82f6", text: "#60a5fa" },
+    INFORMATIONAL: { bg: "rgba(16, 185, 129, 0.15)", border: "#10b981", text: "#34d399" }
+  };
+  const sc = sevColors[advisory.severity] || sevColors.MODERATE;
+
+  return (
+    <div style={{
+      background: "var(--glass-b)",
+      border: "1px solid var(--border)",
+      borderRadius: "var(--radius)",
+      padding: "16px",
+      marginTop: "16px",
+      boxShadow: "var(--shadow)"
+    }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px", flexWrap: "wrap", gap: "8px" }}>
+        <h4 style={{ margin: 0, fontSize: "0.95rem", display: "flex", alignItems: "center", gap: "8px" }}>
+          💬 <b>NLP Autonomous Driving Advisory</b>
+        </h4>
+        <div style={{ display: "flex", gap: "8px" }}>
+          <span style={{
+            fontSize: "0.75rem", padding: "3px 10px", borderRadius: "99px",
+            background: sc.bg, border: `1px solid ${sc.border}`, color: sc.text, fontWeight: 700
+          }}>
+            {advisory.severity}
+          </span>
+          <span style={{
+            fontSize: "0.75rem", padding: "3px 10px", borderRadius: "99px",
+            background: "rgba(255,255,255,0.06)", border: "1px solid var(--border)", color: "var(--text2)"
+          }}>
+            {advisory.category}
+          </span>
+        </div>
+      </div>
+
+      <div style={{ fontSize: "0.88rem", color: "var(--text)", lineHeight: 1.5, marginBottom: "8px" }}>
+        <b>Action (EN):</b> {advisory.action_en}
+      </div>
+
+      <div style={{ fontSize: "0.85rem", color: "var(--text2)", lineHeight: 1.5, marginBottom: "10px", background: "rgba(255,255,255,0.02)", padding: "8px 12px", borderRadius: "8px" }}>
+        🇮🇳 <b>Action (Hindi/Hinglish):</b> {advisory.action_hi}
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.78rem", color: "var(--text3)", flexWrap: "wrap", gap: "6px" }}>
+        <span>⚖️ Legal Code: <b>{advisory.legal_rule}</b></span>
+        {hasMl && mlConf !== undefined && mlConf !== null && (
+          <span style={{ color: "var(--cyan)", fontWeight: 600 }}>
+            🤖 Hybrid Ensemble: Deep {(deepConf * 100).toFixed(0)}% + Calibrated ML {(mlConf * 100).toFixed(0)}%
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 /* ---------- Predict ---------- */
 function Predict({ s }) {
   const [preview, setPreview] = useState(null);
@@ -118,7 +177,14 @@ function Predict({ s }) {
       {res && (
         <>
           <Verdict name={res.name} conf={res.conf} ent={res.entropy} s={s} isOther={res.is_other} />
-          <div className="grid3">
+          <NlpAdvisoryCard
+            advisory={res.advisory}
+            narrative={res.narrative}
+            hasMl={res.has_ml_ensemble}
+            deepConf={res.deep_conf}
+            mlConf={res.ml_conf}
+          />
+          <div className="grid3" style={{ marginTop: "18px" }}>
             <figure><img src={preview} alt="original" /><figcaption>Original</figcaption></figure>
             <figure><img src={res.model_input} alt="input" /><figcaption>Model input (48×48 + CLAHE)</figcaption></figure>
             {res.gradcam && (
@@ -322,10 +388,128 @@ function About() {
   );
 }
 
+/* ---------- NLP Assistant ---------- */
+function NlpAssistant() {
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
+  const [busy, setBusy] = useState(false);
+
+  const chips = [
+    "School children",
+    "Speed limit 50",
+    "Red traffic light",
+    "Give way / Yield",
+    "Roundabout",
+    "No overtaking",
+    "Slippery snow",
+    "Turn right"
+  ];
+
+  async function search(q) {
+    const qStr = q || query;
+    if (!qStr.trim()) return;
+    setQuery(qStr);
+    setBusy(true);
+    try {
+      const res = await getJSON(`/api/nlp/search?q=${encodeURIComponent(qStr)}`);
+      setResults(res.results || []);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <section>
+      <h3>💬 NLP Natural Language Sign Assistant</h3>
+      <p style={{ color: "var(--text2)", fontSize: "0.88rem", marginBottom: "16px" }}>
+        Type any natural language scenario, driver observation, or traffic situation. Our NLP semantic engine will match the official sign, autonomous driving actions, and legal codes.
+      </p>
+
+      <div style={{ display: "flex", gap: "10px", marginBottom: "12px" }}>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && search(query)}
+          placeholder="e.g. school zone, turn right, red light, icy road, highway speed..."
+          style={{
+            flex: 1, padding: "12px 16px", borderRadius: "var(--radius)",
+            background: "var(--bg3)", border: "1px solid var(--border)", color: "var(--text)", fontSize: "0.9rem"
+          }}
+        />
+        <button type="button" onClick={() => search(query)} style={{ padding: "12px 20px" }}>
+          🔍 Search
+        </button>
+      </div>
+
+      <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "20px" }}>
+        <span style={{ fontSize: "0.78rem", color: "var(--text3)", alignSelf: "center" }}>Quick queries:</span>
+        {chips.map((c) => (
+          <button
+            key={c}
+            type="button"
+            onClick={() => search(c)}
+            style={{ fontSize: "0.78rem", padding: "4px 10px", borderRadius: "99px" }}
+          >
+            {c}
+          </button>
+        ))}
+      </div>
+
+      {busy && <div className="busy">Analyzing natural language semantics…</div>}
+
+      <div style={{ display: "grid", gap: "12px" }}>
+        {results.map((r) => (
+          <div
+            key={r.name}
+            style={{
+              background: "var(--glass-b)", border: "1px solid var(--border)",
+              borderRadius: "var(--radius)", padding: "16px 20px", boxShadow: "var(--shadow)"
+            }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px", flexWrap: "wrap", gap: "8px" }}>
+              <b style={{ fontSize: "1.05rem", color: "var(--text)" }}>{r.name}</b>
+              <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                <span style={{
+                  fontSize: "0.75rem", padding: "2px 8px", borderRadius: "99px",
+                  background: "rgba(99,102,241,0.15)", border: "1px solid #6366f1", color: "#a5b4fc"
+                }}>
+                  {r.category}
+                </span>
+                <span style={{ fontSize: "0.78rem", color: "var(--cyan)", fontWeight: 600 }}>
+                  {Math.round((r.relevance_score || 0) * 100)}% NLP match
+                </span>
+              </div>
+            </div>
+            <p style={{ fontSize: "0.88rem", color: "var(--text)", marginBottom: "6px" }}>
+              <b>Autonomous Action:</b> {r.action_en}
+            </p>
+            <p style={{ fontSize: "0.85rem", color: "var(--text2)", marginBottom: "8px", background: "rgba(255,255,255,0.02)", padding: "6px 10px", borderRadius: "6px" }}>
+              🇮🇳 <b>Hindi Advisory:</b> {r.action_hi}
+            </p>
+            <div style={{ fontSize: "0.75rem", color: "var(--text3)" }}>
+              ⚖️ Rule: {r.legal_rule} · Severity: <b>{r.severity}</b>
+            </div>
+          </div>
+        ))}
+        {!busy && query && results.length === 0 && (
+          <p style={{ color: "var(--text3)", fontStyle: "italic" }}>No matching traffic signs found. Try different keywords.</p>
+        )}
+      </div>
+    </section>
+  );
+}
+
 /* ---------- App ---------- */
 const TABS = [
-  ["predict", "🔍 Predict + Explain"], ["robust", "🧪 Robustness Lab"],
-  ["batch", "📦 Batch"], ["report", "📊 Model Report"], ["about", "🏗 Architecture"],
+  ["predict", "🔍 Predict + Explain"],
+  ["nlp", "💬 NLP Driver Assistant"],
+  ["robust", "🧪 Robustness Lab"],
+  ["batch", "📦 Batch"],
+  ["report", "📊 Model Report"],
+  ["about", "🏗 Architecture"],
 ];
 
 export default function App() {
@@ -349,7 +533,7 @@ export default function App() {
         <div>
           <h1>🚦 Traffic Sign AI Lab</h1>
           <p style={{color:"var(--text3)",fontSize:".82rem",marginTop:"2px",fontWeight:500}}>
-            CNN · FastAPI · React — GTSRB 9-class classifier (8 signs + Other / not a sign)
+            Deep Residual CNN + Calibrated ML + NLP Semantic Advisory — 44 Classes (43 GTSRB Signs + 1 Open-Set Other)
           </p>
         </div>
         <span className={"pill " + (online ? "on" : "off")}>
@@ -371,6 +555,7 @@ export default function App() {
         <main>
           <nav>{TABS.map(([k, l]) => (<button key={k} className={tab === k ? "active" : ""} onClick={() => setTab(k)}>{l}</button>))}</nav>
           {tab === "predict" && <Predict s={s} />}
+          {tab === "nlp" && <NlpAssistant />}
           {tab === "robust" && <Robustness />}
           {tab === "batch" && <Batch s={s} />}
           {tab === "report" && <Report />}

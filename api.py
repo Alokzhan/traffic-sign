@@ -15,6 +15,8 @@ from common import (
     DISCLAIMER, preprocess
 )
 from predict import gradcam
+import nlp_advisory
+from ml_classifier import ml_hybrid
 
 _clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(4, 4))
 
@@ -175,6 +177,22 @@ def health():
     return {"ok": True, "classes": CLASS_NAMES[:n_out], "disclaimer": DISCLAIMER}
 
 
+def extract_features(m, x):
+    try:
+        dense_layers = [l for l in m.layers if "dense" in l.name.lower()]
+        target_layer = dense_layers[0] if len(dense_layers) > 1 else m.layers[-2]
+        feat_model = keras.Model(m.inputs, target_layer.output)
+        with lock:
+            return feat_model(x, training=False).numpy()[0]
+    except Exception:
+        return None
+
+
+@app.get("/api/nlp/search")
+def nlp_search_ep(q: str = ""):
+    return {"query": q, "results": nlp_advisory.nlp_search(q, top_k=5)}
+
+
 @app.post("/api/predict")
 def predict_ep(file: UploadFile = File(...), cam: int = 1):
     try:
@@ -184,8 +202,17 @@ def predict_ep(file: UploadFile = File(...), cam: int = 1):
         p = run(x)[0]
         n_out = len(p)
         classes = CLASS_NAMES[:n_out]
-        top = int(p.argmax())
         m = get_model()
+
+        # Hybrid ML Layer: Extract embeddings and blend predictions
+        emb = extract_features(m, x) if m is not None else None
+        blend = ml_hybrid.ensemble_blend(p, emb, alpha=0.75)
+        final_probs = blend["blended_probs"]
+        top = int(final_probs.argmax())
+        conf = float(final_probs[top])
+        deep_conf = float(p[top])
+        ml_conf = float(blend["ml_probs"][top]) if blend["ml_probs"] is not None else None
+
         cam_img = None
         if cam and m is not None:
             try:
@@ -199,16 +226,27 @@ def predict_ep(file: UploadFile = File(...), cam: int = 1):
                 print("Grad-CAM error:", e)
 
         is_other = bool("Other" in classes[top])
+        ent = entropy(final_probs)
+        is_unc = bool(conf < 0.70 or ent > 0.50)
+
+        # NLP Driver Advisory & Narrative Generation
+        nlp_data = nlp_advisory.generate_driver_report(top, conf, ent, is_unc)
+
         return {
             "classes": classes,
-            "probs": [float(v) for v in p],
+            "probs": [float(v) for v in final_probs],
             "top": top,
             "name": classes[top],
             "is_other": is_other,
-            "conf": float(p.max()),
-            "entropy": entropy(p),
+            "conf": conf,
+            "deep_conf": deep_conf,
+            "ml_conf": ml_conf,
+            "has_ml_ensemble": blend["has_ml_ensemble"],
+            "entropy": ent,
             "model_input": to_b64(rgb, 192),
-            "gradcam": cam_img
+            "gradcam": cam_img,
+            "advisory": nlp_data["advisory"],
+            "narrative": nlp_data["narrative"]
         }
     except Exception as e:
         print("Prediction error:", e)
