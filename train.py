@@ -27,12 +27,12 @@ tf.random.set_seed(SEED)
 def apply_resolution_diversity(img_rgb, rng):
     """Randomly downscales or blurs images so the CNN does not cheat by resolution differences."""
     p = rng.random()
-    if p < 0.35:
-        low_res = int(rng.integers(20, 36))
+    if p < 0.20:  # 35→20%: kam aggressive, warna digits blur ho jaate hain
+        low_res = int(rng.integers(36, 52))  # 20→36 min: digits readable rahein
         small = cv2.resize(img_rgb, (low_res, low_res), interpolation=cv2.INTER_AREA)
         interp = cv2.INTER_LINEAR if rng.random() > 0.5 else cv2.INTER_CUBIC
         return cv2.resize(small, (IMG_SIZE, IMG_SIZE), interpolation=interp)
-    elif p < 0.60:
+    elif p < 0.40:
         k = int(rng.choice([3, 5]))
         return cv2.GaussianBlur(img_rgb, (k, k), 0)
     return img_rgb
@@ -209,8 +209,8 @@ def res_block(x, filters, stride=1, name=None):
 def build_strong_model(n_classes=44):
     inp = keras.Input((IMG_SIZE, IMG_SIZE, 3))
     aug = keras.Sequential([
-        layers.RandomRotation(0.08),
-        layers.RandomZoom(0.12),
+        layers.RandomRotation(0.05),   # 0.08→0.05: kam rotation, digits distort na hon
+        layers.RandomZoom(0.08),       # 0.12→0.08: zyada zoom se digits bigad jaate hain
         layers.RandomTranslation(0.08, 0.08),
         layers.RandomContrast(0.2),
     ], name="augment")
@@ -319,7 +319,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", required=True)
     ap.add_argument("--out", default="outputs")
-    ap.add_argument("--epochs", type=int, default=25)
+    ap.add_argument("--epochs", type=int, default=35)  # 25→35: digit distinction ke liye zyada training
     ap.add_argument("--batch", type=int, default=64)
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
@@ -343,7 +343,7 @@ def main():
     model.summary()
 
     cbs = [
-        keras.callbacks.EarlyStopping(patience=6, restore_best_weights=True, monitor="val_accuracy"),
+        keras.callbacks.EarlyStopping(patience=8, restore_best_weights=True, monitor="val_accuracy"),  # 6→8
         keras.callbacks.ReduceLROnPlateau(factor=0.5, patience=2, min_lr=1e-5),
         keras.callbacks.ModelCheckpoint(os.path.join(a.out, "best.keras"), save_best_only=True,
                                         monitor="val_accuracy"),

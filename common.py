@@ -1,7 +1,7 @@
 """Shared config + preprocessing for 43 GTSRB signs + 1 Other class (44 classes total)."""
 import cv2
 
-IMG_SIZE = 48
+IMG_SIZE = 64  # 48→64: zyada resolution se digits (3 vs 7) ache se distinguish hote hain
 
 ALL_GTSRB_CLASSES = {
     0: "Speed limit 20",
@@ -76,12 +76,17 @@ HELD_OUT_NAMES = {
 DISCLAIMER = ("Educational demo only. Model is NOT suitable for real driving "
               "or any safety-critical use.")
 
-_clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(4, 4))
+_clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))  # Stronger contrast for digit edges
 
 
 def preprocess(img_bgr):
-    """BGR image -> resized + contrast-normalised (CLAHE) RGB uint8 48x48."""
+    """BGR image -> resized + contrast-normalised (CLAHE) + sharpened RGB uint8 64x64."""
     img = cv2.resize(img_bgr, (IMG_SIZE, IMG_SIZE), interpolation=cv2.INTER_AREA)
     lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
     lab[..., 0] = _clahe.apply(lab[..., 0])
-    return cv2.cvtColor(lab, cv2.COLOR_LAB2RGB)
+    rgb = cv2.cvtColor(lab, cv2.COLOR_LAB2RGB)
+    # Unsharp mask: digit edges (3 vs 7, 5 vs 6 etc.) ko sharp karta hai
+    blurred = cv2.GaussianBlur(rgb, (0, 0), 2.0)
+    rgb = cv2.addWeighted(rgb, 1.5, blurred, -0.5, 0)
+    return rgb
+
