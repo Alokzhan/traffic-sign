@@ -1,7 +1,7 @@
 """Shared config + preprocessing for 43 GTSRB signs + 1 Other class (44 classes total)."""
 import cv2
 
-IMG_SIZE = 64  # 48→64: zyada resolution se digits (3 vs 7) ache se distinguish hote hain
+IMG_SIZE = 48
 
 ALL_GTSRB_CLASSES = {
     0: "Speed limit 20",

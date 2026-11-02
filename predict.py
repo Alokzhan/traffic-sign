@@ -5,7 +5,13 @@ from common import CLASS_NAMES, preprocess, DISCLAIMER
 
 
 def gradcam(model, x):
-    conv = model.get_layer("last_conv")
+    try:
+        conv = model.get_layer("last_conv")
+    except Exception:
+        conv_layers = [l for l in model.layers if "conv" in l.name.lower()]
+        if not conv_layers:
+            return np.ones((x.shape[1], x.shape[2]), dtype="float32")
+        conv = conv_layers[-1]
     gm = keras.Model(model.inputs, [conv.output, model.output])
     with tf.GradientTape() as t:
         fmap, preds = gm(x)

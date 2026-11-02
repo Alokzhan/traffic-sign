@@ -16,6 +16,8 @@ from common import (
 )
 from predict import gradcam
 
+_clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(4, 4))
+
 OUT = os.environ.get("OUT_DIR", "outputs")
 model_path = os.path.join(OUT, "final.keras")
 model = keras.models.load_model(model_path) if os.path.exists(model_path) else None
@@ -55,9 +57,10 @@ def to_b64(rgb, size=None):
 
 _last_mtime = 0
 _current_loaded_file = None
+_model_img_size = None  # model ka expected input size track karo
 
 def get_model():
-    global model, _last_mtime, _current_loaded_file
+    global model, _last_mtime, _current_loaded_file, _model_img_size
     candidates = []
     for fname in ["final.keras", "best.keras"]:
         p = os.path.join(OUT, fname)
@@ -76,10 +79,28 @@ def get_model():
             model = m
             _last_mtime = mtime
             _current_loaded_file = chosen
-            print(f"API loaded {chosen} (outputs={model.output_shape[-1]})")
+            # Model ka actual expected input size detect karo
+            _model_img_size = model.input_shape[1]  # (None, H, W, 3) -> H
+            print(f"API loaded {chosen} (outputs={model.output_shape[-1]}, input_size={_model_img_size})")
         except Exception as e:
             print("Model load error (retrying with current):", e)
     return model
+
+
+def smart_preprocess(img_bgr):
+    """Dynamically resize to whatever input size the loaded model expects (e.g. 48 or 64)."""
+    m = get_model()
+    sz = 48
+    if m is not None and hasattr(m, "input_shape") and len(m.input_shape) >= 2 and m.input_shape[1]:
+        sz = int(m.input_shape[1])
+    img = cv2.resize(img_bgr, (sz, sz), interpolation=cv2.INTER_AREA)
+    lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+    lab[..., 0] = _clahe.apply(lab[..., 0])
+    return cv2.cvtColor(lab, cv2.COLOR_LAB2RGB)
+
+# Use smart_preprocess everywhere in the API
+preprocess = smart_preprocess
+
 
 def run(x):
     m = get_model()
@@ -156,38 +177,42 @@ def health():
 
 @app.post("/api/predict")
 def predict_ep(file: UploadFile = File(...), cam: int = 1):
-    bgr = decode(file)
-    rgb = preprocess(bgr)
-    x = rgb[None].astype("float32")
-    p = run(x)[0]
-    n_out = len(p)
-    classes = CLASS_NAMES[:n_out]
-    top = int(p.argmax())
-    m = get_model()
-    cam_img = None
-    if cam and m is not None:
-        try:
-            with lock:
-                heat_map = gradcam(m, x)
-            base = cv2.resize(rgb, (192, 192), interpolation=cv2.INTER_NEAREST)
-            heat = cv2.applyColorMap(np.uint8(255 * cv2.resize(heat_map, (192, 192))), cv2.COLORMAP_JET)
-            heat = cv2.cvtColor(heat, cv2.COLOR_BGR2RGB)
-            cam_img = to_b64(cv2.addWeighted(base, 0.6, heat, 0.4, 0))
-        except Exception:
-            pass
+    try:
+        bgr = decode(file)
+        rgb = preprocess(bgr)
+        x = rgb[None].astype("float32")
+        p = run(x)[0]
+        n_out = len(p)
+        classes = CLASS_NAMES[:n_out]
+        top = int(p.argmax())
+        m = get_model()
+        cam_img = None
+        if cam and m is not None:
+            try:
+                with lock:
+                    heat_map = gradcam(m, x)
+                base = cv2.resize(rgb, (192, 192), interpolation=cv2.INTER_NEAREST)
+                heat = cv2.applyColorMap(np.uint8(255 * cv2.resize(heat_map, (192, 192))), cv2.COLORMAP_JET)
+                heat = cv2.cvtColor(heat, cv2.COLOR_BGR2RGB)
+                cam_img = to_b64(cv2.addWeighted(base, 0.6, heat, 0.4, 0))
+            except Exception as e:
+                print("Grad-CAM error:", e)
 
-    is_other = bool("Other" in classes[top])
-    return {
-        "classes": classes,
-        "probs": [float(v) for v in p],
-        "top": top,
-        "name": classes[top],
-        "is_other": is_other,
-        "conf": float(p.max()),
-        "entropy": entropy(p),
-        "model_input": to_b64(rgb, 192),
-        "gradcam": cam_img
-    }
+        is_other = bool("Other" in classes[top])
+        return {
+            "classes": classes,
+            "probs": [float(v) for v in p],
+            "top": top,
+            "name": classes[top],
+            "is_other": is_other,
+            "conf": float(p.max()),
+            "entropy": entropy(p),
+            "model_input": to_b64(rgb, 192),
+            "gradcam": cam_img
+        }
+    except Exception as e:
+        print("Prediction error:", e)
+        raise HTTPException(500, detail=f"Prediction failed: {e}")
 
 
 @app.post("/api/batch")
