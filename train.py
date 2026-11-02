@@ -208,44 +208,56 @@ def res_block(x, filters, stride=1, name=None):
 
 def build_strong_model(n_classes=44):
     inp = keras.Input((IMG_SIZE, IMG_SIZE, 3))
+    # Efficient data augmentation on CPU
     aug = keras.Sequential([
-        layers.RandomRotation(0.05),   # 0.08→0.05: kam rotation, digits distort na hon
-        layers.RandomZoom(0.08),       # 0.12→0.08: zyada zoom se digits bigad jaate hain
-        layers.RandomTranslation(0.08, 0.08),
-        layers.RandomContrast(0.2),
+        layers.RandomRotation(0.04),
+        layers.RandomTranslation(0.05, 0.05),
+        layers.RandomZoom(0.06),
     ], name="augment")
     x = aug(inp)
-    x = layers.Rescaling(1 / 255)(x)
+    x = layers.Rescaling(1 / 255.0)(x)
 
+    # Stage 1: Edge & Low-level feature extraction (48x48 -> 24x24)
     x = layers.Conv2D(32, 3, padding="same", use_bias=False)(x)
     x = layers.BatchNormalization()(x)
     x = layers.ReLU()(x)
+    x = layers.Conv2D(32, 3, padding="same", use_bias=False)(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.ReLU()(x)
+    s1 = layers.MaxPooling2D(2)(x)
+    x = layers.Dropout(0.2)(s1)
 
-    x = res_block(x, 32)
-    x = layers.MaxPooling2D()(x)
-    x = layers.Dropout(0.15)(x)
+    # Stage 2: Geometric shape & contour extraction (24x24 -> 12x12)
+    x = layers.Conv2D(64, 3, padding="same", use_bias=False)(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.ReLU()(x)
+    x = layers.Conv2D(64, 3, padding="same", use_bias=False)(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.ReLU()(x)
+    s2 = layers.MaxPooling2D(2)(x)
+    x = layers.Dropout(0.25)(s2)
 
-    x = res_block(x, 64)
-    x = layers.MaxPooling2D()(x)
-    x = layers.Dropout(0.2)(x)
+    # Stage 3: Digit, symbol & pictogram extraction (12x12 -> 6x6)
+    x = layers.Conv2D(128, 3, padding="same", use_bias=False)(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.ReLU()(x)
+    x = layers.Conv2D(128, 3, padding="same", use_bias=False, name="last_conv")(x)
+    x = layers.BatchNormalization()(x)
+    s3 = layers.ReLU()(x)
 
-    x = res_block(x, 128)
-    x = layers.MaxPooling2D()(x)
-    x = layers.Dropout(0.25)(x)
+    # Multi-Scale Fusion: Branch from Stage 2 (shape) + Branch from Stage 3 (digits)
+    pool_s2 = layers.GlobalAveragePooling2D()(s2)
+    gap_s3 = layers.GlobalAveragePooling2D()(s3)
+    gmp_s3 = layers.GlobalMaxPooling2D()(s3)
+    fused = layers.concatenate([pool_s2, gap_s3, gmp_s3])
 
-    x = res_block(x, 192, name="last_conv")
-
-    # Dual Pooling: Global Average + Global Max
-    gap = layers.GlobalAveragePooling2D()(x)
-    gmp = layers.GlobalMaxPooling2D()(x)
-    feat = layers.concatenate([gap, gmp])
-
-    feat = layers.Dense(192, activation="relu")(feat)
+    # Dense Latent Feature Representation
+    feat = layers.Dense(256, activation="relu", name="latent_features")(fused)
     feat = layers.BatchNormalization()(feat)
     feat = layers.Dropout(0.4)(feat)
 
     out = layers.Dense(n_classes, activation="softmax")(feat)
-    m = keras.Model(inp, out, name="strong_resnet_sign")
+    m = keras.Model(inp, out, name="expert_multiscale_cnn")
     m.compile(optimizer=keras.optimizers.Adam(1e-3),
               loss="sparse_categorical_crossentropy", metrics=["accuracy"])
     return m

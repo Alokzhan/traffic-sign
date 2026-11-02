@@ -477,3 +477,4 @@ def generate_driver_report(class_idx: int, conf: float, entropy: float, is_uncer
         "narrative": narrative,
         "advisory": info
     }
+

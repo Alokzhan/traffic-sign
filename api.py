@@ -12,7 +12,7 @@ from fastapi.staticfiles import StaticFiles
 from tensorflow import keras
 from common import (
     CLASS_NAMES, OTHER_CLASS_NAME, OTHER_IDX, NUM_CLASSES,
-    DISCLAIMER, preprocess
+    DISCLAIMER, preprocess as common_preprocess, _clahe
 )
 from predict import gradcam
 import nlp_advisory
@@ -98,7 +98,10 @@ def smart_preprocess(img_bgr):
     img = cv2.resize(img_bgr, (sz, sz), interpolation=cv2.INTER_AREA)
     lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
     lab[..., 0] = _clahe.apply(lab[..., 0])
-    return cv2.cvtColor(lab, cv2.COLOR_LAB2RGB)
+    rgb = cv2.cvtColor(lab, cv2.COLOR_LAB2RGB)
+    blurred = cv2.GaussianBlur(rgb, (0, 0), 2.0)
+    rgb = cv2.addWeighted(rgb, 1.5, blurred, -0.5, 0)
+    return rgb
 
 # Use smart_preprocess everywhere in the API
 preprocess = smart_preprocess

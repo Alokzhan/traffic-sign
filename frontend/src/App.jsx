@@ -167,7 +167,13 @@ function Predict({ s }) {
     try {
       const fd = new FormData(); fd.append("file", f);
       setRes(await postForm("/api/predict", fd));
-    } catch (e) { setErr(e.message); } finally { setBusy(false); }
+    } catch (e) {
+      if (e.message && e.message.includes("Failed to fetch")) {
+        setErr("Failed to fetch: Backend server (http://127.0.0.1:8000) se connect nahi ho pa raha hai. Kripya check karein ki FastAPI server terminal me running hai.");
+      } else {
+        setErr(e.message || "Prediction failed");
+      }
+    } finally { setBusy(false); }
   }
 
   return (
